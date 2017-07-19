@@ -1,0 +1,74 @@
+﻿@model Bounds.Models.b_Reward
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Reward</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_A)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_A)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_B)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_B)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Enterprise_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,112 @@
+﻿@Styles.Render("~/Content/zTree")
+@Scripts.Render("~/bundles/zTree")
+
+<div id="rMenu">
+    <input type="hidden" id="node" />
+    <ul class="dropdown-menu" role="menu">
+        <li><a data-toggle="modal" data-target="#b_OrgNew">添加部门</a></li>
+        <li><a data-toggle="modal" data-target="#b_OrgEdit">编辑部门</a></li>
+        <li><a href="#" onclick="DeleteOrg();">删除部门</a></li>
+        <li><a data-toggle="modal" data-target="#b_OrgCheck" onclick="GetCheck();">设置审核人员</a></li>
+    </ul>
+</div>
+
+<div class="container-fluid text-center">
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="b_OrgNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header common-title">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加部门
+                    </h4>
+                </div>
+                <div class="modal-body col-md-12">
+                    <div class="vertical-center">
+                        <span class="control-label col-md-4 text-right font-16">名称：</span>
+                        <input type="text" id="txtName_New" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveNew">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
+<div class="container-fluid text-center">
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="b_OrgEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header common-title">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑部门
+                    </h4>
+                </div>
+                <div class="modal-body col-md-12">
+                    <div class="vertical-center">
+                        <span class="control-label col-md-4 text-right font-16">名称：</span>
+                        <input type="text" id="txtName_Edit" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveEdit">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
+<div class="container-fluid text-center">
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="b_OrgCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header common-title">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        设置审核人员
+                    </h4>
+                </div>
+                <div class="modal-body col-md-12">
+                    <div class="vertical-center">
+                        <span class="control-label col-md-4 text-right font-16">初审人：</span>
+                        <input type="text" id="txtFirstCheck" class="form-control" />
+                    </div>
+                    <div class="vertical-center">
+                        <span class="control-label col-md-4 text-right font-16">终审人：</span>
+                        <input type="text" id="txtFinalCheck" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnOrgCheck">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
+
+<TABLE border="0" height="600px" align="left">
+    <TR>
+        <TD width=200px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
+            <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
+        </TD>
+    </TR>
+</TABLE>

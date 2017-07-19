@@ -1,0 +1,50 @@
+﻿@model Bounds.Models.b_Organize
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Organize</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_PID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_PID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_First_User_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_First_User_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Final_User_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Final_User_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Bounds.Models.b_Attence>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Attence_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_ShaoXiu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_BingJia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_QuanQin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_KuangGong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Others)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_QuanQin_Get_FixedBounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_1_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_2_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_3_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_4_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_5_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_6_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_7_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_8_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_9_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_10_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_11_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_12_Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Update_Time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Attence_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_ShaoXiu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_BingJia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_QuanQin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_KuangGong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Others)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_QuanQin_Get_FixedBounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_1_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_2_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_3_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_4_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_5_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_6_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_7_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_8_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_9_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_10_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_11_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_12_Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Update_Time)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

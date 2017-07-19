@@ -1,0 +1,194 @@
+﻿@model Bounds.Models.b_Attence
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Attence</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Attence_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Attence_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_ShaoXiu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_ShaoXiu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_BingJia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_BingJia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_QuanQin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_QuanQin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_KuangGong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_KuangGong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Others)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Others)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_QuanQin_Get_FixedBounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_QuanQin_Get_FixedBounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_1_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_1_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_2_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_2_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_3_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_3_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_4_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_4_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_5_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_5_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_6_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_6_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_7_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_7_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_8_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_8_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_9_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_9_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_10_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_10_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_11_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_11_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_12_Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_12_Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Enterprise_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Update_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Update_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

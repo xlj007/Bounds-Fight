@@ -1,0 +1,130 @@
+﻿@model Bounds.Models.b_Global_Config
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Global_Config</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Enterprise_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Recorder_Add)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Recorder_Add)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Recorder_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Recorder_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_ChuangFu_To_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_ChuangFu_To_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_ActualValue_To_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_ActualValue_To_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_VirtualValue_To_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_VirtualValue_To_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Sale_To_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Sale_To_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Attence_To_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Attence_To_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_A_To_B)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_A_To_B)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Price_Paper_Set)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Price_Paper_Set)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_SignIn_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_SignIn_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_SignIn_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_SignIn_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_FixedBounds_ToAttence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_FixedBounds_ToAttence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Check_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Check_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

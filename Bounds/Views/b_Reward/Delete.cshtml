@@ -1,0 +1,80 @@
+﻿@model Bounds.Models.b_Reward
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>b_Reward</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_A)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_A)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_B)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_B)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Enterprise_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated_Time)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

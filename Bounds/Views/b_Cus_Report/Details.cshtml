@@ -1,0 +1,82 @@
+﻿@model Bounds.Models.b_Cus_Report
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Cus_Report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Cus_Report_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Cus_Report_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Cus_Report_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Cus_Report_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Cus_Group_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Cus_Group_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Add_Bounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Add_Bounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Cus_Report_Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Cus_Report_Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Enterprise_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

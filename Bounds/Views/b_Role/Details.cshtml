@@ -1,0 +1,50 @@
+﻿@model Bounds.Models.b_Role
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Role</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Role_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Role_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Role_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Role_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Bounds.Models.b_User>
+
+<table class="table" style="padding: 10px 0px 10px 0px">
+    <tr>
+        <th>
+            <input type="checkbox" id="chkAll" onclick="CheckAll()" />
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_RealName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_WorkNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_PhoneNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Depart_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Role_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Reward_Auth_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Ranking)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" value="@item.ID" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_RealName)
+            </td>
+                @if (item.b_Sex == "0")
+                {
+                    <td>男</td>
+                }
+                else
+                {
+                   <td>女</td>
+                }
+            <td>
+                @Html.DisplayFor(modelItem => item.b_WorkNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_PhoneNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Depart_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_EntryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Role_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Reward_Auth_ID)
+            </td>
+            @if (item.b_Ranking == "0")
+            {
+                <td>否</td>
+            }
+            else
+            {
+                <td>是</td>
+            }
+        </tr>
+    }
+
+</table>
+

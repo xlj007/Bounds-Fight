@@ -1,0 +1,148 @@
+﻿@Scripts.Render("~/bundles/datetime")
+
+@model Bounds.Models.b_User
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("../b_Organize/ShowCheckTree")
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table border="0">
+           <tr>
+               <td>
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_UserName, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_UserName, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_UserName, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_RealName, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_RealName, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_RealName, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Password, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_Password, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Password, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Sex, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @*@Html.EditorFor(model => model.b_Sex, new { htmlAttributes = new { @class = "form-control" } })*@
+                           @Html.RadioButtonFor(model => model.b_Sex, 0, new { htmlAttributes = new { @class = "form-control" } }) 男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           @Html.RadioButtonFor(model => model.b_Sex, 1, new { htmlAttributes = new { @class = "form-control" } }) 女
+                           @Html.ValidationMessageFor(model => model.b_Sex, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   @*<div class="form-group">
+                       @Html.LabelFor(model => model.b_Enterprise_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                       <div class="col-md-10">
+                           @Html.EditorFor(model => model.b_Enterprise_ID, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Enterprise_ID, "", new { @class = "text-danger" })
+                       </div>
+                   </div>*@
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_WorkNum, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_WorkNum, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_WorkNum, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_Email, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Email, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+               </td>
+               <td>
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_PhoneNum, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_PhoneNum, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_PhoneNum, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Depart_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_Depart_ID, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Depart_ID, "", new { @class = "text-danger" })
+                           <input type="hidden" id="hid_b_Depart_ID" />
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_EntryDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_EntryDate, new { htmlAttributes = new { @class = "form-control readonly" } })
+                           @Html.ValidationMessageFor(model => model.b_EntryDate, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Role_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_Role_ID, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Role_ID, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Reward_Auth_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @Html.EditorFor(model => model.b_Reward_Auth_ID, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Reward_Auth_ID, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       @Html.LabelFor(model => model.b_Ranking, htmlAttributes: new { @class = "control-label col-md-4" })
+                       <div class="col-md-8">
+                           @*@Html.EditorFor(model => model.b_Ranking, new { htmlAttributes = new { @class = "form-control" } })*@
+                           @Html.RadioButtonFor(model => model.b_Ranking, 1, new { htmlAttributes = new { @class = "form-control" } }) 是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           @Html.RadioButtonFor(model => model.b_Ranking, 0, new { htmlAttributes = new { @class = "form-control" } }) 否
+                           @Html.ValidationMessageFor(model => model.b_Ranking, "", new { @class = "text-danger" })
+                       </div>
+                   </div>
+               </td>
+           </tr>
+        </table>
+
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#b_Depart_ID').on("click", function () {
+            $("#CheckTreeModel").modal("show");
+        });
+
+        $('#b_EntryDate').datetimepicker({
+            format: "yyyy-mm-dd",
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    });
+    
+</script>

@@ -1,0 +1,136 @@
+﻿@model Bounds.Models.b_User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>b_User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_RealName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_RealName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_WorkNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_WorkNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_PhoneNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_PhoneNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Depart_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Depart_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_EntryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_EntryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Role_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Role_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Reward_Auth_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Reward_Auth_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Ranking)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Ranking)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Create_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Create_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Update_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Update_Time)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

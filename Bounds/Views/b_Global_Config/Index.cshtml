@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Bounds.Models.b_Global_Config>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Recorder_Add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Recorder_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_ChuangFu_To_Bounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_ActualValue_To_Bounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_VirtualValue_To_Bounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Sale_To_Bounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Attence_To_Bounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_A_To_B)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Price_Paper_Set)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_SignIn_Bounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_SignIn_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_FixedBounds_ToAttence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Check_Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Recorder_Add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Recorder_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_ChuangFu_To_Bounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_ActualValue_To_Bounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_VirtualValue_To_Bounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Sale_To_Bounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Attence_To_Bounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_A_To_B)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Price_Paper_Set)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_SignIn_Bounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_SignIn_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_FixedBounds_ToAttence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Check_Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

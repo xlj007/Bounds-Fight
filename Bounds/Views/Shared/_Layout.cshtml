@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 积分管理系统</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("积分管理系统", "Index", "WorkPlace", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    @*<li class="dropdown">
+                        @Html.ActionLink("组织机构", "Index", "b_Organize")
+                    </li>*@
+                    <li class="dropdown">
+                        @Html.ActionLink("用户管理", "Index", "b_User")
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            系统设置<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("角色权限设置", "Index", "b_role")</li>
+                            <li>@Html.ActionLink("奖扣权限设置", "reward_auth", "b_SysConfig")</li>
+                            <li>@Html.ActionLink("全局参数设置", "global_param", "b_SysConfig")</li>
+                            <li>@Html.ActionLink("员工考勤配置", "user_attence", "b_SysConfig")</li>
+                            <li>@Html.ActionLink("自定义分组", "cus_group", "b_SysConfig")</li>
+                            <li>@Html.ActionLink("自定义报表", "cus_report", "b_SysConfig")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            积分配置<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("工龄分配置", "Edit/1", "GongLingModels")</li>
+                            <li>@Html.ActionLink("启动分配置", "Edit/1", "QiDongFenSets")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            积分管理<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("积分奖扣", "WorkAgeSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("我的积分", "StartSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("我的产值", "StartSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("我的审核", "StartSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("个人明细查询", "StartSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("日常奖扣查询", "StartSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("事件库管理", "StartSet", "BoundsManage")</li>
+                            <li>@Html.ActionLink("固定积分配置", "StartSet", "BoundsManage")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            奖扣任务 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("奖扣任务配置", "WorkAgeSet", "Bounds")</li>
+                            <li>@Html.ActionLink("奖扣任务查看", "StartSet", "Bounds")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            奖票管理 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("奖票打印", "Print", "Lottery")</li>
+                            <li>@Html.ActionLink("我的奖票", "Index", "Lottery")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            核查结算 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("积分核查", "BoundCheck", "Check")</li>
+                            <li>@Html.ActionLink("产值核查", "ValueCheck", "Check")</li>
+                            <li>@Html.ActionLink("考勤/固定积分计算", "CheckCount", "Check")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            统计排名 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("产值排名报表", "ValueOrder", "Order")</li>
+                            <li>@Html.ActionLink("管理人员奖扣分报表", "PeopleOrder", "Order")</li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

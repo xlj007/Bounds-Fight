@@ -1,0 +1,111 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+table{
+    width: 100%;
+}
+
+.container-padding{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.bg-blue{
+    background-color: blue;
+}
+.bg-green{
+    background-color: green;
+}
+
+.common-title{
+    background-color: dodgerblue;
+    color: white;
+}
+
+.col-md-2{
+    position: relative;
+    min-height: 1px;
+    text-wrap: avoid;
+}
+
+.vertical-center{
+    height: 40px;
+    line-height: 40px;
+}
+
+.font-12{
+    font-size: 12px;
+}
+
+.font-14{
+    font-size: 14px;
+}
+
+.font-16{
+    font-size: 16px;
+}
+
+.font-18{
+    font-size: 18px;
+}
+
+.font-20{
+    font-size: 20px;
+}
+
+.font-22{
+    font-size: 22px;
+}
+
+.font-24{
+    font-size: 24px;
+}
+
+.font-26{
+    font-size: 26px;
+}
+
+.font-28{
+    font-size: 28px;
+}
+
+.font-30{
+    font-size: 30px;
+}
+
+.selOrg{
+    float: left;
+    width: 100%;
+    border: solid 1px lightgray;
+    height: 50px;
+    overflow-y: scroll;
+}
+
+.childDiv{
+    background-color: lightgray;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+}
