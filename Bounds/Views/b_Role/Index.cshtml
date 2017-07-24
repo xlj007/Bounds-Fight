@@ -1,8 +1,9 @@
-﻿@model IEnumerable<Bounds.Models.b_Role>
+﻿@model IEnumerable<Bounds.Models.b_Role_Show>
 
-<p>
-    @Html.ActionLink("新建角色", "Create")
-</p>
+<div>
+    <h5>@Html.ActionLink("新建角色", "Create")</h5>
+</div>
+@Html.Partial("../b_User/SelUser")
 <table class="table">
     <tr>
         <th>
@@ -12,7 +13,7 @@
             @Html.DisplayNameFor(model => model.b_Role_Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Created_Time)
+            数量
         </th>
         <th>操作</th>
     </tr>
@@ -26,12 +27,12 @@
             @Html.DisplayFor(modelItem => item.b_Role_Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Created_Time)
+            @Html.DisplayFor(modelItem => item.b_Member_Count)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            <a href="#" onclick="Auth.BindMember(@item.ID)">成员绑定</a> |
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }

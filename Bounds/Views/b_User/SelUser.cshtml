@@ -1,0 +1,44 @@
+﻿@Styles.Render("~/Content/zTree")
+@Scripts.Render("~/bundles/zTree-user")
+
+<div class="container-fluid text-center">
+    <input type="hidden" id="hid_Sel_User_Id" />
+    <input type="hidden" id="hid_Sel_Role_Id" />
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="div_Sel_User" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header common-title">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        人员选择
+                    </h4>
+                </div>
+                <div class="modal-body col-md-12">
+                    <div id="selOrg" class="selItem"></div>
+                    <div style="overflow-y: scroll; height: 240px;">
+                        <TABLE border="0" align="left">
+                            <TR>
+                                <TD width=100px align=left valign=top>
+                                    <ul id="usertree" class="ztree" style="width:160px; overflow:auto;"></ul>
+                                </TD>
+                                <td>
+                                    <div id="div_SelUser" class="selUser"></div>
+                                </td>
+                            </TR>
+                        </TABLE>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveNew" onclick="SaveRoleUser();">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
+

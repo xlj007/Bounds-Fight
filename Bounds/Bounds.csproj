@@ -96,6 +96,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -229,6 +230,26 @@
     <Compile Include="Migrations\201707121626306_change auth field type.Designer.cs">
       <DependentUpon>201707121626306_change auth field type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707220759210_add b_user_auth.cs" />
+    <Compile Include="Migrations\201707220759210_add b_user_auth.Designer.cs">
+      <DependentUpon>201707220759210_add b_user_auth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707221335207_add b_Role Enterprise_id.cs" />
+    <Compile Include="Migrations\201707221335207_add b_Role Enterprise_id.Designer.cs">
+      <DependentUpon>201707221335207_add b_Role Enterprise_id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707221510205_change b_User_id to b_Role_id.cs" />
+    <Compile Include="Migrations\201707221510205_change b_User_id to b_Role_id.Designer.cs">
+      <DependentUpon>201707221510205_change b_User_id to b_Role_id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707230855072_add b_User_Role.cs" />
+    <Compile Include="Migrations\201707230855072_add b_User_Role.Designer.cs">
+      <DependentUpon>201707230855072_add b_User_Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707231801036_add ....cs" />
+    <Compile Include="Migrations\201707231801036_add ....Designer.cs">
+      <DependentUpon>201707231801036_add ....cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -248,6 +269,8 @@
     <Compile Include="Models\b_Reward.cs" />
     <Compile Include="Models\b_Role.cs" />
     <Compile Include="Models\b_User.cs" />
+    <Compile Include="Models\b_User_Auth.cs" />
+    <Compile Include="Models\b_User_Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extension.cs" />
   </ItemGroup>
@@ -401,6 +424,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\ztree-check-ext.js" />
+    <Content Include="Scripts\ztree-check-user.js" />
     <Content Include="Scripts\ztree-ext.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -474,6 +498,8 @@
     <Content Include="Views\b_Cus_Report\Details.cshtml" />
     <Content Include="Views\b_Cus_Report\Edit.cshtml" />
     <Content Include="Views\b_Cus_Report\Index.cshtml" />
+    <Content Include="Views\b_Auth\Show.cshtml" />
+    <Content Include="Views\b_User\SelUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -524,6 +550,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707121626306_change auth field type.resx">
       <DependentUpon>201707121626306_change auth field type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707220759210_add b_user_auth.resx">
+      <DependentUpon>201707220759210_add b_user_auth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707221335207_add b_Role Enterprise_id.resx">
+      <DependentUpon>201707221335207_add b_Role Enterprise_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707221510205_change b_User_id to b_Role_id.resx">
+      <DependentUpon>201707221510205_change b_User_id to b_Role_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707230855072_add b_User_Role.resx">
+      <DependentUpon>201707230855072_add b_User_Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707231801036_add ....resx">
+      <DependentUpon>201707231801036_add ....cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

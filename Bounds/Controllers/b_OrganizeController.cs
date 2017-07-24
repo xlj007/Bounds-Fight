@@ -129,7 +129,7 @@ namespace Bounds.Controllers
             try
             {
                 var node = db.b_Organize.Find(NodeId);
-                int nEnterprise_id = Convert.ToInt32(Session["Enterprise_Id"]);
+                int nEnterprise_id = Convert.ToInt32(Session["Enterprise_id"]);
                 var b_First_User = from user in db.b_User
                                    where user.b_Enterprise_ID == nEnterprise_id
                                    where user.b_RealName == FirstCheck
@@ -170,8 +170,9 @@ namespace Bounds.Controllers
         }
         private IEnumerable<b_Organize> GetOrganizeList(int nPid)
         {
+            int ent_id = Session["Enterprise_id"].to_i();
             var list = from dep in db.b_Organize
-                       where dep.b_PID == nPid
+                       where dep.b_PID == nPid && dep.b_Enterprise_Id == ent_id
                        select dep;
             foreach (var item in list.ToList())
             {

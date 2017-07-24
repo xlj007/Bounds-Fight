@@ -47,6 +47,8 @@ function GetNodeList() {
                     showRMenu("root", event.clientX, event.clientY, treeNode);
                 } else if (treeNode && !treeNode.noR) {
                     showRMenu("node", event.clientX, event.clientY, treeNode);
+                } else {
+                    return false;
                 }
             }
         }

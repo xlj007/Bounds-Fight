@@ -4,10 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新建奖扣权限", "Create")
 </p>
 <table class="table">
     <tr>
@@ -22,15 +20,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.b_Reward_Value)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created_Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated_Time)
         </th>
         <th></th>
     </tr>
@@ -50,18 +39,9 @@
             @Html.DisplayFor(modelItem => item.b_Reward_Value)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created_Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated_Time)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }

@@ -21,6 +21,7 @@ namespace Bounds.Models
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string b_Password { get; set; }
+        [Display(Name = "企业代码")]
         public int b_Enterprise_ID { get; set; }
         [DataType(DataType.Text)]
         [Display(Name = "工号")]

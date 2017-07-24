@@ -10,10 +10,28 @@ using Bounds.Models;
 
 namespace Bounds.Controllers
 {
+    [AuthorAdmin]
     public class b_AuthController : Controller
     {
         private BoundsContext db = new BoundsContext();
 
+        public ActionResult Show(int? role_id)
+        {
+            List<b_Auth_Edit> list = new List<b_Auth_Edit>();
+            List<int> role_list = db.b_User_Auth.Where(role => role.b_Role_ID == role_id).Select(role => role.b_Auth_ID).ToList();
+            foreach (var item in db.b_Auth.ToList())
+            {
+                if (role_list.Contains(item.ID))
+                {
+                    list.Add(item.ChangeToAutEdit(1));
+                }
+                else
+                {
+                    list.Add(item.ChangeToAutEdit());
+                }
+            }
+            return View(list);
+        }
         // GET: b_Auth
         public ActionResult Index()
         {

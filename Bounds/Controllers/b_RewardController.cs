@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bounds.Models;
+using Bounds.Utils;
 
 namespace Bounds.Controllers
 {
+    [AuthorAdmin]
     public class b_RewardController : Controller
     {
         private BoundsContext db = new BoundsContext();
@@ -50,6 +52,9 @@ namespace Bounds.Controllers
         {
             if (ModelState.IsValid)
             {
+                b_Reward.Created_Time = DateTime.Now;
+                b_Reward.Updated_Time = DateTime.Now;
+                b_Reward.b_Enterprise_ID = Session["Enterprise_id"].to_i();
                 db.b_Reward.Add(b_Reward);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +87,7 @@ namespace Bounds.Controllers
         {
             if (ModelState.IsValid)
             {
+                b_Reward.Updated_Time = DateTime.Now;
                 db.Entry(b_Reward).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,11 +111,19 @@ namespace Bounds.Controllers
         }
 
         // POST: b_Reward/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             b_Reward b_Reward = db.b_Reward.Find(id);
+            if (b_Reward == null)
+            {
+                return HttpNotFound();
+            }
             db.b_Reward.Remove(b_Reward);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -42,6 +42,11 @@ namespace Bounds
                         "~/Scripts/jquery.ztree.excheck.js",
                         "~/Scripts/ztree-ext.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/zTree-user").Include(
+                        "~/Scripts/jquery.ztree.core.js",
+                        "~/Scripts/jquery.ztree.excheck.js",
+                        "~/Scripts/ztree-check-user.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/zTreeCheck").Include(
                         "~/Scripts/jquery.ztree.core.js",
                         "~/Scripts/jquery.ztree.excheck.js",

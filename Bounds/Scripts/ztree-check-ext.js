@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿function InitCheckTree() {
     var setting = {
         check: {
             enable: true,
@@ -31,7 +31,7 @@
             alert(textStatus);
         }
     });
-});
+}
 
 function HideOrg() {
     $("#CheckTreeModel").modal("hide");

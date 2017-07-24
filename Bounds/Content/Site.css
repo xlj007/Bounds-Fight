@@ -95,7 +95,7 @@ table{
     font-size: 30px;
 }
 
-.selOrg{
+.selItem{
     float: left;
     width: 100%;
     border: solid 1px lightgray;
@@ -108,4 +108,65 @@ table{
     margin: 5px;
     padding: 5px;
     float: left;
+}
+
+.sub_auth{
+    padding-left: 50px;
+    float: left;
+    width: 100%;
+    font-weight: bold;
+}
+
+.sub_auth_item{
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: normal;
+    position: relative;
+}
+
+.sub_auth_item_red{
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: normal;
+    position: relative;
+    color: red;
+}
+
+.auth_tr{
+    text-align: left;
+}
+
+.auth_td{
+    padding-left: 50px;
+}
+
+.left{
+    position: relative;
+    float: left;
+}
+.right{
+    position: relative;
+    float: right;
+}
+
+.left_td{
+    text-align: left;
+    padding-left: 10px;
+}
+.right_td{
+    text-align: right;
+    padding-right: 10px;
+}
+
+.selUser{
+    width: 380px;
+    height: 230px;
+    border: dashed 1px gray;
+    overflow-y: auto;
+}
+
+.UserItem{
+    height: 30px;
 }

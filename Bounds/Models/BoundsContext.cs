@@ -38,5 +38,9 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_Cus_Group> b_Cus_Group { get; set; }
 
         public System.Data.Entity.DbSet<Bounds.Models.b_Cus_Report> b_Cus_Report { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_User_Auth> b_User_Auth { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_User_Role> b_User_Role { get; set; }
     }
 }

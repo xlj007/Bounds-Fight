@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Bounds.Models.b_Auth_Edit>
+@{
+    Layout = null;
+}
+<div>
+    <h4>权限设置</h4>
+</div>
+
+<div id="div_Auth"></div>
+
+<script language="javascript" type="text/javascript">
+    function CheckParent(obj){
+        var parObj;
+        if(obj.value == 0){
+            return;
+        }else if(obj.value != 0 && typeof(obj.value) != 'undefined'){
+            parObj = $("#"+obj.value);
+        }else if(obj.attr('value') != 0){
+            parObj = $("#"+obj.attr('value'));
+        }else{
+            return;
+        }
+        if(parObj != null && parObj.length>0){
+            parObj.prop('checked', true);
+            CheckParent(parObj);
+        }
+    }
+    function CheckChildren(obj, checked){
+        var item_id;
+        if(typeof(obj.id) == 'undefined'){
+            item_id = obj.attr('id');
+        }else{
+            item_id = obj.id;
+        }
+        var arrDiv = $('input[type="checkbox"][value="' + item_id + '"]');
+        arrDiv.each(function(){
+            $(this).prop('checked', checked);
+            CheckChildren($(this), checked);
+        });
+    }
+    function Check(obj){
+        if(obj.checked){
+            CheckParent(obj);
+            //CheckChildren(obj, true);
+        }else {
+            CheckChildren(obj, false);
+        }
+    }
+
+    function AddAuth(id, group_id, name, checked) {
+        var strCheck = "";
+        if(checked == 1){
+            strCheck = "checked";
+        }
+        if (group_id == 0) {
+            $("#div_Auth").append("<div id='div_Auth_" + id + "' value='" + group_id + "' style='font-weight:bold'><input type='checkbox' id='chk_" + id + "' value='0' onclick='Check(this);' "+strCheck+" /> " + name + "<hr /></div>");
+        } else {
+            var authDiv = $("#div_Auth_" + group_id);
+            var authItemDiv = $("#div_Auth_Item_" + group_id);
+            if (authDiv.length > 0){
+                if(authDiv.attr('value') == 0){
+                    authDiv.append("<table><tr class='auth_tr'><td style='width: 200px;'><div id='div_Auth_" + id + "' class='sub_auth' value='" + group_id + "'><input type='checkbox' id='chk_" + id + "' onclick='Check(this);' value='chk_"+group_id+"' "+strCheck+" /> " + name + "</td><td><div id='div_Auth_Item_" + id + "' class='sub_auth_item'></div></div></td></tr><tr><td colspan='2' class='auth_td'><hr /></td></tr></table>");
+                }else{
+                    if(authItemDiv.length > 0){
+                        authItemDiv.append("<div id='div_Auth_" + id + "' class='sub_auth_item' value='" + group_id + "' ><div class='left'><input type='checkbox' id='chk_" + id + "' onclick='Check(this);' value='chk_"+group_id+"' "+strCheck+" /> " + name + "</div></div>");
+                    }else{
+                        authDiv.append("<div id='div_Auth_" + id + "' class='sub_auth_item_red' value='" + group_id + "' ><input type='checkbox' id='chk_" + id + "' onclick='Check(this);' value='chk_"+group_id+"' "+strCheck+" /> " + name + "</div>");
+                    }
+                }
+            }
+        }
+    }
+    @foreach (var item in Model)
+    {
+        <text>
+            AddAuth(@item.ID, @item.b_Auth_Group_ID, '@item.b_Auth_Name', @item.nSelected);
+        </text>
+    }
+</script>

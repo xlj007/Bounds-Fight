@@ -26,10 +26,77 @@ function SaveNewUser() {
                 alert("添加成功");
                 $("#NewUser").modal('hide');
                 //页面刷新
-
+                location.href = "/b_User"
             } else {
                 alert(data);
             }
         }
     });
+}
+
+var Auth = {
+    Add: function () {
+        var b_auth_list = '';
+        $('input:checkbox:checked').each(function () {
+            b_auth_list += $(this).attr('id').replace(/chk_/, ',')
+        });
+        if (b_auth_list.length > 1) {
+            b_auth_list = b_auth_list.substring(1);
+        }
+        var auth_model = {
+            //__RequestVerificationToken: $("#__RequestVerificationToken").val(),
+            Name: $("#b_Role_Name").val(),
+            Description: $("#b_Role_Description").val(),
+            Auth_List: b_auth_list
+        };
+
+        $.ajax({
+            url: "/b_Role/Create",
+            type: "post",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(auth_model),
+            success: function (data) {
+                if (data == "OK") {
+                    alert("添加成功。")
+                    location.href = "/b_Role";
+                } else {
+                    alert(data);
+                }
+            }
+        });
+    },
+    Edit: function (role_id) {
+        var b_auth_list = '';
+        $('input:checkbox:checked').each(function () {
+            b_auth_list += $(this).attr('id').replace(/chk_/, ',')
+        });
+        if (b_auth_list.length > 1) {
+            b_auth_list = b_auth_list.substring(1);
+        }
+        var auth_model = {
+            //__RequestVerificationToken: $("#__RequestVerificationToken").val(),
+            Name: $("#b_Role_Name").val(),
+            Description: $("#b_Role_Description").val(),
+            Auth_List: b_auth_list
+        };
+
+        $.ajax({
+            url: "/b_Role/Edit/" + role_id,
+            type: "post",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(auth_model),
+            success: function (data) {
+                if (data == "OK") {
+                    alert("修改成功。");
+                    location.href = "/b_Role";
+                } else {
+                    alert(data);
+                }
+            }
+        });
+    },
+    BindMember: function (role_id) {
+        GetExistUser(role_id);
+        $("#div_Sel_User").modal('show');
+    }
 }

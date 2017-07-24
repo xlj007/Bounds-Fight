@@ -9,9 +9,9 @@ namespace Bounds.Models
     {
         protected override void Seed(BoundsContext context)
         {
-            context.b_User.Add(new b_User() { b_UserName = "Admin", b_Password = "202CB962AC59075B964B07152D234B70", b_RealName = "管理员", b_Create_Time = DateTime.Now, b_Update_Time = DateTime.Now, b_Enterprise_ID = 1 });
+            context.b_User.Add(new b_User() { b_UserName = "Admin", b_Password = "202CB962AC59075B964B07152D234B70", b_RealName = "管理员", b_Create_Time = DateTime.Now, b_Update_Time = DateTime.Now, b_Enterprise_ID = 11000 });
             context.b_Enterprise.Add(new b_Enterprise() { b_Enterprise_Code = "11000", b_Name = "测试企业" });
-            context.b_Organize.Add(new b_Organize() { b_PID = 0, b_Name = "组织机构", b_Enterprise_Id = 1 });
+            context.b_Organize.Add(new b_Organize() { b_PID = 0, b_Name = "组织机构", b_Enterprise_Id = 11000 });
 
             var list_auth = new List<b_Auth>
             {
