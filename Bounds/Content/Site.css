@@ -187,6 +187,10 @@ table{
     padding-bottom: 10px;
 }
 
+.padding-right{
+    padding-right: 10px;
+}
+
 .mini_txt{
     width: 50px;
     margin: 5px 0px;
@@ -195,4 +199,8 @@ table{
 .center{
     text-align: center;
     vertical-align: middle;
+}
+
+.form_text_normal{
+    font-weight: normal;
 }

@@ -4,10 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <h5>@Html.ActionLink("创建报表", "Create")</h5>
 </p>
 <table class="table">
     <tr>
@@ -17,16 +15,16 @@
         <th>
             @Html.DisplayNameFor(model => model.b_Cus_Report_Type)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.b_Cus_Group_ID)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.b_Add_Bounds)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.b_Cus_Report_Note)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.b_Enterprise_ID)
         </th>
         <th>
@@ -34,7 +32,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Updated_Time)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -44,18 +42,18 @@
             @Html.DisplayFor(modelItem => item.b_Cus_Report_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.b_Cus_Report_Type)
+            @Html.Label(item.b_Cus_Report_Type == 0 ? "积分排名" : "平均分排名", new { @class = "form_text_normal" })
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.b_Cus_Group_ID)
-        </td>
+        </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.b_Add_Bounds)
+            @Html.Label(item.b_Add_Bounds == 0 ? "否": "是", new { @class = "form_text_normal" })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.b_Cus_Report_Note)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
         </td>
         <td>
@@ -63,11 +61,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Updated_Time)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }

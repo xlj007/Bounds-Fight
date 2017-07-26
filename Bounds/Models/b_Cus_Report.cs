@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Bounds.Models
 {
@@ -15,7 +16,7 @@ namespace Bounds.Models
         [Display(Name = "报表类型")]
         public int b_Cus_Report_Type { get; set; }
         [Display(Name = "包含分组")]
-        public int b_Cus_Group_ID { get; set; }
+        public string b_Cus_Group_ID { get; set; }
         [Display(Name = "基础分、工龄分计入累计分")]
         public int b_Add_Bounds { get; set; }
         [Display(Name = "备注")]
