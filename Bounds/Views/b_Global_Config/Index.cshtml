@@ -1,111 +1,205 @@
-﻿@model IEnumerable<Bounds.Models.b_Global_Config>
+﻿@model Bounds.Models.b_Global_Config
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Index</h2>
+@*@using (Html.BeginForm("Save", "b_Global_Config", FormMethod.Post))
+{*@
+    @Html.AntiForgeryToken()
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Recorder_Add)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Recorder_Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_ChuangFu_To_Bounds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_ActualValue_To_Bounds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_VirtualValue_To_Bounds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Sale_To_Bounds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Attence_To_Bounds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_A_To_B)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Price_Paper_Set)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_SignIn_Bounds)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_SignIn_Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_FixedBounds_ToAttence)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Check_Date)
-        </th>
-        <th></th>
-    </tr>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Recorder_Add)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Recorder_Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_ChuangFu_To_Bounds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_ActualValue_To_Bounds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_VirtualValue_To_Bounds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Sale_To_Bounds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Attence_To_Bounds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_A_To_B)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Price_Paper_Set)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_SignIn_Bounds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_SignIn_Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_FixedBounds_ToAttence)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Check_Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.b_Enterprise_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_Enterprise_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_Enterprise_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @{int nIndex = 0;}
+        @{int nIndex1 = 0;}
+        <div class="form-group" id="div_Recorder">
+            @Html.LabelFor(model => model.b_Recorder_Add, htmlAttributes: new { @class = "control-label col-md-2 inline" })
+            @if (Model == null)
+            {
+                <div id="div_Recorder_Item_0">
+                    <label class="control-label col-md-2"></label>
+                    <div class="col-md-10 padding-bottom">
+                        奖扣人次达 @Html.Editor("config_name", new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                        奖 @Html.Editor("config_value", new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                        <span onclick="Global_Config.Add('div_Recorder')" style="cursor:pointer"><img src="~/Content/img/plus.png" /></span>
+                    </div>
+                </div>
+            }
+            @for (int i = 0; i < ((Model == null) ? 0 : Model.b_Global_Config_Item.Count); i++)
+            {
+                if (Model.b_Global_Config_Item[i].b_Item_Type == 1)
+                {
+                    <div id="div_Recorder_Item_@i">
+                        <label class="control-label col-md-2"></label>
+                        <div class="col-md-10 padding-bottom">
+                            奖扣人次达 @Html.EditorFor(model => model.b_Global_Config_Item[i].b_Item_Name, new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                            奖 @Html.EditorFor(model => model.b_Global_Config_Item[i].b_Item_Value, new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                            @if (nIndex == 0)
+                            {
+                                <span onclick="Global_Config.Add('div_Recorder')" style="cursor:pointer"><img src="~/Content/img/plus.png" /></span>
+                            }
+                            else
+                            {
+                                <span onclick="Global_Config.Remove('div_Recorder_Item_@i')" style="cursor:pointer"><img src="~/Content/img/dec.png" /></span>
+                            }
+                        </div>
+                    </div>
+                    nIndex++;
+                }
+            }
+        </div>
 
-</table>
+        <div class="form-group" id="div_Attence">
+            @Html.LabelFor(model => model.b_Attence_To_Bounds, htmlAttributes: new { @class = "control-label col-md-2 inline" })
+            @if (Model == null)
+            {
+                <div id="div_Attence_Item_0">
+                    <label class="control-label col-md-2"></label>
+                    <div class="col-md-10 padding-bottom">
+                        > @Html.Editor("config_name", new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                        小时，超出部分奖
+                        @Html.Editor("config_value", new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                        分/小时
+                        <span onclick="Global_Config.Add('div_Attence')" style="cursor:pointer"><img src="~/Content/img/plus.png" /></span>
+                    </div>
+                </div>
+            }
+            @for (int i = 0; i < ((Model == null) ? 0 : Model.b_Global_Config_Item.Count); i++)
+            {
+                if (Model.b_Global_Config_Item[i].b_Item_Type == 2)
+                {
+                    <div id="div_Attence_Item_@i">
+                        <label class="control-label col-md-2"></label>
+                        <div class="col-md-10 padding-bottom">
+                            > @Html.EditorFor(model => model.b_Global_Config_Item[i].b_Item_Name, new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                            小时，超出部分奖
+                            @Html.EditorFor(model => model.b_Global_Config_Item[i].b_Item_Value, new { htmlAttributes = new { @class = "form-control inline short_txt" } })
+                            分/小时
+                            @if (nIndex1 == 0)
+                            {
+                                <span onclick="Global_Config.Add('div_Attence')" style="cursor:pointer"><img src="~/Content/img/plus.png" /></span>
+                            }
+                            else
+                            {
+                                <span onclick="Global_Config.Remove('div_Attence_Item_@i')" style="cursor:pointer"><img src="~/Content/img/dec.png" /></span>
+                            }
+                        </div>
+                    </div>
+                    nIndex1++;
+                }
+            }
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_Recorder_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_Recorder_Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_Recorder_Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_ChuangFu_To_Bounds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_ChuangFu_To_Bounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_ChuangFu_To_Bounds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_ActualValue_To_Bounds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_ActualValue_To_Bounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_ActualValue_To_Bounds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_VirtualValue_To_Bounds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_VirtualValue_To_Bounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_VirtualValue_To_Bounds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_Sale_To_Bounds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_Sale_To_Bounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_Sale_To_Bounds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_A_To_B, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_A_To_B, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_A_To_B, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_Price_Paper_Set, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_Price_Paper_Set, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_Price_Paper_Set, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_SignIn_Bounds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_SignIn_Bounds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_SignIn_Bounds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_SignIn_Time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_SignIn_Time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_SignIn_Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_FixedBounds_ToAttence, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_FixedBounds_ToAttence, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_FixedBounds_ToAttence, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_Check_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_Check_Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_Check_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.Create_Time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Create_Time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Create_Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存" onclick="Global_Config.Save();" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+@* } *@

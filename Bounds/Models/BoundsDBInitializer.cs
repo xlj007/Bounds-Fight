@@ -5,10 +5,15 @@ using System.Web;
 
 namespace Bounds.Models
 {
-    public class BoundsDBInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<BoundsContext>
+    public class BoundsDBInitializer : System.Data.Entity.CreateDatabaseIfNotExists<BoundsContext>
     {
         protected override void Seed(BoundsContext context)
         {
+            //context.b_Global_Config.Add(new b_Global_Config() { b_Enterprise_ID = 11000 });
+            //var list_config = new List<b_Global_Config_Item> { new b_Global_Config_Item() { b_Global_Config_ID = 1, b_Item_Name = "5", b_Item_Value = "10", b_Item_Type = 1 },
+            //    new b_Global_Config_Item() { b_Global_Config_ID = 1, b_Item_Name = "10", b_Item_Value = "20", b_Item_Type = 2 } };
+            //list_config.ForEach(item => context.b_Global_Config_Item.Add(item));
+
             context.b_User.Add(new b_User() { b_UserName = "Admin", b_Password = "202CB962AC59075B964B07152D234B70", b_RealName = "管理员", b_Create_Time = DateTime.Now, b_Update_Time = DateTime.Now, b_Enterprise_ID = 11000 });
             context.b_Enterprise.Add(new b_Enterprise() { b_Enterprise_Code = "11000", b_Name = "测试企业" });
             context.b_Organize.Add(new b_Organize() { b_PID = 0, b_Name = "组织机构", b_Enterprise_Id = 11000 });

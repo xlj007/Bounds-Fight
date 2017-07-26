@@ -170,3 +170,15 @@ table{
 .UserItem{
     height: 30px;
 }
+
+.inline{
+    display: inline;
+}
+
+.short_txt{
+    width: 100px;
+}
+
+.padding-bottom{
+    padding-bottom: 10px;
+}

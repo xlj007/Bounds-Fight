@@ -38,5 +38,13 @@ namespace Bounds.Models
         public int b_FixedBounds_ToAttence { get; set; }
         [Display(Name = "奖扣任务考核日期每月")]
         public int b_Check_Date { get; set; }
+        public DateTime Create_Time { get; set; }
+        public DateTime Update_Time { get; set; }
+        public List<b_Global_Config_Item> b_Global_Config_Item { get; set; }
+    }
+
+    public class b_Global_Config_Edit : b_Global_Config
+    {
+        public new List<b_Global_Config_Item> b_Global_Config_Item { get; set; }
     }
 }
