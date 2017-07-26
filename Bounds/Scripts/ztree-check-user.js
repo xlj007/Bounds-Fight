@@ -55,19 +55,35 @@ function GetNodeList() {
 
 function GetExistUser(role_id) {
     $("#hid_Sel_Role_Id").val(role_id);
-    $.ajax({
-        url: "/b_User/GetRoleUser",
-        type: "post",
-        dataType: "json",
-        data: { role_id: role_id },
-        success: function (data) {
-            if (data.length != 0) {
-                for (var i = 0; i < data.length; i++) {
-                    AddDiv(data[i].ID, data[i].b_UserName);
+    if ($("#hid_User_Type").val() == "group") {
+        $.ajax({
+            url: "/b_Cus_Group/GetGroupUser",
+            type: "post",
+            dataType: "json",
+            data: { group_id: role_id },
+            success: function (data) {
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        AddDiv(data[i].ID, data[i].b_UserName);
+                    }
                 }
             }
-        }
-    });
+        });
+    } else {
+        $.ajax({
+            url: "/b_User/GetRoleUser",
+            type: "post",
+            dataType: "json",
+            data: { role_id: role_id },
+            success: function (data) {
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        AddDiv(data[i].ID, data[i].b_UserName);
+                    }
+                }
+            }
+        });
+    }
 }
 
 function AddDiv(nodeId, nodeValue) {
@@ -142,24 +158,47 @@ function GetDepartUser(depart_id) {
 function SaveRoleUser() {
     var role_id = $("#hid_Sel_Role_Id").val();
     var user_ids = $("#hid_Sel_User_Id").val();
-    $.ajax({
-        url: "/b_User/SaveRoleUser",
-        type: "post",
-        dataType: "json",
-        data: { role_id: role_id, user_id: user_ids },
-        success: function (data) {
-            if (data == "OK") {
-                alert("保存成功。")
-                $("#div_Sel_User").modal("hide");
-                location.href = "/b_Role";
-            } else {
-                alert(data);
+    if ($("#hid_User_Type").val() == "group") {
+        $.ajax({
+            url: "/b_Cus_Group/SaveGroupUser",
+            type: "post",
+            dataType: "json",
+            data: { group_id: role_id, user_id: user_ids },
+            success: function (data) {
+                if (data == "OK") {
+                    alert("保存成功。")
+                    $("#div_Sel_User").modal("hide");
+                    location.href = "/b_Cus_Group";
+                } else {
+                    alert(data);
+                }
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+                alert(errorThrown);
             }
-        }, error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.readyState);
-            alert(textStatus);
-            alert(errorThrown);
-        }
-    });
+        });
+    } else {
+        $.ajax({
+            url: "/b_User/SaveRoleUser",
+            type: "post",
+            dataType: "json",
+            data: { role_id: role_id, user_id: user_ids },
+            success: function (data) {
+                if (data == "OK") {
+                    alert("保存成功。")
+                    $("#div_Sel_User").modal("hide");
+                    location.href = "/b_Role";
+                } else {
+                    alert(data);
+                }
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        });
+    }
 }

@@ -4,14 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>b_Cus_Group</h4>
+    <div class="form-horizontal"> 
+        <div>
+            <h5>@Html.ActionLink("返回", "Index")</h5>
+        </div>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -25,12 +26,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.b_Cus_Group_Note, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.b_Cus_Group_Note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.b_Cus_Group_Note, 10, 50, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.b_Cus_Group_Note, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.b_Enterprise_ID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.b_Enterprise_ID, new { htmlAttributes = new { @class = "form-control" } })
@@ -52,16 +53,12 @@
                 @Html.EditorFor(model => model.Updated_Time, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Updated_Time, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="保存" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

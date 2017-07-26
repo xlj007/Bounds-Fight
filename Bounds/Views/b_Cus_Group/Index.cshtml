@@ -4,20 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <h5>@Html.ActionLink("新建分组", "Create")</h5>
 </p>
+@Html.Partial("../b_User/SelUser")
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.b_Cus_Group_Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Cus_Group_Note)
+            成员人数
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.b_Cus_Group_Note)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.b_Enterprise_ID)
         </th>
         <th>
@@ -25,7 +27,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Updated_Time)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -35,9 +37,12 @@
             @Html.DisplayFor(modelItem => item.b_Cus_Group_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.b_Cus_Group_Note)
+            @Html.DisplayFor(modelItem => item.b_Cus_Group_Member.Count)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.b_Cus_Group_Note)
+        </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
         </td>
         <td>
@@ -45,11 +50,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Updated_Time)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @*@Html.ActionLink("成员绑定", "Details", new { id=item.ID }) |*@
+            <a href="#" onclick="Cus_Group.BindMember(@item.ID, 'group');">成员绑定</a> |
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }

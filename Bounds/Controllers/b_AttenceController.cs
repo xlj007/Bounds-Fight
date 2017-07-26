@@ -18,7 +18,8 @@ namespace Bounds.Controllers
         // GET: b_Attence
         public ActionResult Index()
         {
-            return View(db.b_Attence.ToList());
+            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            return View(db.b_Attence.Where(x=>x.b_Enterprise_ID == ent_id).ToList());
         }
 
         // GET: b_Attence/Details/5
@@ -109,7 +110,7 @@ namespace Bounds.Controllers
         }
 
         // POST: b_Attence/Delete/5
-        [HttpPost]
+        //[HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {

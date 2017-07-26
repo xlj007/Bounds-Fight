@@ -18,5 +18,6 @@ namespace Bounds.Models
         public int b_Enterprise_ID { get; set; }
         public DateTime Created_Time { get; set; }
         public DateTime Updated_Time { get; set; }
+        public virtual List<b_Cus_Group_Member> b_Cus_Group_Member { get; set; }
     }
 }

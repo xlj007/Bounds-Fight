@@ -44,5 +44,7 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_User_Role> b_User_Role { get; set; }
 
         public System.Data.Entity.DbSet<Bounds.Models.b_Global_Config_Item> b_Global_Config_Item { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Cus_Group_Member> b_Cus_Group_Member { get; set; }
     }
 }

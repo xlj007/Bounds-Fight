@@ -199,3 +199,11 @@ var Global_Config = {
         });
     }
 }
+
+var Cus_Group = {
+    BindMember: function (group_id, source_type) {
+        $("#hid_User_Type").val(source_type);
+        GetExistUser(group_id);
+        $("#div_Sel_User").modal('show');
+    }
+}

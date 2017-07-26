@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201707251730484_fix.Designer.cs">
       <DependentUpon>201707251730484_fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707261019512_Add GroupMember.cs" />
+    <Compile Include="Migrations\201707261019512_Add GroupMember.Designer.cs">
+      <DependentUpon>201707261019512_Add GroupMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -282,6 +286,7 @@
     <Compile Include="Models\b_Attence.cs" />
     <Compile Include="Models\b_Auth.cs" />
     <Compile Include="Models\b_Cus_Group.cs" />
+    <Compile Include="Models\b_Cus_Group_Member.cs" />
     <Compile Include="Models\b_Cus_Report.cs" />
     <Compile Include="Models\b_Enterprise.cs" />
     <Compile Include="Models\b_Global_Config.cs" />
@@ -602,6 +607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707251730484_fix.resx">
       <DependentUpon>201707251730484_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707261019512_Add GroupMember.resx">
+      <DependentUpon>201707261019512_Add GroupMember.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
