@@ -182,3 +182,13 @@ table{
 .padding-bottom{
     padding-bottom: 10px;
 }
+
+.mini_txt{
+    width: 50px;
+    margin: 5px 0px;
+}
+
+.center{
+    text-align: center;
+    vertical-align: middle;
+}

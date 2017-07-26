@@ -4,10 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <h5>@Html.ActionLink("新建考勤配置", "Create")</h5>
 </p>
 <table class="table">
     <tr>
@@ -32,51 +30,51 @@
         <th>
             @Html.DisplayNameFor(model => model.b_QuanQin_Get_FixedBounds)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_1_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_2_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_3_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_4_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_5_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_6_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_7_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_8_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_9_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_10_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_11_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_12_Free)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Enterprise_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created_Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Update_Time)
-        </th>
+        @*<th>
+        @Html.DisplayNameFor(model => model.b_1_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_2_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_3_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_4_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_5_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_6_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_7_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_8_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_9_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_10_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_11_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_12_Free)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.b_Enterprise_ID)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Created_Time)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Update_Time)
+    </th>*@
         <th></th>
     </tr>
 
@@ -103,55 +101,55 @@
         <td>
             @Html.DisplayFor(modelItem => item.b_QuanQin_Get_FixedBounds)
         </td>
+        @*<td>
+        @Html.DisplayFor(modelItem => item.b_1_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_2_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_3_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_4_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_5_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_6_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_7_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_8_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_9_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_10_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_11_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_12_Free)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Created_Time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Update_Time)
+    </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.b_1_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_2_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_3_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_4_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_5_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_6_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_7_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_8_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_9_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_10_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_11_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_12_Free)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created_Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Update_Time)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }

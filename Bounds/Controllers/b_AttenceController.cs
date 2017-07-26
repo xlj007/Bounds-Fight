@@ -10,6 +10,7 @@ using Bounds.Models;
 
 namespace Bounds.Controllers
 {
+    [AuthorAdmin]
     public class b_AttenceController : Controller
     {
         private BoundsContext db = new BoundsContext();
@@ -48,6 +49,9 @@ namespace Bounds.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,b_Attence_Name,b_ShaoXiu,b_BingJia,b_QuanQin,b_KuangGong,b_Others,b_QuanQin_Get_FixedBounds,b_1_Free,b_2_Free,b_3_Free,b_4_Free,b_5_Free,b_6_Free,b_7_Free,b_8_Free,b_9_Free,b_10_Free,b_11_Free,b_12_Free,b_Enterprise_ID,Created_Time,Update_Time")] b_Attence b_Attence)
         {
+            b_Attence.Update_Time = DateTime.Now;
+            b_Attence.Created_Time = DateTime.Now;
+            b_Attence.b_Enterprise_ID = Convert.ToInt16(Session["Enterprise_id"]);
             if (ModelState.IsValid)
             {
                 db.b_Attence.Add(b_Attence);
@@ -105,11 +109,19 @@ namespace Bounds.Controllers
         }
 
         // POST: b_Attence/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             b_Attence b_Attence = db.b_Attence.Find(id);
+            if (b_Attence == null)
+            {
+                return HttpNotFound();
+            }
             db.b_Attence.Remove(b_Attence);
             db.SaveChanges();
             return RedirectToAction("Index");
