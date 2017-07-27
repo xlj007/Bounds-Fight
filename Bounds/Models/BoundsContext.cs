@@ -46,5 +46,9 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_Global_Config_Item> b_Global_Config_Item { get; set; }
 
         public System.Data.Entity.DbSet<Bounds.Models.b_Cus_Group_Member> b_Cus_Group_Member { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_WorkAge> b_WorkAge { get; set; }
+       
+        public System.Data.Entity.DbSet<Bounds.Models.b_StartPoint> b_StartPoint { get; set; }
     }
 }

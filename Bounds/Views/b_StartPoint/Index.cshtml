@@ -1,0 +1,58 @@
+﻿@model Bounds.Models.b_StartPoint
+
+@using (Html.BeginForm("Edit", "b_StartPoint", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.b_StartPoint_Value, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_StartPoint_Value, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_StartPoint_Value, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.b_Enterprise, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.b_Enterprise, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.b_Enterprise, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.Create_Time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Create_Time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Create_Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.Update_Time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Update_Time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Update_Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if('@ViewBag.Body' != ''){
+            alert('@ViewBag.Body');
+        }
+    });
+</script>
