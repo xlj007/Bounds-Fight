@@ -1,0 +1,106 @@
+﻿@model Bounds.Models.b_Event_Library
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Event_Library</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Event_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Event_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_A_Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_A_Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_A_Stop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_A_Stop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_B_Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_B_Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_B_Stop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_B_Stop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Value_Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Value_Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Value_Stop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Value_Stop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_PricePaper_Event)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_PricePaper_Event)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Enterprise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Enterprise)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Create_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Create_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Update_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Update_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

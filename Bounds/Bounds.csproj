@@ -163,12 +163,14 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\Global.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\b_AttenceController.cs" />
     <Compile Include="Controllers\b_AuthController.cs" />
     <Compile Include="Controllers\b_Cus_GroupController.cs" />
     <Compile Include="Controllers\b_Cus_ReportController.cs" />
     <Compile Include="Controllers\b_EnterpriseController.cs" />
+    <Compile Include="Controllers\b_Event_LibraryController.cs" />
     <Compile Include="Controllers\b_Global_ConfigController.cs" />
     <Compile Include="Controllers\b_OrganizeController.cs" />
     <Compile Include="Controllers\b_RewardController.cs" />
@@ -292,6 +294,10 @@
     <Compile Include="Migrations\201707261755560_add workage and startpoint.Designer.cs">
       <DependentUpon>201707261755560_add workage and startpoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707271511590_add event_lib and point and point_event and event_member.cs" />
+    <Compile Include="Migrations\201707271511590_add event_lib and point and point_event and event_member.Designer.cs">
+      <DependentUpon>201707271511590_add event_lib and point and point_event and event_member.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -307,9 +313,13 @@
     <Compile Include="Models\b_Cus_Group_Member.cs" />
     <Compile Include="Models\b_Cus_Report.cs" />
     <Compile Include="Models\b_Enterprise.cs" />
+    <Compile Include="Models\b_Event_Library.cs" />
     <Compile Include="Models\b_Global_Config.cs" />
     <Compile Include="Models\b_Global_Config_Item.cs" />
     <Compile Include="Models\b_Organize.cs" />
+    <Compile Include="Models\b_Point.cs" />
+    <Compile Include="Models\b_Point_Event.cs" />
+    <Compile Include="Models\b_Point_Event_Member.cs" />
     <Compile Include="Models\b_Reward.cs" />
     <Compile Include="Models\b_Role.cs" />
     <Compile Include="Models\b_StartPoint.cs" />
@@ -549,6 +559,11 @@
     <Content Include="Views\b_User\SelUser.cshtml" />
     <Content Include="Views\b_WorkAge\Index.cshtml" />
     <Content Include="Views\b_StartPoint\Index.cshtml" />
+    <Content Include="Views\b_Event_Library\Create.cshtml" />
+    <Content Include="Views\b_Event_Library\Delete.cshtml" />
+    <Content Include="Views\b_Event_Library\Details.cshtml" />
+    <Content Include="Views\b_Event_Library\Edit.cshtml" />
+    <Content Include="Views\b_Event_Library\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -644,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707261755560_add workage and startpoint.resx">
       <DependentUpon>201707261755560_add workage and startpoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707271511590_add event_lib and point and point_event and event_member.resx">
+      <DependentUpon>201707271511590_add event_lib and point and point_event and event_member.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -50,5 +50,13 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_WorkAge> b_WorkAge { get; set; }
        
         public System.Data.Entity.DbSet<Bounds.Models.b_StartPoint> b_StartPoint { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Event_Library> b_Event_Library { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Point> b_Point { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Point_Event> b_Point_Event { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Point_Event_Member> b_Point_Event_Member { get; set; }
     }
 }

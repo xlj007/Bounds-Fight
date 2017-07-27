@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 积分管理系统</title>
+    <title>积分管理系统</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -55,10 +55,10 @@
                             积分管理<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("积分奖扣", "Index", "b_Point_Price")</li>
+                            <li>@Html.ActionLink("积分奖扣", "Index", "b_Point")</li>
                             <li>@Html.ActionLink("我的积分", "Index", "b_My_Point")</li>
                             <li>@Html.ActionLink("我的产值", "Index", "b_My_Value")</li>
-                            <li>@Html.ActionLink("我的审核", "Index", "b_My_Check")</li>
+                            <li>@Html.ActionLink("我的审核", "Check", "b_Point")</li>
                             <li>@Html.ActionLink("个人明细查询", "Index", "b_My_Detail")</li>
                             <li>@Html.ActionLink("日常奖扣查询", "Index", "b_Price_Search")</li>
                             <li>@Html.ActionLink("事件库管理", "Index", "b_Event_Library")</li>

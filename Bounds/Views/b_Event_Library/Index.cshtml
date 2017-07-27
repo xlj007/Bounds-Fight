@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Bounds.Models.b_Event_Library>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <h5>@Html.ActionLink("新建事件", "Create")</h5>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Event_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_A_Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_B_Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Value_Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_PricePaper_Event)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Event_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_A_Start) - @Html.DisplayFor(modelItem => item.b_A_Stop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_B_Start) - @Html.DisplayFor(modelItem => item.b_B_Stop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Value_Start) - @Html.DisplayFor(modelItem => item.b_Value_Stop)
+        </td>
+        <td>
+            @Html.Label(item.b_PricePaper_Event == 0 ? "否" : "是")
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("删除", "Delete", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+        </td>
+    </tr>
+}
+
+</table>
