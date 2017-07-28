@@ -14,10 +14,6 @@ namespace Bounds.Models
         [DataType(DataType.Text)]
         [Display(Name = "名称")]
         public string b_Name { get; set; }
-        [Display(Name = "初审人")]
-        public int b_First_User_id { get; set; }
-        [Display(Name ="终审人")]
-        public int b_Final_User_id { get; set; }
         [Display(Name = "所属企业")]
         public int b_Enterprise_Id { get; set; }
 

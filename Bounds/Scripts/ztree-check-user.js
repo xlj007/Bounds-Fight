@@ -89,7 +89,7 @@ function GetExistUser(role_id) {
 function AddDiv(nodeId, nodeValue) {
     var objDiv = $("#div_" + nodeId);
     if (objDiv.length == 0) {
-        var div = $('<div id="div_' + nodeId + '" class ="childDiv">' + nodeValue + '  <span style="cursor:pointer" onclick="RemoveDiv(' + nodeId + ')"><img src="../../Content/img/cancel.png" /></span></div>');
+        var div = $('<div id="div_' + nodeId + '" class ="childDiv" name="div_sel_user">' + nodeValue + '  <span style="cursor:pointer" onclick="RemoveDiv(' + nodeId + ')"><img src="../../Content/img/cancel.png" /></span></div>');
         $("#selOrg").append(div);
         $("#selOrg").scrollTop(2000);
 
@@ -158,7 +158,11 @@ function GetDepartUser(depart_id) {
 function SaveRoleUser() {
     var role_id = $("#hid_Sel_Role_Id").val();
     var user_ids = $("#hid_Sel_User_Id").val();
-    if ($("#hid_User_Type").val() == "group") {
+    
+    if ($("#hid_User_Type").val() == "event") {
+        Point.BindMemberInfo($("div[name='div_sel_user']"), $("#hid_event_id").val());
+        $("#div_Sel_User").modal("hide");
+    }else if ($("#hid_User_Type").val() == "group") {
         $.ajax({
             url: "/b_Cus_Group/SaveGroupUser",
             type: "post",

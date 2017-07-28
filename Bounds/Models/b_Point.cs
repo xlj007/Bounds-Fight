@@ -18,15 +18,15 @@ namespace Bounds.Models
         [Display(Name = "备注")]
         public string b_Note { get; set; }
         [Display(Name = "初审人")]
-        public virtual b_User b_First_Check { get; set; }
+        public int b_First_Check_ID { get; set; }
         [Display(Name = "初审意见")]
         public string b_First_Note { get; set; }
         [Display(Name = "终审人")]
-        public virtual b_User b_Final_Check { get; set; }
+        public int b_Final_Check_ID { get; set; }
         [Display(Name = "终审意见")]
         public string b_Final_Note { get; set; }
         [Display(Name = "记录人")]
-        public virtual b_User b_Recorder { get; set; }
+        public int b_Recorder_ID { get; set; }
         [Display(Name = "状态")]
         public b_Status b_Status { get; set; }
         public virtual List<b_Point_Event> b_Point_Event { get; set; }

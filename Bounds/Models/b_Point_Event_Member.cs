@@ -17,7 +17,7 @@ namespace Bounds.Models
         public b_Value_Type b_Value_Type { get; set; }
         [Display(Name = "产值")]
         public int b_Value_Point { get; set; }
-        [Display(Name = "人次")]
-        public int b_Person_Time_Count { get; set; }
+        [Display(Name = "参与人员")]
+        public int b_User_ID { get; set; }
     }
 }

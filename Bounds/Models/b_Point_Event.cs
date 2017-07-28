@@ -10,7 +10,7 @@ namespace Bounds.Models
     {
         public int ID { get; set; }
         [Display(Name = "事件")]
-        public virtual b_Event_Library b_Event { get; set; }
+        public int b_Event_ID { get; set; }
         [Display(Name = "事件描述")]
         public string b_Event_Note { get; set; }
         [Display(Name = "参与人")]

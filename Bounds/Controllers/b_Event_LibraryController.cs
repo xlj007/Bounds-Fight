@@ -15,6 +15,15 @@ namespace Bounds.Controllers
     {
         private BoundsContext db = new BoundsContext();
 
+        [HttpPost]
+        public ActionResult GetEvents()
+        {
+            string strEnterprise = Session["Enterprise_id"].ToString();
+            var event_list = from el in db.b_Event_Library
+                             where el.b_Enterprise == strEnterprise
+                             select el;
+            return Json(event_list.ToList());
+        }
         private void SetViewBag(string strSel = "1")
         {
             List<SelectListItem> list = new List<SelectListItem>()

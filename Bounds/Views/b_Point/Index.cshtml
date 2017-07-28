@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Bounds.Models.b_Point>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{ Html.RenderPartial("Query"); }
+<p>
+    <h5>@Html.ActionLink("添加奖扣", "Create")</h5>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Event_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Record_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_First_Check_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Final_Check_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Recorder_ID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Event_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Record_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_First_Check_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Final_Check_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Recorder_ID)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+        </td>
+    </tr>
+}
+
+</table>

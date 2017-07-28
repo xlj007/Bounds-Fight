@@ -93,6 +93,14 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -173,6 +181,7 @@
     <Compile Include="Controllers\b_Event_LibraryController.cs" />
     <Compile Include="Controllers\b_Global_ConfigController.cs" />
     <Compile Include="Controllers\b_OrganizeController.cs" />
+    <Compile Include="Controllers\b_PointController.cs" />
     <Compile Include="Controllers\b_RewardController.cs" />
     <Compile Include="Controllers\b_RoleController.cs" />
     <Compile Include="Controllers\b_StartPointController.cs" />
@@ -298,6 +307,18 @@
     <Compile Include="Migrations\201707271511590_add event_lib and point and point_event and event_member.Designer.cs">
       <DependentUpon>201707271511590_add event_lib and point and point_event and event_member.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707281333033_change point_event_member.cs" />
+    <Compile Include="Migrations\201707281333033_change point_event_member.Designer.cs">
+      <DependentUpon>201707281333033_change point_event_member.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707281537360_change relation.cs" />
+    <Compile Include="Migrations\201707281537360_change relation.Designer.cs">
+      <DependentUpon>201707281537360_change relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707281548450_change relation again.cs" />
+    <Compile Include="Migrations\201707281548450_change relation again.Designer.cs">
+      <DependentUpon>201707281548450_change relation again.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -309,6 +330,7 @@
     <Compile Include="Models\BoundsDBInitializer.cs" />
     <Compile Include="Models\b_Attence.cs" />
     <Compile Include="Models\b_Auth.cs" />
+    <Compile Include="Models\b_Check_User.cs" />
     <Compile Include="Models\b_Cus_Group.cs" />
     <Compile Include="Models\b_Cus_Group_Member.cs" />
     <Compile Include="Models\b_Cus_Report.cs" />
@@ -357,6 +379,7 @@
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\zTreeStandard.gif" />
     <Content Include="Content\img\zTreeStandard.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\zTreeStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -456,6 +479,7 @@
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -564,6 +588,12 @@
     <Content Include="Views\b_Event_Library\Details.cshtml" />
     <Content Include="Views\b_Event_Library\Edit.cshtml" />
     <Content Include="Views\b_Event_Library\Index.cshtml" />
+    <Content Include="Views\b_Point\Create.cshtml" />
+    <Content Include="Views\b_Point\Delete.cshtml" />
+    <Content Include="Views\b_Point\Details.cshtml" />
+    <Content Include="Views\b_Point\Edit.cshtml" />
+    <Content Include="Views\b_Point\Index.cshtml" />
+    <Content Include="Views\b_Point\Query.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -662,6 +692,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707271511590_add event_lib and point and point_event and event_member.resx">
       <DependentUpon>201707271511590_add event_lib and point and point_event and event_member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707281333033_change point_event_member.resx">
+      <DependentUpon>201707281333033_change point_event_member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707281537360_change relation.resx">
+      <DependentUpon>201707281537360_change relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707281548450_change relation again.resx">
+      <DependentUpon>201707281548450_change relation again.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
