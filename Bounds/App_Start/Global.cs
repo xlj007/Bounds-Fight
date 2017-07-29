@@ -21,4 +21,12 @@ namespace Bounds
         实产值,
         虚产值
     }
+
+    public enum b_Fix_Point_Type
+    {
+        技能,
+        职务,
+        学历,
+        职称
+    }
 }

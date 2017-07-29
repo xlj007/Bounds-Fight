@@ -60,5 +60,9 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_Point_Event_Member> b_Point_Event_Member { get; set; }
 
         public System.Data.Entity.DbSet<Bounds.Models.b_Check_User> b_Check_User { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Fix_Point> b_Fix_Point { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Fix_Point_To_User> b_Fix_Point_To_User { get; set; }
     }
 }

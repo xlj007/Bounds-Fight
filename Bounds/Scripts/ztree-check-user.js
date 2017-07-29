@@ -64,6 +64,9 @@ function GetExistUser(role_id) {
     } else if (user_type == "check") {
         target_url = "/b_Organize/GetCheckUser";
         post_data = '{ "check_type": ' + role_id + '}';
+    } else if (user_type == "fix_point") {
+        target_url = "/b_Fix_Point/GetFixTypeUser";
+        post_data = '{ "fix_type": ' + role_id + '}';
     } else {
         target_url = "/b_User/GetRoleUser";
         post_data = '{ "role_id":' + role_id + '}';
@@ -154,6 +157,10 @@ function GetDepartUser(depart_id) {
     });
 }
 
+function ClearUI() {
+    $("#div_SelUser").empty();
+    $("#selOrg").empty();
+}
 
 function SaveRoleUser() {
     var role_id = $("#hid_Sel_Role_Id").val();
@@ -174,7 +181,30 @@ function SaveRoleUser() {
                 if (data == "OK") {
                     alert("保存成功。")
                     $("#div_Sel_User").modal("hide");
+                    ClearUI();
                     location.href = "/b_Cus_Group";
+                } else {
+                    alert(data);
+                }
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        });
+    } else if ($("#hid_User_Type").val() == "fix_point") {
+        $.ajax({
+            url: "/b_Fix_Point/SaveFixTypeUser",
+            type: "post",
+            dataType: "json",
+            data: { fix_type_id: role_id, user_id: user_ids },
+            success: function (data) {
+                if (data == "OK") {
+                    alert("保存成功。")
+                    $("#div_Sel_User").modal("hide");
+                    ClearUI();
+                    location.href = "/b_Fix_Point";
                 } else {
                     alert(data);
                 }
@@ -195,6 +225,7 @@ function SaveRoleUser() {
                 if (data == "OK") {
                     alert("保存成功。")
                     $("#div_Sel_User").modal("hide");
+                    ClearUI();
                     location.href = "/b_Role";
                 } else {
                     alert(data);

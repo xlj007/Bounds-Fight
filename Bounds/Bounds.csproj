@@ -179,6 +179,7 @@
     <Compile Include="Controllers\b_Cus_ReportController.cs" />
     <Compile Include="Controllers\b_EnterpriseController.cs" />
     <Compile Include="Controllers\b_Event_LibraryController.cs" />
+    <Compile Include="Controllers\b_Fix_PointController.cs" />
     <Compile Include="Controllers\b_Global_ConfigController.cs" />
     <Compile Include="Controllers\b_OrganizeController.cs" />
     <Compile Include="Controllers\b_PointController.cs" />
@@ -327,6 +328,22 @@
     <Compile Include="Migrations\201707290934355_fix2.Designer.cs">
       <DependentUpon>201707290934355_fix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707291423076_add fix.cs" />
+    <Compile Include="Migrations\201707291423076_add fix.Designer.cs">
+      <DependentUpon>201707291423076_add fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707291425039_add fix enterprise.cs" />
+    <Compile Include="Migrations\201707291425039_add fix enterprise.Designer.cs">
+      <DependentUpon>201707291425039_add fix enterprise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707291437075_add fix point value column.cs" />
+    <Compile Include="Migrations\201707291437075_add fix point value column.Designer.cs">
+      <DependentUpon>201707291437075_add fix point value column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707291511444_add fix point value relation table.cs" />
+    <Compile Include="Migrations\201707291511444_add fix point value relation table.Designer.cs">
+      <DependentUpon>201707291511444_add fix point value relation table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -344,6 +361,8 @@
     <Compile Include="Models\b_Cus_Report.cs" />
     <Compile Include="Models\b_Enterprise.cs" />
     <Compile Include="Models\b_Event_Library.cs" />
+    <Compile Include="Models\b_Fix_Point.cs" />
+    <Compile Include="Models\b_Fix_Point_To_User.cs" />
     <Compile Include="Models\b_Global_Config.cs" />
     <Compile Include="Models\b_Global_Config_Item.cs" />
     <Compile Include="Models\b_Organize.cs" />
@@ -606,6 +625,11 @@
     <Content Include="Views\b_Point\Edit.cshtml" />
     <Content Include="Views\b_Point\Index.cshtml" />
     <Content Include="Views\b_Point\Query.cshtml" />
+    <Content Include="Views\b_Fix_Point\Create.cshtml" />
+    <Content Include="Views\b_Fix_Point\Delete.cshtml" />
+    <Content Include="Views\b_Fix_Point\Details.cshtml" />
+    <Content Include="Views\b_Fix_Point\Edit.cshtml" />
+    <Content Include="Views\b_Fix_Point\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -719,6 +743,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707290934355_fix2.resx">
       <DependentUpon>201707290934355_fix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291423076_add fix.resx">
+      <DependentUpon>201707291423076_add fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291425039_add fix enterprise.resx">
+      <DependentUpon>201707291425039_add fix enterprise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291437075_add fix point value column.resx">
+      <DependentUpon>201707291437075_add fix point value column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291511444_add fix point value relation table.resx">
+      <DependentUpon>201707291511444_add fix point value relation table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

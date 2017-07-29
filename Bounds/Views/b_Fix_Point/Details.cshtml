@@ -1,0 +1,58 @@
+﻿@model Bounds.Models.b_Fix_Point
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>b_Fix_Point</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Fix_Point_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Fix_Point_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Fix_Point_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Fix_Point_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Create_User_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Create_User_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.b_Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.b_Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Create_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Create_Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

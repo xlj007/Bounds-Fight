@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Bounds.Models.b_Fix_Point>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Html.Partial("../b_User/SelUser")
+<p>
+    @Html.ActionLink("新建固定积分", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Fix_Point_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Fix_Point_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Fix_Point_Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Create_User_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Create_Time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Fix_Point_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Fix_Point_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Fix_Point_Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Create_User_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Create_Time)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            <a href="#" onclick="Fix_Point.BindMember(@item.ID, 'fix_point');">成员绑定</a> |
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？');" })
+        </td>
+    </tr>
+}
+
+</table>

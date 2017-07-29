@@ -210,6 +210,15 @@ var Cus_Group = {
     }
 }
 
+var Fix_Point = {
+    BindMember: function (fix_type_id, source_type) {
+        GetCheckNodeList();
+        $("#hid_User_Type").val(source_type);
+        GetExistUser(fix_type_id);
+        $("#div_Sel_User").modal('show');
+    }
+}
+
 var SetCheck = {
     BindUser: function (check_type, source_type) {
         GetCheckNodeList();
