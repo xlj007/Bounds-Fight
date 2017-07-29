@@ -15,6 +15,23 @@ namespace Bounds.Controllers
     {
         private BoundsContext db = new BoundsContext();
 
+        private void SetViewBag()
+        {
+            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            var list_first_check = from u in db.b_User
+                                   join cu in db.b_Check_User on u.ID equals cu.b_User_ID
+                                   join ent in db.b_Organize on cu.b_Organize_ID equals ent.ID
+                                   where ent.b_Enterprise_Id == ent_id && u.b_Enterprise_ID == ent_id && cu.b_Check_Type == 1
+                                   select u;
+            var list_final_check = from u in db.b_User
+                                   join cu in db.b_Check_User on u.ID equals cu.b_User_ID
+                                   join ent in db.b_Organize on cu.b_Organize_ID equals ent.ID
+                                   where ent.b_Enterprise_Id == ent_id && u.b_Enterprise_ID == ent_id && cu.b_Check_Type == 2
+                                   select u;
+
+            ViewBag.First_Check = list_first_check.ToList();
+            ViewBag.Final_Check = list_final_check.ToList();
+        }
         // GET: b_Point
         public ActionResult Index()
         {
@@ -39,6 +56,7 @@ namespace Bounds.Controllers
         // GET: b_Point/Create
         public ActionResult Create()
         {
+            SetViewBag();
             return View();
         }
 
@@ -139,6 +157,22 @@ namespace Bounds.Controllers
             db.b_Point.Remove(b_Point);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult My_Points()
+        {
+            try
+            {
+                //获取我的积分
+                //var 
+                return Json("OK");
+            }
+            catch(Exception ex)
+            {
+                Log.logger.Error("获取我的积分时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
         }
         protected override void Dispose(bool disposing)
         {

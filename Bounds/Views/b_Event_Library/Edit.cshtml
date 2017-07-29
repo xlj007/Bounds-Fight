@@ -28,15 +28,10 @@
             @Html.LabelFor(model => model.b_A_Start, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.b_A_Start, new { htmlAttributes = new { @class = "form-control short_txt inline" } })
-                @Html.ValidationMessageFor(model => model.b_A_Start, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.b_A_Stop, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+                -
                 @Html.EditorFor(model => model.b_A_Stop, new { htmlAttributes = new { @class = "form-control short_txt inline" } })
                 @Html.ValidationMessageFor(model => model.b_A_Stop, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.b_A_Start, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -44,15 +39,10 @@
             @Html.LabelFor(model => model.b_B_Start, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.b_B_Start, new { htmlAttributes = new { @class = "form-control short_txt inline" } })
-                @Html.ValidationMessageFor(model => model.b_B_Start, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.b_B_Stop, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+                -
                 @Html.EditorFor(model => model.b_B_Stop, new { htmlAttributes = new { @class = "form-control short_txt inline" } })
                 @Html.ValidationMessageFor(model => model.b_B_Stop, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.b_B_Start, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -60,15 +50,10 @@
             @Html.LabelFor(model => model.b_Value_Start, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.b_Value_Start, new { htmlAttributes = new { @class = "form-control short_txt inline" } })
-                @Html.ValidationMessageFor(model => model.b_Value_Start, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.b_Value_Stop, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+                -
                 @Html.EditorFor(model => model.b_Value_Stop, new { htmlAttributes = new { @class = "form-control short_txt inline" } })
                 @Html.ValidationMessageFor(model => model.b_Value_Stop, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.b_Value_Start, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -109,7 +94,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="保存" class="btn btn-default" />
             </div>
         </div>
     </div>

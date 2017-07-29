@@ -176,8 +176,8 @@ function GetCheck() {
 
 function SaveCheck() {
     var node_id = $("#node").val();
-    var first_check = $("#txtFirstCheck").val();
-    var final_check = $("#txtFinalCheck").val();
+    var first_check = $("#hid_first_check_value").val();
+    var final_check = $("#hid_final_check_value").val();
     $.ajax({
         url: "b_Organize/SaveCheck",
         type: "post",
@@ -187,6 +187,10 @@ function SaveCheck() {
             if (data == "true") {
                 alert("保存成功！");
                 $("#b_OrgCheck").modal('hide');
+                $("#hid_first_check_value").val('');
+                $("#hid_final_check_value").val('');
+                $("#txtFirstCheck").empty();
+                $("#txtFinalCheck").empty();
             } else {
                 alert(data);
             }

@@ -40,23 +40,23 @@ function HideOrg() {
 function onCheck(e, treeId, treeNode) {
     if (treeNode.checked) {
         //添加选中的项
-        AddDiv(treeNode.ID, treeNode.b_Name)
+        AddOrgDiv(treeNode.ID, treeNode.b_Name)
     } else {
         //去除选中的项
-        RemoveDiv(treeNode.ID)
+        RemoveOrgDiv(treeNode.ID)
     }
 }
 
-function AddDiv(nodeId, nodeValue) {
+function AddOrgDiv(nodeId, nodeValue) {
     var objDiv = $("#div_" + nodeId);
     if (objDiv.length == 0) {
-        var div = $('<div id="div_' + nodeId + '" class ="childDiv">' + nodeValue + '</div>');
-        $("#selOrg").append(div);
-        $("#selOrg").scrollTop(200);
+        var div = $('<div id="div_' + nodeId + '" class ="childOrgDiv">' + nodeValue + '</div>');
+        $("#selOrganize").append(div);
+        $("#selOrganize").scrollTop(200);
     }
 }
 
-function RemoveDiv(nodeId) {
+function RemoveOrgDiv(nodeId) {
     var objDiv = $("#div_" + nodeId);
     if (objDiv.length != 0) {
         objDiv.remove();
@@ -66,7 +66,7 @@ function RemoveDiv(nodeId) {
 function OrgConfirm() {
     var sel_ids = "";
     var sel_names = "";
-    $("#selOrg div").each(function () {
+    $("#selOrganize div").each(function () {
         sel_names += $(this).text() + ",";
         sel_ids += $(this).attr("id").replace(/div_/, '') + ",";
     });

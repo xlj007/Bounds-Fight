@@ -23,12 +23,14 @@ namespace Bounds
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-multiselect.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-datetimepicker.min.css"
+                      "~/Content/bootstrap-datetimepicker.min.css",
+                      "~/Content/bootstrap-multiselect.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/zTree").Include(
@@ -39,17 +41,17 @@ namespace Bounds
 
             bundles.Add(new ScriptBundle("~/bundles/zTree").Include(
                         "~/Scripts/jquery.ztree.core.js",
-                        "~/Scripts/jquery.ztree.excheck.js",
-                        "~/Scripts/ztree-ext.js"));
+                        "~/Scripts/jquery.ztree.excheck.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/zTree-user").Include(
                         "~/Scripts/jquery.ztree.core.js",
                         "~/Scripts/jquery.ztree.excheck.js",
                         "~/Scripts/ztree-check-user.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/zTree-ext").Include(
+                        "~/Scripts/ztree-ext.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/zTreeCheck").Include(
-                        "~/Scripts/jquery.ztree.core.js",
-                        "~/Scripts/jquery.ztree.excheck.js",
                         "~/Scripts/ztree-check-ext.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/contextmenu").Include(

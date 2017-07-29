@@ -18,11 +18,11 @@ namespace Bounds.Models
         [Display(Name = "备注")]
         public string b_Note { get; set; }
         [Display(Name = "初审人")]
-        public int b_First_Check_ID { get; set; }
+        public string b_First_Check_ID { get; set; }
         [Display(Name = "初审意见")]
         public string b_First_Note { get; set; }
         [Display(Name = "终审人")]
-        public int b_Final_Check_ID { get; set; }
+        public string b_Final_Check_ID { get; set; }
         [Display(Name = "终审意见")]
         public string b_Final_Note { get; set; }
         [Display(Name = "记录人")]

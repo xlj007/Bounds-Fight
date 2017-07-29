@@ -1,6 +1,6 @@
-﻿@Styles.Render("~/Content/zTree")
-@Scripts.Render("~/bundles/zTree")
+﻿@Scripts.Render("~/bundles/zTree-ext")
 
+@Html.Partial("../b_User/SelUser")
 <div id="rMenu">
     <input type="hidden" id="node" />
     <ul class="dropdown-menu" role="menu">
@@ -70,6 +70,8 @@
     </div>
 </div>
 <div class="container-fluid text-center">
+    <input type="hidden" id="hid_first_check_value" />
+    <input type="hidden" id="hid_final_check_value" />
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="b_OrgCheck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -85,11 +87,11 @@
                 <div class="modal-body col-md-12">
                     <div class="vertical-center">
                         <span class="control-label col-md-4 text-right font-16">初审人：</span>
-                        <input type="text" id="txtFirstCheck" class="form-control" />
+                        <input type="text" id="txtFirstCheck" class="form-control" onclick="SetCheck.BindUser(1, 'check');" />
                     </div>
                     <div class="vertical-center">
                         <span class="control-label col-md-4 text-right font-16">终审人：</span>
-                        <input type="text" id="txtFinalCheck" class="form-control" />
+                        <input type="text" id="txtFinalCheck" class="form-control" onclick="SetCheck.BindUser(2, 'check');" />
                     </div>
                 </div>
                 <div class="modal-footer">

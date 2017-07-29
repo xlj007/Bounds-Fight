@@ -112,8 +112,14 @@ namespace Bounds.Controllers
             try
             {
                 var node = db.b_Organize.Find(NodeId);
-                var b_First_User = db.b_User.Find(node.b_First_User_id);
-                var b_Final_User = db.b_User.Find(node.b_Final_User_id);
+                var b_First_User = (from u in db.b_User
+                                   join cu in db.b_Check_User on u.ID equals cu.b_User_ID
+                                   where cu.b_Check_Type == 1
+                                   select u).FirstOrDefault();
+                var b_Final_User = (from u in db.b_User
+                                   join cu in db.b_Check_User on u.ID equals cu.b_User_ID
+                                   where cu.b_Check_Type == 2
+                                   select u).FirstOrDefault();
                 string strCheck = "{\"b_First_User\":\"" + ((b_First_User == null) ? string.Empty : b_First_User.b_RealName) + "\",\"b_Final_User\":\"" + ((b_Final_User == null) ? string.Empty : b_Final_User.b_RealName) + "\"}";
                 return Json(strCheck);
             }
@@ -124,27 +130,60 @@ namespace Bounds.Controllers
             }
         }
         [HttpPost]
+        public ActionResult GetCheckUser(int check_type)
+        {
+            int ent_id = Session["Enterprise_id"].to_i();
+            var user = from u in db.b_User
+                       join cu in db.b_Check_User on u.ID equals cu.b_User_ID
+                       where cu.b_Check_Type == check_type && u.b_Enterprise_ID == ent_id
+                       select new { u.ID, u.b_UserName };
+
+            return Json(user.ToList());
+        }
+        [HttpPost]
         public ActionResult SaveCheck(int NodeId, string FirstCheck, string FinalCheck)
         {
             try
             {
                 var node = db.b_Organize.Find(NodeId);
+                int[] arrFirstCheck = Array.ConvertAll<string, int>(FirstCheck.Split(new char[] { ','}, StringSplitOptions.RemoveEmptyEntries), s => int.Parse(s));
+                int[] arrFinalCheck = Array.ConvertAll<string, int>(FinalCheck.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries), s => int.Parse(s));
                 int nEnterprise_id = Convert.ToInt32(Session["Enterprise_id"]);
                 var b_First_User = from user in db.b_User
                                    where user.b_Enterprise_ID == nEnterprise_id
-                                   where user.b_RealName == FirstCheck
+                                   where arrFirstCheck.Contains(user.ID)
                                    select user;
                 var b_Final_User = from user in db.b_User
                                    where user.b_Enterprise_ID == nEnterprise_id
-                                   where user.b_RealName == FinalCheck
+                                   where arrFinalCheck.Contains(user.ID)
                                    select user;
                 if (b_First_User != null)
                 {
-                    node.b_First_User_id = b_First_User.FirstOrDefault().ID;
+                    db.b_Check_User.RemoveRange(db.b_Check_User.Where(x => x.b_Organize_ID == node.ID && x.b_Check_Type == 1));
+                    List<b_Check_User> list_FirstCheck = new List<b_Check_User>();
+                    foreach (var user in b_First_User)
+                    {
+                        b_Check_User first_user = new b_Check_User();
+                        first_user.b_User_ID = user.ID;
+                        first_user.b_Organize_ID = node.ID;
+                        first_user.b_Check_Type = 1;
+                        list_FirstCheck.Add(first_user);
+                    }
+                    db.b_Check_User.AddRange(list_FirstCheck);
                 }
                 if (b_Final_User != null)
                 {
-                    node.b_Final_User_id = b_Final_User.FirstOrDefault().ID;
+                    db.b_Check_User.RemoveRange(db.b_Check_User.Where(x => x.b_Organize_ID == node.ID && x.b_Check_Type == 2));
+                    List<b_Check_User> list_FinalCheck = new List<b_Check_User>();
+                    foreach (var user in b_First_User)
+                    {
+                        b_Check_User final_user = new b_Check_User();
+                        final_user.b_User_ID = user.ID;
+                        final_user.b_Organize_ID = node.ID;
+                        final_user.b_Check_Type = 2;
+                        list_FinalCheck.Add(final_user);
+                    }
+                    db.b_Check_User.AddRange(list_FinalCheck);
                 }
                 db.SaveChanges();
                 return Json("true");
@@ -180,8 +219,6 @@ namespace Bounds.Controllers
                 org.ID = item.ID;
                 org.b_PID = item.b_PID;
                 org.b_Name = item.b_Name;
-                org.b_First_User_id = item.b_First_User_id;
-                org.b_Final_User_id = item.b_Final_User_id;
                 org.children = GetOrganizeList(item.ID);
                 org.open = true;
                 yield return org;

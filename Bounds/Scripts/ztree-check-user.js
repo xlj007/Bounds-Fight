@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    GetNodeList();
+    //GetCheckNodeList();
 });
 
-function GetNodeList() {
+function GetCheckNodeList() {
     var zTree;
 
     var setting = {
@@ -55,35 +55,35 @@ function GetNodeList() {
 
 function GetExistUser(role_id) {
     $("#hid_Sel_Role_Id").val(role_id);
-    if ($("#hid_User_Type").val() == "group") {
-        $.ajax({
-            url: "/b_Cus_Group/GetGroupUser",
-            type: "post",
-            dataType: "json",
-            data: { group_id: role_id },
-            success: function (data) {
-                if (data.length != 0) {
-                    for (var i = 0; i < data.length; i++) {
-                        AddDiv(data[i].ID, data[i].b_UserName);
-                    }
-                }
-            }
-        });
+    var user_type = $("#hid_User_Type").val();
+    var target_url = '';
+    var post_data = '';
+    if (user_type == "group") {
+        target_url = "/b_Cus_Group/GetGroupUser";
+        post_data = '{ "group_id": ' + role_id + '}';
+    } else if (user_type == "check") {
+        target_url = "/b_Organize/GetCheckUser";
+        post_data = '{ "check_type": ' + role_id + '}';
     } else {
-        $.ajax({
-            url: "/b_User/GetRoleUser",
-            type: "post",
-            dataType: "json",
-            data: { role_id: role_id },
-            success: function (data) {
-                if (data.length != 0) {
-                    for (var i = 0; i < data.length; i++) {
-                        AddDiv(data[i].ID, data[i].b_UserName);
-                    }
+        target_url = "/b_User/GetRoleUser";
+        post_data = '{ "role_id":' + role_id + '}';
+    }
+
+    $.ajax({
+        url: target_url,
+        type: "post",
+        dataType: "json",
+        data: JSON.parse(post_data),
+        success: function (data) {
+            $("#selOrg").empty();
+            $("#hid_Sel_User_Id").val('');
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    AddDiv(data[i].ID, data[i].b_UserName);
                 }
             }
-        });
-    }
+        }
+    });
 }
 
 function AddDiv(nodeId, nodeValue) {
@@ -162,7 +162,9 @@ function SaveRoleUser() {
     if ($("#hid_User_Type").val() == "event") {
         Point.BindMemberInfo($("div[name='div_sel_user']"), $("#hid_event_id").val());
         $("#div_Sel_User").modal("hide");
-    }else if ($("#hid_User_Type").val() == "group") {
+    } else if ($("#hid_User_Type").val() == "check") {
+        SetCheck.BindUserInfo($("div[name='div_sel_user']"), $("#hid_check_type").val());
+    } else if ($("#hid_User_Type").val() == "group") {
         $.ajax({
             url: "/b_Cus_Group/SaveGroupUser",
             type: "post",

@@ -167,6 +167,13 @@ table{
     float: left;
 }
 
+.childOrgDiv{
+    background-color: lightgray;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+}
+
 .sub_auth{
     padding-left: 50px;
     float: left;

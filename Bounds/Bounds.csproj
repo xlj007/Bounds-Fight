@@ -319,6 +319,14 @@
     <Compile Include="Migrations\201707281548450_change relation again.Designer.cs">
       <DependentUpon>201707281548450_change relation again.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707290054591_add relation.cs" />
+    <Compile Include="Migrations\201707290054591_add relation.Designer.cs">
+      <DependentUpon>201707290054591_add relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707290934355_fix2.cs" />
+    <Compile Include="Migrations\201707290934355_fix2.Designer.cs">
+      <DependentUpon>201707290934355_fix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -360,6 +368,8 @@
     <Content Include="Content\background.css" />
     <Content Include="Content\bootstrap-combined.min.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-editable.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -399,6 +409,8 @@
     <Content Include="Scripts\bootstrap-contextmenu.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-editable.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
@@ -701,6 +713,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707281548450_change relation again.resx">
       <DependentUpon>201707281548450_change relation again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707290054591_add relation.resx">
+      <DependentUpon>201707290054591_add relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707290934355_fix2.resx">
+      <DependentUpon>201707290934355_fix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

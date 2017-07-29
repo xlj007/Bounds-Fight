@@ -96,6 +96,7 @@ var Auth = {
         });
     },
     BindMember: function (role_id) {
+        GetCheckNodeList();
         GetExistUser(role_id);
         $("#div_Sel_User").modal('show');
     }
@@ -202,9 +203,40 @@ var Global_Config = {
 
 var Cus_Group = {
     BindMember: function (group_id, source_type) {
+        GetCheckNodeList();
         $("#hid_User_Type").val(source_type);
         GetExistUser(group_id);
         $("#div_Sel_User").modal('show');
+    }
+}
+
+var SetCheck = {
+    BindUser: function (check_type, source_type) {
+        GetCheckNodeList();
+        $("#hid_User_Type").val(source_type);
+        $("#hid_check_type").val(check_type);
+        GetExistUser(check_type);
+        $("#div_Sel_User").modal('show');
+        $("#b_OrgCheck").modal("hide");
+    },
+    BindUserInfo: function (objSel, check_type) {
+        var selText = '';
+        var selValue = '';
+        objSel.each(function () {
+            selText += $(this).text().trim() + ",";
+            selValue += this.id.substring(this.id.lastIndexOf('_') + 1) + ",";
+        });
+        if (check_type == 1) {
+            $("#txtFirstCheck").empty();
+            $("#txtFirstCheck").val(selText);
+            $("#hid_first_check_value").val(selValue);
+        } else if (check_type == 2) {
+            $("#txtFinalCheck").empty();
+            $("#txtFinalCheck").val(selText);
+            $("#hid_final_check_value").val(selValue);
+        }
+        $("#div_Sel_User").modal("hide");
+        $("#b_OrgCheck").modal("show");
     }
 }
 
@@ -227,8 +259,8 @@ function b_Point() {
     this.b_Event_Date;
     this.b_Subject;
     this.b_Note;
-    this.b_First_Check;
-    this.b_Final_Check;
+    this.b_First_Check_ID;
+    this.b_Final_Check_ID;
     this.b_Point_Event;
 }
 var Point = {
@@ -251,6 +283,7 @@ var Point = {
         Point.ReOrder();
     },
     BindMember: function (event_id, source_type) {
+        GetCheckNodeList();
         $("#hid_User_Type").val(source_type);
         $("#hid_event_id").val(event_id);
         //GetExistUser(event_id);
@@ -314,6 +347,8 @@ var Point = {
         point.b_Subject = $("#b_Subject").val();
         point.b_Note = $("#b_Note").val();
         point.b_Event_Date = $("#b_Event_Date").val();
+        point.b_First_Check_ID = $("#b_First_Check_ID").val().join(',');
+        point.b_Final_Check_ID = $("#b_Final_Check_ID").val().join(',');
         point.b_Point_Event = list_event_model;
 
         $.ajax({

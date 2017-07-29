@@ -1,11 +1,13 @@
 ﻿@Styles.Render("~/Content/zTree")
+@Scripts.Render("~/bundles/zTree")
 @Scripts.Render("~/bundles/zTree-user")
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-center" style="z-index: 10000">
     <input type="hidden" id="hid_User_Type" />
     <input type="hidden" id="hid_Sel_User_Id" />
     <input type="hidden" id="hid_Sel_Role_Id" />
     <input type="hidden" id="hid_event_id" />
+    <input type="hidden" id="hid_check_type" />
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="div_Sel_User" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -35,7 +37,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="btnSaveNew" onclick="SaveRoleUser();">保存</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveNewUser" onclick="SaveRoleUser();">保存</button>
                 </div>
             </div>
             <!-- /.modal-content -->
