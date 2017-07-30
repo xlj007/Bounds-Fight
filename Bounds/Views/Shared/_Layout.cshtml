@@ -57,7 +57,7 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("积分奖扣", "Index", "b_Point")</li>
                             <li>@Html.ActionLink("我的积分", "My_Points", "b_Point")</li>
-                            <li>@Html.ActionLink("我的产值", "My_Value", "b_Point")</li>
+                            <li>@Html.ActionLink("我的产值", "My_Values", new { controller = "b_Point" }, new { id = 0 })</li>
                             <li>@Html.ActionLink("我的审核", "Check", "b_Point")</li>
                             <li>@Html.ActionLink("个人明细查询", "Index", "b_My_Detail")</li>
                             <li>@Html.ActionLink("日常奖扣查询", "Index", "b_Price_Search")</li>
@@ -112,7 +112,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+            <p>&copy; @DateTime.Now.Year - 版权信息</p>
         </footer>
     </div>
 

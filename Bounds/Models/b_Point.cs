@@ -34,4 +34,13 @@ namespace Bounds.Models
         public DateTime Create_Time { get; set; }
         public DateTime Update_Time { get; set; }
     }
+
+    public class My_Values_Model
+    {
+        public DateTime b_Event_Date { get; set; }
+        public string b_Event_Name { get; set; }
+        public int b_Value_Point { get; set; }
+        public string FirstCheckName { get; set; }
+        public string FinalCheckName { get; set; }
+    }
 }

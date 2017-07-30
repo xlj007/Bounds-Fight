@@ -160,11 +160,11 @@ namespace Bounds.Controllers
         }
 
         [HttpPost]
-        public ActionResult My_Points()
+        public ActionResult My_Points(int nType = 0)
         {
             try
             {
-                //获取我的积分
+                //获取我的积分0：固定积分，1：奖扣积分，2：其他得分
                 //var 
                 return Json("OK");
             }
@@ -172,6 +172,25 @@ namespace Bounds.Controllers
             {
                 Log.logger.Error("获取我的积分时出现错误：" + ex.Message);
                 return Json(ex.Message);
+            }
+        }
+        public ActionResult My_Values(int? id)
+        {
+            try
+            {
+                if (id == null) id = 0;
+                //获取我的产值0：创富产值，1：实产值，2：虚产值
+                string strSQLSel = @"select a.b_Event_Date,e.b_Event_Name,c.b_Value_Point, f.b_RealName as FirstCheckName,g.b_RealName as FinalCheckName from b_Point as a inner join b_Point_Event as b on a.ID = b.b_Point_ID inner join b_Event_Library as e on b.b_Event_ID = e.ID inner join b_Point_Event_Member as c on b.ID = c.b_Point_Event_ID inner join b_User as f on a.b_First_Check_ID = f.ID inner join b_User as g on a.b_Final_Check_ID = g.ID where a.b_Enterprise = '" + Session["Enterprise_id"].ToString() + "' and c.b_User_ID = " + (Session["User"] as b_User).ID + " and c.b_Value_Type = " + id;
+                //var my_values = db.Database.ExecuteSqlCommand(strSQLSel);
+                var my_values = db.Database.SqlQuery<My_Values_Model>(strSQLSel).ToList();
+                ViewBag.myValue = my_values;
+                ViewData["RouteValue"] = id;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("获取我的积分时出现错误：" + ex.Message);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
         protected override void Dispose(bool disposing)

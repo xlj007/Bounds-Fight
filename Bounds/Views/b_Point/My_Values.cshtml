@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "My_Values";
+}
+
+<ul id="myValues" class="nav nav-tabs">
+    @switch (Html.ViewContext.RouteData.Values["id"].ToString())
+    {
+        case "0":
+        <li class="active">
+            @Html.ActionLink("创富产值", "My_Values", new { id = 0 })
+        </li>
+        <li>
+            @Html.ActionLink("实产值", "My_Values", new { id = 1 })
+        </li>
+        <li>
+            @Html.ActionLink("虚产值", "My_Values", new { id = 2 })
+        </li>
+            break;
+        case "1":
+            <li>
+                @Html.ActionLink("创富产值", "My_Values", new { id = 0 })
+            </li>
+            <li class="active">
+                @Html.ActionLink("实产值", "My_Values", new { id = 1 })
+            </li>
+            <li>
+                @Html.ActionLink("虚产值", "My_Values", new { id = 2 })
+            </li>
+            break;
+        case "2":
+            <li>
+                @Html.ActionLink("创富产值", "My_Values", new { id = 0 })
+            </li>
+            <li>
+                @Html.ActionLink("实产值", "My_Values", new { id = 1 })
+            </li>
+            <li class="active">
+                @Html.ActionLink("虚产值", "My_Values", new { id = 2 })
+            </li>
+            break;
+    }
+
+</ul>
+<table class="table tab-content">
+    <tr>
+        <th>
+            时间
+        </th>
+        <th>
+            事件
+        </th>
+        <th>
+            产值金额
+        </th>
+        <th>
+            初审人
+        </th>
+        <th>
+            终审人
+        </th>
+    </tr>
+    @foreach(var item in ViewBag.myValue)
+    {
+        <tr>
+            <td>
+                @item.b_Event_Date
+            </td>
+            <td>
+                @item.b_Event_Name
+            </td>
+            <td>
+                @item.b_Value_Point
+            </td>
+            <td>
+                @item.FirstCheckName
+            </td>
+            <td>
+                @item.FinalCheckName
+            </td>
+        </tr>
+    }
+</table>
+
