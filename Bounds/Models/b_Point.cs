@@ -43,4 +43,24 @@ namespace Bounds.Models
         public string FirstCheckName { get; set; }
         public string FinalCheckName { get; set; }
     }
+
+    public class My_Fix_Point_Model
+    {
+        public string b_Fix_Point_Name { get; set; }
+        public string b_Fix_Point_Value { get; set; }
+    }
+    public class My_Point_Event_Model
+    {
+        public DateTime b_Event_Date { get; set; }
+        public string b_Event_Name { get; set; }
+        public int b_A_Point { get; set; }
+        public int b_B_Point { get; set; }
+        public string b_First_Check_Name { get; set; }
+        public string b_Final_Check_Name { get; set; }
+    }
+    public class My_Point_Others_Model
+    {
+        public string b_Other_Name { get; set; }
+        public string b_Other_Point { get; set; }
+    }
 }

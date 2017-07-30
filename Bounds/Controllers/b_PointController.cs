@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bounds.Models;
+using Bounds.Utils;
 
 namespace Bounds.Controllers
 {
@@ -159,19 +160,34 @@ namespace Bounds.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult My_Points(int nType = 0)
+        public ActionResult My_Points()
         {
             try
             {
                 //获取我的积分0：固定积分，1：奖扣积分，2：其他得分
-                //var 
-                return Json("OK");
+                int ent_id = Session["Enterprise_id"].to_i();
+                int user_id = (Session["User"] as b_User).ID;
+                //获取固定积分
+                string strSQLGetFixPoint = "select b.b_Fix_Point_Name, b.b_Fix_Point_Value from b_Fix_Point_To_User as a join b_Fix_Point as b on a.b_Fix_Point_ID = b.ID where a.b_User_id =" + user_id;
+                var my_fix_point = db.Database.SqlQuery<My_Fix_Point_Model>(strSQLGetFixPoint);
+                ViewBag.Fix_Point = my_fix_point;
+                //获取奖扣积分
+                string strSQLGetPointEvent= @"select a.b_Event_Date,e.b_Event_Name,c.b_A_Point,c.b_B_Point, f.b_RealName as b_First_Check_Name,g.b_RealName as b_Final_Check_Name 
+                                            from b_Point as a inner join b_Point_Event as b on a.ID = b.b_Point_ID 
+                                            inner join b_Event_Library as e on b.b_Event_ID = e.ID 
+                                            inner join b_Point_Event_Member as c on b.ID = c.b_Point_Event_ID 
+                                            inner join b_User as f on a.b_First_Check_ID = f.ID 
+                                            inner join b_User as g on a.b_Final_Check_ID = g.ID 
+                                            where a.b_Enterprise = " + ent_id + " and c.b_User_ID = " + user_id;
+                var my_point_event = db.Database.SqlQuery<My_Point_Event_Model>(strSQLGetPointEvent);
+                ViewBag.Point_Event = my_point_event;
+                //获取其他得分
+                return View();
             }
             catch(Exception ex)
             {
                 Log.logger.Error("获取我的积分时出现错误：" + ex.Message);
-                return Json(ex.Message);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
         public ActionResult My_Values(int? id)
@@ -181,10 +197,8 @@ namespace Bounds.Controllers
                 if (id == null) id = 0;
                 //获取我的产值0：创富产值，1：实产值，2：虚产值
                 string strSQLSel = @"select a.b_Event_Date,e.b_Event_Name,c.b_Value_Point, f.b_RealName as FirstCheckName,g.b_RealName as FinalCheckName from b_Point as a inner join b_Point_Event as b on a.ID = b.b_Point_ID inner join b_Event_Library as e on b.b_Event_ID = e.ID inner join b_Point_Event_Member as c on b.ID = c.b_Point_Event_ID inner join b_User as f on a.b_First_Check_ID = f.ID inner join b_User as g on a.b_Final_Check_ID = g.ID where a.b_Enterprise = '" + Session["Enterprise_id"].ToString() + "' and c.b_User_ID = " + (Session["User"] as b_User).ID + " and c.b_Value_Type = " + id;
-                //var my_values = db.Database.ExecuteSqlCommand(strSQLSel);
                 var my_values = db.Database.SqlQuery<My_Values_Model>(strSQLSel).ToList();
                 ViewBag.myValue = my_values;
-                ViewData["RouteValue"] = id;
                 return View();
             }
             catch (Exception ex)

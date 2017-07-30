@@ -631,6 +631,7 @@
     <Content Include="Views\b_Fix_Point\Edit.cshtml" />
     <Content Include="Views\b_Fix_Point\Index.cshtml" />
     <Content Include="Views\b_Point\My_Values.cshtml" />
+    <Content Include="Views\b_Point\My_Points.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -102,6 +102,10 @@ table{
     line-height: 40px;
 }
 
+.vertical-top{
+    vertical-align: top;
+}
+
 .font-12{
     font-size: 12px;
 }

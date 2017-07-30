@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "My_Points";
+}
+
+<ul id="myValues" class="nav nav-tabs">
+    <li class="active">
+        <a href="#fix" data-toggle="tab">固定积分</a>
+    </li>
+    <li><a href="#prise" data-toggle="tab">奖扣积分</a></li>
+    <li>
+        <a href="#other" data-toggle="tab">其他得分</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active vertical-top" id="fix">
+        <table class="table">
+            <tr>
+                <th>固定积分名称</th>
+                <th>固定积分得分</th>
+            </tr>
+            @foreach (var fix in ViewBag.Fix_Point)
+            {
+                <tr>
+                    <td>@fix.b_Fix_Point_Name</td>
+                    <td>@fix.b_Fix_Point_Value</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="tab-pane fade vertical-top" id="prise">
+        <table class="table">
+            <tr>
+                <th>奖扣时间</th>
+                <th>奖扣事件</th>
+                <th>A分</th>
+                <th>B分</th>
+                <th>初审人</th>
+                <th>终审人</th>
+            </tr>
+            @foreach (var point_event in ViewBag.Point_Event)
+            {
+                <tr>
+                    <td>@point_event.b_Event_Date</td>
+                    <td>@point_event.b_Event_Name</td>
+                    <td>@point_event.b_A_Point</td>
+                    <td>@point_event.b_B_Point</td>
+                    <td>@point_event.b_First_Check_Name</td>
+                    <td>@point_event.b_Final_Check_Name</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="tab-pane fade vertical-top" id="other">
+        <table class="table">
+            <tr>
+                <th>名称</th>
+                <th>B分</th>
+            </tr>
+            @*@foreach (var other in ViewBag.Others)
+            {
+                <tr>
+                    <td>@other.b_Other_Name</td>
+                    <td>@other.b_Other_Point</td>
+                </tr>
+            }*@
+        </table>
+    </div>
+</div>
+
