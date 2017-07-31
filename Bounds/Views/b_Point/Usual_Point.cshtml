@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Bounds.Models.b_Point>
+
+@{
+    ViewBag.Title = "Usual_Point";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Event_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Record_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_First_Check_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_First_Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Final_Check_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Final_Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Recorder_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Status)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Event_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Record_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_First_Check_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_First_Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Final_Check_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Final_Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Recorder_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Status)
+        </td>
+    </tr>
+}
+
+</table>

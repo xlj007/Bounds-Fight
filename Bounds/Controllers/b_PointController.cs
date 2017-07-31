@@ -37,7 +37,9 @@ namespace Bounds.Controllers
         // GET: b_Point
         public ActionResult Index()
         {
-            return View(db.b_Point.ToList());
+            string strEnterprise = Session["Enterprise_id"].ToString();
+            int user_id = (Session["User"] as b_User).ID;
+            return View(db.b_Point.Where(x=>x.b_Recorder_ID == user_id && x.b_Enterprise == strEnterprise).ToList());
         }
 
         // GET: b_Point/Details/5
@@ -358,6 +360,38 @@ namespace Bounds.Controllers
             {
                 Log.logger.Error("保存评论时出现错误：" + ex.Message);
                 return Json(ex.Message);
+            }
+        }
+
+        public ActionResult My_Detail()
+        {
+            try
+            {
+                int id = (Session["User"] as b_User).ID;
+                var my_detail = from d in db.b_Point_Details
+                                where d.b_User_ID == id
+                                select d;
+
+                return View(my_detail);
+            }
+            catch(Exception ex)
+            {
+                Log.logger.Error("进行个人明细查询时出现错误：" + ex.Message);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Usual_Point()
+        {
+            try
+            {
+                string strEnterprise = Session["Enterprise_id"].ToString();
+                return View(db.b_Point.Where(x => x.b_Enterprise == strEnterprise).ToList());
+            }
+            catch(Exception ex)
+            {
+                Log.logger.Error("获取日常奖扣查询数据时出现错误：" + ex.Message);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
         protected override void Dispose(bool disposing)

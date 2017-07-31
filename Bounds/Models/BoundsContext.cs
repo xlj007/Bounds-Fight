@@ -64,5 +64,7 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_Fix_Point> b_Fix_Point { get; set; }
 
         public System.Data.Entity.DbSet<Bounds.Models.b_Fix_Point_To_User> b_Fix_Point_To_User { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Point_Details> b_Point_Details { get; set; }
     }
 }

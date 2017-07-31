@@ -346,6 +346,14 @@
     <Compile Include="Migrations\201707291511444_add fix point value relation table.Designer.cs">
       <DependentUpon>201707291511444_add fix point value relation table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707311419592_add point details.cs" />
+    <Compile Include="Migrations\201707311419592_add point details.Designer.cs">
+      <DependentUpon>201707311419592_add point details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707311449437_add time field.cs" />
+    <Compile Include="Migrations\201707311449437_add time field.Designer.cs">
+      <DependentUpon>201707311449437_add time field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -369,6 +377,7 @@
     <Compile Include="Models\b_Global_Config_Item.cs" />
     <Compile Include="Models\b_Organize.cs" />
     <Compile Include="Models\b_Point.cs" />
+    <Compile Include="Models\b_Point_Details.cs" />
     <Compile Include="Models\b_Point_Event.cs" />
     <Compile Include="Models\b_Point_Event_Member.cs" />
     <Compile Include="Models\b_Reward.cs" />
@@ -638,6 +647,8 @@
     <Content Include="Views\b_Point\My_Check.cshtml" />
     <Content Include="Views\b_Point\PointEdit.cshtml" />
     <Content Include="Views\b_Point\Comment.cshtml" />
+    <Content Include="Views\b_Point\My_Detail.cshtml" />
+    <Content Include="Views\b_Point\Usual_Point.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -763,6 +774,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707291511444_add fix point value relation table.resx">
       <DependentUpon>201707291511444_add fix point value relation table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707311419592_add point details.resx">
+      <DependentUpon>201707311419592_add point details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707311449437_add time field.resx">
+      <DependentUpon>201707311449437_add time field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
