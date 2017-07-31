@@ -29,4 +29,19 @@ namespace Bounds
         学历,
         职称
     }
+
+    public enum b_Task_Cycle
+    {
+        日任务,
+        周任务,
+        月任务
+    }
+
+    public enum b_Task_Type
+    {
+        奖分任务,
+        扣分任务,
+        人次任务,
+        扣分比例任务
+    }
 }

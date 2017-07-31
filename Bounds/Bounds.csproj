@@ -188,6 +188,8 @@
     <Compile Include="Controllers\b_RewardController.cs" />
     <Compile Include="Controllers\b_RoleController.cs" />
     <Compile Include="Controllers\b_StartPointController.cs" />
+    <Compile Include="Controllers\b_TaskController.cs" />
+    <Compile Include="Controllers\b_Task_InfoController.cs" />
     <Compile Include="Controllers\b_WorkAgeController.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Migrations\201706291507281_Init.cs" />
@@ -354,6 +356,14 @@
     <Compile Include="Migrations\201707311449437_add time field.Designer.cs">
       <DependentUpon>201707311449437_add time field.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707311606402_add task.cs" />
+    <Compile Include="Migrations\201707311606402_add task.Designer.cs">
+      <DependentUpon>201707311606402_add task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707311629255_fix sth.cs" />
+    <Compile Include="Migrations\201707311629255_fix sth.Designer.cs">
+      <DependentUpon>201707311629255_fix sth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -383,6 +393,9 @@
     <Compile Include="Models\b_Reward.cs" />
     <Compile Include="Models\b_Role.cs" />
     <Compile Include="Models\b_StartPoint.cs" />
+    <Compile Include="Models\b_Task.cs" />
+    <Compile Include="Models\b_Task_Info.cs" />
+    <Compile Include="Models\b_Task_To_User.cs" />
     <Compile Include="Models\b_User.cs" />
     <Compile Include="Models\b_User_Auth.cs" />
     <Compile Include="Models\b_User_Role.cs" />
@@ -649,6 +662,16 @@
     <Content Include="Views\b_Point\Comment.cshtml" />
     <Content Include="Views\b_Point\My_Detail.cshtml" />
     <Content Include="Views\b_Point\Usual_Point.cshtml" />
+    <Content Include="Views\b_Task\Create.cshtml" />
+    <Content Include="Views\b_Task\Delete.cshtml" />
+    <Content Include="Views\b_Task\Details.cshtml" />
+    <Content Include="Views\b_Task\Edit.cshtml" />
+    <Content Include="Views\b_Task\Index.cshtml" />
+    <Content Include="Views\b_Task_Info\Create.cshtml" />
+    <Content Include="Views\b_Task_Info\Delete.cshtml" />
+    <Content Include="Views\b_Task_Info\Details.cshtml" />
+    <Content Include="Views\b_Task_Info\Edit.cshtml" />
+    <Content Include="Views\b_Task_Info\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -780,6 +803,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707311449437_add time field.resx">
       <DependentUpon>201707311449437_add time field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707311606402_add task.resx">
+      <DependentUpon>201707311606402_add task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707311629255_fix sth.resx">
+      <DependentUpon>201707311629255_fix sth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

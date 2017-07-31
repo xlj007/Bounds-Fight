@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Bounds.Models.b_Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <h5>@Html.ActionLink("新建奖扣任务", "Create")</h5>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Task_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Task_Name)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("详细信息", "Index", "b_Task_Info") |
+            <a href="#" onclick="Task.BindMember(@item.ID, 'group');">成员绑定</a> |
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+        </td>
+    </tr>
+}
+
+</table>

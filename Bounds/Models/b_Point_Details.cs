@@ -19,5 +19,6 @@ namespace Bounds.Models
         public DateTime Create_Time { get; set; }
         public DateTime Update_Time { get; set; }
         public int b_User_ID { get; set; }
+        public string b_Enterprise { get; set; }
     }
 }

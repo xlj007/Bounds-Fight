@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Bounds.Models.b_Task_Info>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <h5>@Html.ActionLink("新建", "Create")
+    &nbsp; &nbsp; &nbsp; &nbsp; 
+    @Html.ActionLink("返回", "Index", "b_Task")</h5>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Task_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Task_Limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_Task_Cycle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_UnComplete_Dec)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Task_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Task_Limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Task_Cycle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_UnComplete_Dec)
+        </td>
+        <td>
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确认删除此项？')" })
+        </td>
+    </tr>
+}
+
+</table>
