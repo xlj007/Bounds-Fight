@@ -1,9 +1,10 @@
 ﻿@Scripts.Render("~/bundles/datetime")
 @model Bounds.Models.b_Point
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
+@RenderSection("my_script_variables", false)
+
 <script type="text/javascript">
     var event_lib = '';
     $(document).ready(function () {
@@ -15,19 +16,20 @@
                 event_lib = data;
             }
         });
+        $('#b_First_Check_ID').multiselect();
+        $('#b_Final_Check_ID').multiselect();
     });
 </script>
 
 @Html.Partial("../b_User/SelUser")
 
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
     <div>
         <h5>@Html.ActionLink("返回", "Index")</h5>
     </div>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div id="div_subject">
         <div class="form-group">
             @Html.LabelFor(model => model.b_Subject, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -55,11 +57,11 @@
             @Html.LabelFor(model => model.b_First_Check_ID, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
                 @*@Html.EditorFor(model => model.b_First_Check_ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.b_First_Check_ID, "", new { @class = "text-danger" })*@
+                    @Html.ValidationMessageFor(model => model.b_First_Check_ID, "", new { @class = "text-danger" })*@
                 <select id="b_First_Check_ID" @*multiple="multiple"*@>
                     @foreach (Bounds.Models.b_User user in ViewBag.First_Check)
                     {
-                        <option value="@user.ID">@user.b_RealName</option>
+                        <option value="@user.ID" @if(Model.b_First_Check_ID ==user.ID.ToString()){<text>selected</text>}>@user.b_RealName</option>
                     }
                 </select>
             </div>
@@ -68,11 +70,11 @@
             @Html.LabelFor(model => model.b_Final_Check_ID, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
                 @*@Html.EditorFor(model => model.b_Final_Check_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.b_Final_Check_ID, "", new { @class = "text-danger" })*@
+                    @Html.ValidationMessageFor(model => model.b_Final_Check_ID, "", new { @class = "text-danger" })*@
                 <select id="b_Final_Check_ID" @*multiple="multiple"*@>
                     @foreach (Bounds.Models.b_User user in ViewBag.Final_Check)
                     {
-                        <option value="@user.ID">@user.b_RealName</option>
+                        <option value="@user.ID" @if (Model.b_Final_Check_ID == user.ID.ToString()) { <text>selected</text> }>@user.b_RealName</option>
                     }
                 </select>
             </div>
@@ -91,10 +93,6 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#b_First_Check_ID').multiselect();
-        $('#b_Final_Check_ID').multiselect();
-    });
     $(function () {
         $('#b_Event_Date').datetimepicker({
             format: "yyyy-mm-dd",

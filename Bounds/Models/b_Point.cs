@@ -33,8 +33,25 @@ namespace Bounds.Models
         public string b_Enterprise { get; set; }
         public DateTime Create_Time { get; set; }
         public DateTime Update_Time { get; set; }
+        //[Display(Name = "驳回原因")]
+        //public string b_Return_Note { get; set; }
     }
 
+    public class Point_Record_Model
+    {
+        public int ID { get; set; }
+        public DateTime b_Event_Date { get; set; }
+        public DateTime b_Record_Time { get; set; }
+        public string b_Subject { get; set; }
+        public string b_A_Point { get; set; }
+        public string b_B_Point { get; set; }
+        public string b_Value_Point { get; set; }
+        public int b_PeopleCount_Value { get; set; }
+        public string b_First_Check_Name { get; set; }
+        public string b_Final_Check_Name { get; set; }
+        public string b_Recorder_Name { get; set; }
+        public b_Status b_Status { get; set; }
+    }
     public class My_Values_Model
     {
         public DateTime b_Event_Date { get; set; }
@@ -47,7 +64,7 @@ namespace Bounds.Models
     public class My_Fix_Point_Model
     {
         public string b_Fix_Point_Name { get; set; }
-        public string b_Fix_Point_Value { get; set; }
+        public int b_Fix_Point_Value { get; set; }
     }
     public class My_Point_Event_Model
     {

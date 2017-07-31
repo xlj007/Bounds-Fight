@@ -64,9 +64,9 @@
             @Html.DisplayFor(modelItem => item.b_Recorder_ID)
         </td>
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("删除", "Delete", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+            @*@Html.ActionLink("编辑", "PointEdit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }

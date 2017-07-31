@@ -63,6 +63,11 @@ namespace Bounds
                 "~/Scripts/Moment.js",
                 "~/Scripts/bootstrap-datetimepicker.js"
                 ));
+            bundles.Add(new ScriptBundle("~/bundles/editable").Include(
+                "~/Scripts/bootstrap-editable.js"
+                ));
+            bundles.Add(new StyleBundle("~/Content/editable").Include(
+                        "~/Content/bootstrap-editable.css"));
         }
     }
 }

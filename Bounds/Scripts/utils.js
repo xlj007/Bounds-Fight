@@ -320,13 +320,13 @@ var Point = {
         select_html += "</select>";
 
         var div_Events = $("#div_Events");
-        var div_Event = $("<div id='div_event_" + nIndex + "' class='form-group mini-layout fluid' name='div_event'><button type='button' class='close' onclick='Point.Close(\"div_event_" + nIndex + "\")'>&times;</button><div class='text-center font-16 bold'>事件" + (nIndex + 1) + "</div><hr /><div class='form-group'><span class='col-md-2 control-label'>事件</span><div class='col-md-10'>" + select_html + "</div></div><div class='form-group'><span class='col-md-2 control-label'>描述</span><div class='col-md-10'><input type = 'text' class='form-control width_large' name='event_note'></input></div></div><div class='form-group'><span class='col-md-2 control-label'>参与人</span><div class='col-md-10'><input class='btn btn-success' type='button' onclick='Point.BindMember(" + nIndex + ",\"event\")' value='添加参与人' />&nbsp;&nbsp;&nbsp;&nbsp;<input class='btn btn-info' type='button' onclick='' value='添加本人' /></div><div class = 'form-group padding-top' id='div_attend_" + nIndex + "' name='div_event_user_container'></div></div>");
+        var div_Event = $("<div id='div_event_" + nIndex + "' class='form-group mini-layout fluid' name='div_event'><button type='button' class='close' onclick='Point.Close(\"div_event_" + nIndex + "\")'>&times;</button><div class='text-center font-16 bold'>事件" + (nIndex + 1) + "</div><hr /><div class='form-group'><span class='col-md-2 control-label'>事件</span><div class='col-md-10'>" + select_html + "</div></div><div class='form-group'><span class='col-md-2 control-label'>描述</span><div class='col-md-10'><input type = 'text' class='form-control width_large' name='event_note'></input></div></div><div class='form-group'><span class='col-md-2 control-label'>参与人</span><div class='col-md-10'><input class='btn btn-success' type='button' onclick='Point.BindMember(" + nIndex + ",\"event\")' value='添加参与人' /></div><div class = 'form-group padding-top' id='div_attend_" + nIndex + "' name='div_event_user_container'></div></div>");
         div_Events.append(div_Event);
     },
     Submit: function () {
         var list_event_model = new Array();
-        var list_user_model = new Array();
         $("div[name='div_event']").each(function () {
+            var list_user_model = new Array();
             $(this).find("div[name='div_event_user']").each(function () {
                 //var event_user = new b_User();
                 //event_user.ID = this.id.substring(this.id.lastIndexOf('_') + 1);
@@ -356,8 +356,8 @@ var Point = {
         point.b_Subject = $("#b_Subject").val();
         point.b_Note = $("#b_Note").val();
         point.b_Event_Date = $("#b_Event_Date").val();
-        point.b_First_Check_ID = $("#b_First_Check_ID").val().join(',');
-        point.b_Final_Check_ID = $("#b_Final_Check_ID").val().join(',');
+        point.b_First_Check_ID = $("#b_First_Check_ID").val();
+        point.b_Final_Check_ID = $("#b_Final_Check_ID").val();
         point.b_Point_Event = list_event_model;
 
         $.ajax({
@@ -368,6 +368,51 @@ var Point = {
             success: function (data) {
                 if (data == "OK") {
                     alert("保存成功。");
+                    location.href = "/b_Point";
+                } else {
+                    alert(data);
+                }
+            }
+        });
+    },
+    Pass: function (point_id) {
+        $("#hid_comment_type").val('pass');
+        $("#hid_comment_id").val(point_id);
+        $("#div_Comment").modal("show");
+    },
+    Return: function (point_id) {
+        $("#hid_comment_type").val('return');
+        $("#hid_comment_id").val(point_id);
+        $("#div_Comment").modal("show");
+    },
+    Back: function (point_id) {
+        $.ajax({
+            url: "/b_Point/Back/",
+            type: "post",
+            dataType: "json",
+            data: { point_id: point_id },
+            success: function (data) {
+                if (data == "OK") {
+                    alert("操作成功。");
+                    $("#div_Comment").modal("hide");
+                    location.href = "/b_Point/My_Check"
+                } else {
+                    alert(data);
+                }
+            }
+        });
+    },
+    SaveComment: function (msg, type, point_id) {
+        $.ajax({
+            url: "/b_Point/Comment/",
+            type: "post",
+            dataType: "json",
+            data: { "strMsg": msg, "strType": type, "nPoint_id": point_id},
+            success: function (data) {
+                if (data == "OK") {
+                    alert("操作成功。");
+                    $("#div_Comment").modal("hide");
+                    location.href="/b_Point/My_Check"
                 } else {
                     alert(data);
                 }

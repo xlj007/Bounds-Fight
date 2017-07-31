@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Bounds.Models.Point_Record_Model>
+@{
+    ViewBag.Title = "My_Check";
+}
+@Html.Partial("Comment")
+
+<table class="table">
+    <tr>
+        <th>奖扣时间</th>
+        <th>记录时间</th>
+        <th>主题</th>
+        <th>A分</th>
+        <th>B分</th>
+        <th>产值</th>
+        <th>人次</th>
+        <th>初审人</th>
+        <th>终审人</th>
+        <th>记录人</th>
+        <th>状态</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.b_Event_Date</td>
+            <td>@item.b_Record_Time</td>
+            <td>@item.b_Subject</td>
+            <td>@item.b_A_Point</td>
+            <td>@item.b_B_Point</td>
+            <td>@item.b_Value_Point</td>
+            <td>@item.b_PeopleCount_Value</td>
+            <td>@item.b_First_Check_Name</td>
+            <td>@item.b_Final_Check_Name</td>
+            <td>@item.b_Recorder_Name</td>
+            <td>@item.b_Status</td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
+                <a href="#" onclick="Point.Pass(@item.ID);">通过</a> |
+                <a href="#" onclick="Point.Return(@item.ID);">驳回</a> @*|
+                <a href="#" onclick="Point.Back(@item.ID);">撤回</a>*@
+            </td>
+        </tr>
+    }
+</table>
+

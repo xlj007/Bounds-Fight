@@ -1,0 +1,38 @@
+﻿<div class="container-fluid text-center">
+    <input type="hidden" id="hid_comment_type" />
+    <input type="hidden" id="hid_comment_id" />
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="div_Comment" tabindex="-1" role="dialog" aria-labelledby="Comment" aria-hidden="true">
+        <div class="modal-dialog" style="width: 450px;">
+            <div class="modal-content">
+                <div class="modal-header common-title">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        填写意见
+                    </h4>
+                </div>
+                <div class="modal-body col-md-12">
+                    <div>
+                        <TABLE border="0" align="left">
+                            <TR>
+                                <td>
+                                    <textarea id="txt_Comment" cols="100" rows="10" class="form-control width_large"></textarea>
+                                </td>
+                            </TR>
+                        </TABLE>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary" id="btnSaveNewUser" onclick='Point.SaveComment($("#txt_Comment").val(), $("#hid_comment_type").val(), $("#hid_comment_id").val());'>保存</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>
+

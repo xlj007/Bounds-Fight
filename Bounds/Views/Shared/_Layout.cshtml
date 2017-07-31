@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -57,8 +58,8 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("积分奖扣", "Index", "b_Point")</li>
                             <li>@Html.ActionLink("我的积分", "My_Points", "b_Point")</li>
-                            <li>@Html.ActionLink("我的产值", "My_Values", new { controller = "b_Point" }, new { id = 0 })</li>
-                            <li>@Html.ActionLink("我的审核", "Check", "b_Point")</li>
+                            <li>@Html.ActionLink("我的产值", "My_Values", "b_Point", new { id = 0 }, new { @class="a" })</li>
+                            <li>@Html.ActionLink("我的审核", "My_Check", "b_Point")</li>
                             <li>@Html.ActionLink("个人明细查询", "Index", "b_My_Detail")</li>
                             <li>@Html.ActionLink("日常奖扣查询", "Index", "b_Price_Search")</li>
                             <li>@Html.ActionLink("事件库管理", "Index", "b_Event_Library")</li>
@@ -116,7 +117,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

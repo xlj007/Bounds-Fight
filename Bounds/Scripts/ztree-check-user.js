@@ -160,6 +160,8 @@ function GetDepartUser(depart_id) {
 function ClearUI() {
     $("#div_SelUser").empty();
     $("#selOrg").empty();
+
+    $("#hid_Sel_User_Id").val('');
 }
 
 function SaveRoleUser() {
@@ -168,6 +170,7 @@ function SaveRoleUser() {
     
     if ($("#hid_User_Type").val() == "event") {
         Point.BindMemberInfo($("div[name='div_sel_user']"), $("#hid_event_id").val());
+        ClearUI();
         $("#div_Sel_User").modal("hide");
     } else if ($("#hid_User_Type").val() == "check") {
         SetCheck.BindUserInfo($("div[name='div_sel_user']"), $("#hid_check_type").val());
