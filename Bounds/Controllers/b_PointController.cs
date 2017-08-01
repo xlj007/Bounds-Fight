@@ -153,6 +153,7 @@ namespace Bounds.Controllers
                     b_Point.b_Record_Time = DateTime.Now;
                     b_Point.b_Enterprise = Session["Enterprise_id"].ToString();
                     b_Point.b_Recorder_ID = ((b_User)Session["User"]).ID;
+                    b_Point.TheMonth = b_Point.b_Event_Date.ToString("yyyyMM");
                     db.b_Point.Add(b_Point);
                     db.SaveChanges();
                     return Json("OK");
@@ -424,7 +425,15 @@ namespace Bounds.Controllers
         {
             try
             {
-                string strSQLSel = ""
+                string strSQLSel = @"select c.TheMonth, d.b_RealName, d.b_WorkNum, Convert(varchar(255),Sum(case when a.b_Value_Type='0'then a.b_Value_Point else 0 end)) as b_C_Value, Convert(varchar(255),Sum(case when a.b_Value_Type='1' then a.b_Value_Point else 0 end)) as b_S_Value,Convert(varchar(255),Sum(case when a.b_Value_Type='2' then a.b_Value_Point else 0 end)) as b_X_Value,Convert(varchar(255),Sum(a.b_Value_Point)) as b_Total_Value
+                                    from b_Point_Event_Member as a 
+                                    join b_Point_Event as b on a.b_Point_Event_ID = b.id 
+                                    join b_Point as c on b.b_Point_ID = c.ID
+                                    join b_User as d on a.b_User_ID = d.ID
+                                    Group by c.TheMonth,d.b_RealName,d.b_WorkNum";
+
+                IEnumerable<Value_Check_Model> value_check = db.Database.SqlQuery<Value_Check_Model>(strSQLSel);
+                return View(value_check);
             }
             catch (Exception ex)
             {

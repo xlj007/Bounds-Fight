@@ -35,6 +35,7 @@ namespace Bounds.Models
         public DateTime Update_Time { get; set; }
         //[Display(Name = "驳回原因")]
         //public string b_Return_Note { get; set; }
+        public string TheMonth { get; set; }
     }
 
     public class Point_Record_Model
@@ -81,6 +82,17 @@ namespace Bounds.Models
         public string b_Recorder_Name { get; set; }
         [Display(Name = "审核状态")]
         public b_Status b_Status { get; set; }
+    }
+
+    public class Value_Check_Model
+    {
+        public string TheMonth { get; set; }
+        public string b_RealName { get; set; }
+        public string b_WorkNum { get; set; }
+        public string b_C_Value { get; set; }
+        public string b_S_Value { get; set; }
+        public string b_X_Value { get; set; }
+        public string b_Total_Value { get; set; }
     }
     public class My_Values_Model
     {

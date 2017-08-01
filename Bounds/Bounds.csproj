@@ -368,6 +368,10 @@
     <Compile Include="Migrations\201708010237180_add some field.Designer.cs">
       <DependentUpon>201708010237180_add some field.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708011241141_add themonth.cs" />
+    <Compile Include="Migrations\201708011241141_add themonth.Designer.cs">
+      <DependentUpon>201708011241141_add themonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -677,6 +681,7 @@
     <Content Include="Views\b_Task_Info\Edit.cshtml" />
     <Content Include="Views\b_Task_Info\Index.cshtml" />
     <Content Include="Views\b_Point\Point_Check.cshtml" />
+    <Content Include="Views\b_Point\Value_Check.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -817,6 +822,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708010237180_add some field.resx">
       <DependentUpon>201708010237180_add some field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708011241141_add themonth.resx">
+      <DependentUpon>201708011241141_add themonth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

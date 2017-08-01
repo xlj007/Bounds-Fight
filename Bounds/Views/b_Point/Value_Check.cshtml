@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Bounds.Models.Value_Check_Model>
+@{
+    ViewBag.Title = "Value_Check";
+}
+<table class="table">
+    <tr>
+        <th>月份</th>
+        <th>姓名</th>
+        <th>工号</th>
+        <th>实产值</th>
+        <th>虚产值</th>
+        <th>创富产值</th>
+        <th>总产值</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TheMonth</td>
+            <td>@item.b_RealName</td>
+            <td>@item.b_WorkNum</td>
+            <td>@item.b_S_Value</td>
+            <td>@item.b_X_Value</td>
+            <td>@item.b_C_Value</td>
+            <td>@item.b_Total_Value</td>
+        </tr>
+    }
+</table>
+
