@@ -394,6 +394,45 @@ namespace Bounds.Controllers
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public ActionResult Point_Check()
+        {
+            try
+            {
+                string strSQLSel = @"select d.b_RealName as b_Point_Object, c.b_Event_Date, c.b_Record_Time, c.b_Subject, e.b_Event_Name, Convert(varchar(255),a.b_A_Point) as b_A_Point, Convert(varchar(255),a.b_B_Point) as b_B_Point, Convert(varchar(255),a.b_Value_Point) as b_Value_Point, f.b_RealName as b_First_Check_Name, g.b_RealName as b_Final_Check_Name, h.b_RealName as b_Recorder_Name, c.b_Status 
+                                     from b_Point_Event_Member as a 
+                                     join b_Point_Event as b on a.b_Point_Event_ID = b.id 
+                                     join b_Point as c on b.b_Point_ID = c.ID
+                                     join b_User as d on a.b_User_ID = d.ID
+                                     join b_Event_Library as e on b.b_Event_ID = e.ID
+                                     join b_User as f on c.b_First_Check_ID = f.ID
+                                     join b_User as g on c.b_Final_Check_ID = g.ID
+                                     join b_User as h on c.b_Recorder_ID = h.ID
+                                     Where c.b_Enterprise = '" + Session["Enterprise_id"].ToString() + "'";
+                IEnumerable<Point_Check_Model> point_check = db.Database.SqlQuery<Point_Check_Model>(strSQLSel);
+
+                return View(point_check);
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("积分核查载入时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
+        }
+
+        public ActionResult Value_Check()
+        {
+            try
+            {
+                string strSQLSel = ""
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("产值核查载入时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

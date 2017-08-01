@@ -52,6 +52,36 @@ namespace Bounds.Models
         public string b_Recorder_Name { get; set; }
         public b_Status b_Status { get; set; }
     }
+
+    public class Point_Check_Model
+    {
+        public int ID { get; set; }
+        [Display(Name = "奖扣对象")]
+        public string b_Point_Object { get; set; }
+
+        [Display(Name = "事件时间")]
+        public DateTime b_Event_Date { get; set; }
+        [Display(Name = "记录时间")]
+        public DateTime b_Record_Time { get; set; }
+        [Display(Name = "事件主题")]
+        public string b_Subject { get; set; }
+        [Display(Name = "事件名称")]
+        public string b_Event_Name { get; set; }
+        [Display(Name = "A分")]
+        public string b_A_Point { get; set; }
+        [Display(Name = "B分")]
+        public string b_B_Point { get; set; }
+        [Display(Name = "产值")]
+        public string b_Value_Point { get; set; }
+        [Display(Name = "初审人")]
+        public string b_First_Check_Name { get; set; }
+        [Display(Name = "终审人")]
+        public string b_Final_Check_Name { get; set; }
+        [Display(Name = "记录人")]
+        public string b_Recorder_Name { get; set; }
+        [Display(Name = "审核状态")]
+        public b_Status b_Status { get; set; }
+    }
     public class My_Values_Model
     {
         public DateTime b_Event_Date { get; set; }

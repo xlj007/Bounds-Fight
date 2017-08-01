@@ -676,6 +676,7 @@
     <Content Include="Views\b_Task_Info\Details.cshtml" />
     <Content Include="Views\b_Task_Info\Edit.cshtml" />
     <Content Include="Views\b_Task_Info\Index.cshtml" />
+    <Content Include="Views\b_Point\Point_Check.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
