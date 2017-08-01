@@ -5,10 +5,10 @@
 }
 
 <div>
-    <h5>@Html.ActionLink("返回", "Index")</h5>
+    <h5>@Html.ActionLink("返回", "Index", new { id = Html.ViewContext.RouteData.Values["id"] })</h5>
 </div>
 
-@using (Html.BeginForm("Create_Record","b_Task_Info", FormMethod.Post)) 
+@using (Html.BeginForm("Create_Record","b_Task_Info", new { id = Html.ViewContext.RouteData.Values["id"] }, FormMethod.Post,  new { id = 1 }))
 {
     @Html.AntiForgeryToken()
     

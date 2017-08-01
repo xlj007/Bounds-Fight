@@ -67,6 +67,9 @@ function GetExistUser(role_id) {
     } else if (user_type == "fix_point") {
         target_url = "/b_Fix_Point/GetFixTypeUser";
         post_data = '{ "fix_type": ' + role_id + '}';
+    } else if (user_type == "task") {
+        target_url = "/b_Task/GetTaskUser";
+        post_data = '{ "task_id": ' + role_id + '}';
     } else {
         target_url = "/b_User/GetRoleUser";
         post_data = '{ "role_id":' + role_id + '}';
@@ -174,6 +177,28 @@ function SaveRoleUser() {
         $("#div_Sel_User").modal("hide");
     } else if ($("#hid_User_Type").val() == "check") {
         SetCheck.BindUserInfo($("div[name='div_sel_user']"), $("#hid_check_type").val());
+    } else if ($("#hid_User_Type").val() == "task"){
+        $.ajax({
+            url: "/b_Task/SaveTaskUser",
+            type: "post",
+            dataType: "json",
+            data: { task_id: role_id, user_id: user_ids },
+            success: function (data) {
+                if (data == "OK") {
+                    alert("保存成功。")
+                    $("#div_Sel_User").modal("hide");
+                    ClearUI();
+                    location.href = "/b_Task";
+                } else {
+                    alert(data);
+                }
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        });
     } else if ($("#hid_User_Type").val() == "group") {
         $.ajax({
             url: "/b_Cus_Group/SaveGroupUser",

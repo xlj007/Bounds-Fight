@@ -420,3 +420,13 @@ var Point = {
         });
     }
 }
+
+var Task = {
+    BindMember: function (task_id, source_type) {
+        GetCheckNodeList();
+        $("#hid_User_Type").val(source_type);
+        $("#hid_task_id").val(task_id);
+        GetExistUser(task_id);
+        $("#div_Sel_User").modal('show');
+    }
+}

@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+@Html.Partial("../b_User/SelUser")
 <p>
     <h5>@Html.ActionLink("新建奖扣任务", "Create")</h5>
 </p>
@@ -22,8 +23,8 @@
         </td>
         <td>
             @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("详细信息", "Index", "b_Task_Info") |
-            <a href="#" onclick="Task.BindMember(@item.ID, 'group');">成员绑定</a> |
+            @Html.ActionLink("详细信息", "Index", "b_Task_Info", new { id = item.ID }, new { id = item.ID }) |
+            <a href="#" onclick="Task.BindMember(@item.ID, 'task');">成员绑定</a> |
             @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>

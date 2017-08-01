@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bounds.Models;
+using Bounds.Utils;
 
 namespace Bounds.Controllers
 {
@@ -16,9 +17,9 @@ namespace Bounds.Controllers
         private BoundsContext db = new BoundsContext();
 
         // GET: b_Task_Info
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View(db.b_Task_Info.ToList());
+            return View(db.b_Task_Info.Where(x=>x.b_Task_ID == id).ToList());
         }
 
         // GET: b_Task_Info/Details/5
@@ -47,7 +48,7 @@ namespace Bounds.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create_Record()
+        public ActionResult Create_Record(int id)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace Bounds.Controllers
                 for (int i = 0; i < 4; i++)
                 {
                     b_Task_Info b_Task_Info = new b_Task_Info();
+                    b_Task_Info.b_Task_ID = id;
                     b_Task_Info.b_Task_Type = (b_Task_Type)i;
                     b_Task_Info.b_Task_Limit = arrTask_Limit[i];
                     b_Task_Info.b_Task_Cycle = (b_Task_Cycle)Convert.ToInt16(arrTask_Cycle[i]);
@@ -67,7 +69,7 @@ namespace Bounds.Controllers
                     db.b_Task_Info.Add(b_Task_Info);
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = id });
             }
 
             return View();
@@ -135,7 +137,8 @@ namespace Bounds.Controllers
             }
             db.b_Task_Info.Remove(b_Task_Info);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            
+            return RedirectToAction("Index", new { id = b_Task_Info.b_Task_ID });
         }
 
         protected override void Dispose(bool disposing)

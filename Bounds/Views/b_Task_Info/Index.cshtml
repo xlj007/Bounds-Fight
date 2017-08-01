@@ -5,7 +5,7 @@
 }
 
 <p>
-    <h5>@Html.ActionLink("新建", "Create")
+    <h5>@Html.ActionLink("新建", "Create", "b_Task_Info", new { id = Html.ViewContext.RouteData.Values["id"] }, new { id = 1 })
     &nbsp; &nbsp; &nbsp; &nbsp; 
     @Html.ActionLink("返回", "Index", "b_Task")</h5>
 </p>

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bounds.Models;
+using System.Transactions;
+using Bounds.Utils;
 
 namespace Bounds.Controllers
 {
@@ -14,11 +16,62 @@ namespace Bounds.Controllers
     public class b_TaskController : Controller
     {
         private BoundsContext db = new BoundsContext();
+        
+        [HttpPost]
+        public ActionResult GetTaskUser(int task_id)
+        {
+            try
+            {
+                var user = from u in db.b_User
+                           join tu in db.b_Task_To_User on u.ID equals tu.b_User_ID
+                           where tu.b_Task_ID == task_id
+                           select new { u.ID, u.b_UserName };
 
+                return Json(user.ToList());
+            }
+            catch(Exception ex)
+            {
+                Log.logger.Error("获取奖扣任务关联人员时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveTaskUser(int task_id, string user_id)
+        {
+            try
+            {
+                using (TransactionScope ts = new TransactionScope())
+                {
+                    var cur_user = from task_info in db.b_Task_To_User
+                                   where task_info.b_Task_ID == task_id
+                                   select task_info;
+                    db.b_Task_To_User.RemoveRange(cur_user);
+
+                    string[] arrUserIds = user_id.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string strUserId in arrUserIds)
+                    {
+                        b_Task_To_User b_task_to_user = new b_Task_To_User();
+                        b_task_to_user.b_Task_ID = task_id;
+                        b_task_to_user.b_User_ID = strUserId.to_i();
+                        db.b_Task_To_User.Add(b_task_to_user);
+                    }
+                    db.SaveChanges();
+                    ts.Complete();
+                }
+                return Json("OK");
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("保存奖扣任务关联人员时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
+        }
         // GET: b_Task
         public ActionResult Index()
         {
-            return View(db.b_Task.ToList());
+            string strEnterprise = Session["Enterprise_id"].ToString();
+            return View(db.b_Task.Where(x=>x.b_Enterprise == strEnterprise).ToList());
         }
 
         // GET: b_Task/Details/5
