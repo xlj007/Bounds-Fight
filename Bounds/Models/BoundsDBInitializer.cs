@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Bounds.Models
 {
-    public class BoundsDBInitializer : System.Data.Entity.CreateDatabaseIfNotExists<BoundsContext>
+    public class BoundsDBInitializer : System.Data.Entity.DropCreateDatabaseAlways<BoundsContext>
     {
         protected override void Seed(BoundsContext context)
         {

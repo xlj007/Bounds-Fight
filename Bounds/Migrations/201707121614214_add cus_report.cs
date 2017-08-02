@@ -14,7 +14,7 @@ namespace Bounds.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         b_Cus_Report_Name = c.String(),
                         b_Cus_Report_Type = c.Int(nullable: false),
-                        b_Cus_Group_ID = c.Int(nullable: false),
+                        b_Cus_Group_ID = c.String(),
                         b_Add_Bounds = c.Int(nullable: false),
                         b_Cus_Report_Note = c.String(),
                         b_Enterprise_ID = c.Int(nullable: false),

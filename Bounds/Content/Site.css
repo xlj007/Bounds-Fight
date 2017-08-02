@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    margin-top: 0px;
 }
 h5{
     font-size: 16px;
@@ -291,4 +291,13 @@ table{
     width: 60px;
     height: 30px;
     vertical-align: middle; 
+}
+
+.login {
+    width: 500px;
+    margin: auto;
+}
+
+.login tr{
+    height: 50px;
 }

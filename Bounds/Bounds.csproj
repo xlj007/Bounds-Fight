@@ -300,10 +300,6 @@
     <Compile Include="Migrations\201707261313540_fix1.Designer.cs">
       <DependentUpon>201707261313540_fix1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707261452525_change report column type.cs" />
-    <Compile Include="Migrations\201707261452525_change report column type.Designer.cs">
-      <DependentUpon>201707261452525_change report column type.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201707261755560_add workage and startpoint.cs" />
     <Compile Include="Migrations\201707261755560_add workage and startpoint.Designer.cs">
       <DependentUpon>201707261755560_add workage and startpoint.cs</DependentUpon>
@@ -542,6 +538,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <None Include="Properties\PublishProfiles\BoundsWeb.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -572,7 +569,9 @@
     <Content Include="Scripts\ztree-check-user.js" />
     <Content Include="Scripts\ztree-ext.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -771,9 +770,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707261313540_fix1.resx">
       <DependentUpon>201707261313540_fix1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707261452525_change report column type.resx">
-      <DependentUpon>201707261452525_change report column type.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707261755560_add workage and startpoint.resx">
       <DependentUpon>201707261755560_add workage and startpoint.cs</DependentUpon>
