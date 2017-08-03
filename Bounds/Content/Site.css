@@ -301,3 +301,11 @@ table{
 .login tr{
     height: 50px;
 }
+
+#div_UserControl{
+    padding-top: 10px;
+}
+
+#table_attence th {
+    word-break: keep-all;
+}

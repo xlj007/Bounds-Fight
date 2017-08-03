@@ -91,6 +91,32 @@ function GetExistUser(role_id) {
         }
     });
 }
+function GetExistCheckUser(role_id,node_id) {
+    $("#hid_Sel_Role_Id").val(role_id);
+    var user_type = $("#hid_User_Type").val();
+    var target_url = '';
+    var post_data = '';
+    if (user_type == "check") {
+        target_url = "/b_Organize/GetCheckUser";
+        post_data = '{ "check_type": ' + role_id + ', "node_id": ' + node_id + '}';
+    }
+
+    $.ajax({
+        url: target_url,
+        type: "post",
+        dataType: "json",
+        data: JSON.parse(post_data),
+        success: function (data) {
+            $("#selOrg").empty();
+            $("#hid_Sel_User_Id").val('');
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    AddDiv(data[i].ID, data[i].b_UserName);
+                }
+            }
+        }
+    });
+}
 
 function AddDiv(nodeId, nodeValue) {
     var objDiv = $("#div_" + nodeId);
@@ -177,6 +203,7 @@ function SaveRoleUser() {
         $("#div_Sel_User").modal("hide");
     } else if ($("#hid_User_Type").val() == "check") {
         SetCheck.BindUserInfo($("div[name='div_sel_user']"), $("#hid_check_type").val());
+        ClearUI();
     } else if ($("#hid_User_Type").val() == "task"){
         $.ajax({
             url: "/b_Task/SaveTaskUser",

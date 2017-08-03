@@ -10,7 +10,7 @@ namespace Bounds.Models
     {
         public int ID { get; set; }
         [Display(Name = "积分类型")]
-        public string b_Point_Type { get; set; }
+        public int b_Point_Type { get; set; }
         [Display(Name = "积分值")]
         public double b_Point_Value { get; set; }
         [Display(Name = "事件")]
@@ -20,5 +20,7 @@ namespace Bounds.Models
         public DateTime Update_Time { get; set; }
         public int b_User_ID { get; set; }
         public string b_Enterprise { get; set; }
+        public string TheMonth { get; set; }
+        public int b_Change_Status { get; set; }
     }
 }

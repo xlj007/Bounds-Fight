@@ -2,9 +2,9 @@
 
 <table class="table" style="padding: 10px 0px 10px 0px">
     <tr>
-        <th>
+        @*<th>
             <input type="checkbox" id="chkAll" onclick="CheckAll()" />
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.b_UserName)
         </th>
@@ -43,9 +43,9 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            @*<td>
                 <input type="checkbox" value="@item.ID" />
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.b_UserName)
             </td>
@@ -70,16 +70,60 @@
                 @Html.DisplayFor(modelItem => item.b_PhoneNum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.b_Depart_ID)
+                @*@Html.DisplayFor(modelItem => item.b_Depart_ID)*@
+                @if (!String.IsNullOrEmpty(item.b_Depart_ID))
+                {
+                    var depart_name = string.Empty;
+                    foreach (var depart_id in item.b_Depart_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        foreach (var depart in ViewBag.Model)
+                        {
+                            if (Convert.ToInt16(depart_id) == depart.ID)
+                            {
+                                depart_name += depart.b_Name + " ";
+                                break;
+                            }
+                        }
+                    }
+                    @depart_name
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.b_EntryDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.b_Role_ID)
+                @*@Html.DisplayFor(modelItem => item.b_Role_ID)*@
+                @if (!String.IsNullOrEmpty(item.b_Role_ID))
+                {
+                    var role_name = string.Empty;
+                    foreach (var role_id in item.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        foreach(var role in ViewBag.Role)
+                        {
+                            if (Convert.ToInt16(role_id) == role.ID)
+                            {
+                                role_name += role.b_Role_Name + " ";
+                                break;
+                            }
+                        }
+                    }
+                    @role_name
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.b_Reward_Auth_ID)
+                @*@Html.DisplayFor(modelItem => item.b_Reward_Auth_ID)*@
+                @if (!String.IsNullOrEmpty(item.b_Reward_Auth_ID))
+                {
+                    var reward = string.Empty;
+                    foreach (var auth in ViewBag.Reward_Auth)
+                    {
+                        if (Convert.ToInt16(item.b_Reward_Auth_ID) == auth.ID)
+                        {
+                            reward = auth.b_Reward_Name;
+                        }
+                    }
+                    @reward
+                }
             </td>
             @if (item.b_Ranking == "0")
             {

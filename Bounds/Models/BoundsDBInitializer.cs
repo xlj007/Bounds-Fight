@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Bounds.Models
 {
-    public class BoundsDBInitializer : System.Data.Entity.DropCreateDatabaseAlways<BoundsContext>
+    public class BoundsDBInitializer : System.Data.Entity.CreateDatabaseIfNotExists<BoundsContext>
     {
         protected override void Seed(BoundsContext context)
         {
@@ -169,6 +169,20 @@ namespace Bounds.Models
                 new b_Auth() { b_Auth_Name="结算", b_Auth_Group_ID = 126 }//127
             };
             list_auth.ForEach(auth => context.b_Auth.Add(auth));
+
+            var list_Point_Type = new List<b_Point_Type_Dic>()
+            {
+                new b_Point_Type_Dic() { b_Point_Type_ID =1, b_Point_Type_Name="日常奖扣A分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =2, b_Point_Type_Name="日常奖扣B分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =3, b_Point_Type_Name="日常奖扣创富产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =4, b_Point_Type_Name="日常奖扣实产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =5, b_Point_Type_Name="日常奖扣虚产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =6, b_Point_Type_Name="考勤转积分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =7, b_Point_Type_Name="营销转积分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =8, b_Point_Type_Name="A分转B分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+            };
+            list_Point_Type.ForEach(type => context.b_Point_Type_Dic.Add(type));
+
             context.SaveChanges();
         }
     }

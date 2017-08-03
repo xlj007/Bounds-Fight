@@ -176,6 +176,7 @@
     <Compile Include="App_Start\Global.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\b_AttenceController.cs" />
+    <Compile Include="Controllers\b_Attence_FixController.cs" />
     <Compile Include="Controllers\b_AuthController.cs" />
     <Compile Include="Controllers\b_Cus_GroupController.cs" />
     <Compile Include="Controllers\b_Cus_ReportController.cs" />
@@ -368,6 +369,34 @@
     <Compile Include="Migrations\201708011241141_add themonth.Designer.cs">
       <DependentUpon>201708011241141_add themonth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708030115192_add talbles.cs" />
+    <Compile Include="Migrations\201708030115192_add talbles.Designer.cs">
+      <DependentUpon>201708030115192_add talbles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708030208343_add attence_fix table.cs" />
+    <Compile Include="Migrations\201708030208343_add attence_fix table.Designer.cs">
+      <DependentUpon>201708030208343_add attence_fix table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708031153143_change isnullable.cs" />
+    <Compile Include="Migrations\201708031153143_change isnullable.Designer.cs">
+      <DependentUpon>201708031153143_change isnullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708031201558_change attence_fix isnullable.cs" />
+    <Compile Include="Migrations\201708031201558_change attence_fix isnullable.Designer.cs">
+      <DependentUpon>201708031201558_change attence_fix isnullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708031219062_change attence_fix field.cs" />
+    <Compile Include="Migrations\201708031219062_change attence_fix field.Designer.cs">
+      <DependentUpon>201708031219062_change attence_fix field.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708031228467_change b_RealName type.cs" />
+    <Compile Include="Migrations\201708031228467_change b_RealName type.Designer.cs">
+      <DependentUpon>201708031228467_change b_RealName type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708031315237_change attence_fix worknum.cs" />
+    <Compile Include="Migrations\201708031315237_change attence_fix worknum.Designer.cs">
+      <DependentUpon>201708031315237_change attence_fix worknum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -378,6 +407,7 @@
     <Compile Include="Models\BoundsContext.cs" />
     <Compile Include="Models\BoundsDBInitializer.cs" />
     <Compile Include="Models\b_Attence.cs" />
+    <Compile Include="Models\b_Attence_Fix.cs" />
     <Compile Include="Models\b_Auth.cs" />
     <Compile Include="Models\b_Check_User.cs" />
     <Compile Include="Models\b_Cus_Group.cs" />
@@ -394,6 +424,7 @@
     <Compile Include="Models\b_Point_Details.cs" />
     <Compile Include="Models\b_Point_Event.cs" />
     <Compile Include="Models\b_Point_Event_Member.cs" />
+    <Compile Include="Models\b_Point_Type_Dic.cs" />
     <Compile Include="Models\b_Reward.cs" />
     <Compile Include="Models\b_Role.cs" />
     <Compile Include="Models\b_StartPoint.cs" />
@@ -406,6 +437,7 @@
     <Compile Include="Models\b_WorkAge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extension.cs" />
+    <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\BoundsContext-20170629224230.mdf" />
@@ -538,6 +570,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <None Include="Properties\PublishProfiles\BoundsFTP.pubxml" />
     <None Include="Properties\PublishProfiles\BoundsWeb.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\highcharts.js" />
@@ -681,6 +714,7 @@
     <Content Include="Views\b_Task_Info\Index.cshtml" />
     <Content Include="Views\b_Point\Point_Check.cshtml" />
     <Content Include="Views\b_Point\Value_Check.cshtml" />
+    <Content Include="Views\b_Attence_Fix\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -821,6 +855,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708011241141_add themonth.resx">
       <DependentUpon>201708011241141_add themonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708030115192_add talbles.resx">
+      <DependentUpon>201708030115192_add talbles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708030208343_add attence_fix table.resx">
+      <DependentUpon>201708030208343_add attence_fix table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031153143_change isnullable.resx">
+      <DependentUpon>201708031153143_change isnullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031201558_change attence_fix isnullable.resx">
+      <DependentUpon>201708031201558_change attence_fix isnullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031219062_change attence_fix field.resx">
+      <DependentUpon>201708031219062_change attence_fix field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031228467_change b_RealName type.resx">
+      <DependentUpon>201708031228467_change b_RealName type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031315237_change attence_fix worknum.resx">
+      <DependentUpon>201708031315237_change attence_fix worknum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

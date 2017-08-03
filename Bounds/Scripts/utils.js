@@ -12,7 +12,7 @@ function SaveNewUser() {
         b_PhoneNum: $("#b_PhoneNum").val(),
         b_Depart_ID: $("#hid_b_Depart_ID").val(),
         b_EntryDate: $("#b_EntryDate").val(),
-        b_Role_ID: $("#b_Role_ID").val(),
+        b_Role_ID: $("#b_Role_ID").val().join(','),
         b_Reward_Auth_ID: $("#b_Reward_Auth_ID").val(),
         b_Ranking: $("input[name='b_Ranking']:checked").val()
     };
@@ -220,11 +220,11 @@ var Fix_Point = {
 }
 
 var SetCheck = {
-    BindUser: function (check_type, source_type) {
+    BindUser: function (check_type, source_type, node_id) {
         GetCheckNodeList();
         $("#hid_User_Type").val(source_type);
         $("#hid_check_type").val(check_type);
-        GetExistUser(check_type);
+        GetExistCheckUser(check_type, node_id);
         $("#div_Sel_User").modal('show');
         $("#b_OrgCheck").modal("hide");
     },
@@ -428,5 +428,48 @@ var Task = {
         $("#hid_task_id").val(task_id);
         GetExistUser(task_id);
         $("#div_Sel_User").modal('show');
+    }
+}
+
+function GetCheckItemValues() {
+    var list_values = "";
+    $('input[name="check_item"]:checked').each(function () {
+        list_values += this.id + ",";
+    });
+    return list_values.substr(0, list_values.length - 1);
+}
+var AttenceFix = {
+    Count: function () {
+        var items = GetCheckItemValues();
+        if (items.length == 0) {
+            alert("未选中任何项进行计算。");
+            return;
+        }
+
+    },
+    Clear: function () {
+        var items = GetCheckItemValues();
+        if (items.length == 0) {
+            alert("未选中任何项进行清除。");
+            return;
+        }
+    },
+    CheckAll: function () {
+        if ($("input[name='checkall']").is(':checked')) {
+            $("[name='checkall']:checkbox").prop('checked', true);
+            $("[type='checkbox']:checkbox").prop("checked", true);
+        }else {
+            $("[name='checkall']:checkbox").prop('checked', false);
+            $("[type='checkbox']:checkbox").prop('checked', false);
+        }
+    },
+    ItemCheck: function (obj) {
+        if ($(obj).is(':checked')) {
+            if ($('input[name="check_item"]').not(":checked").length == 0) {
+                $("[name='checkall']:checkbox").prop('checked', true);
+            }
+        } else {
+            $("[name='checkall']:checkbox").prop('checked', false);
+        }
     }
 }

@@ -72,5 +72,9 @@ namespace Bounds.Models
         public System.Data.Entity.DbSet<Bounds.Models.b_Task_Info> b_Task_Info { get; set; }
 
         public System.Data.Entity.DbSet<Bounds.Models.b_Task_To_User> b_Task_To_User { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Point_Type_Dic> b_Point_Type_Dic { get; set; }
+
+        public System.Data.Entity.DbSet<Bounds.Models.b_Attence_Fix> b_Attence_Fix { get; set; }
     }
 }

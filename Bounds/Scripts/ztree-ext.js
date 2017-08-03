@@ -174,6 +174,13 @@ function GetCheck() {
     });
 }
 
+function ClearCheckUI() {
+    $("#hid_first_check_value").val('');
+    $("#hid_final_check_value").val('');
+    $("#txtFirstCheck").val('');
+    $("#txtFinalCheck").val('');
+}
+
 function SaveCheck() {
     var node_id = $("#node").val();
     var first_check = $("#hid_first_check_value").val();
@@ -187,10 +194,7 @@ function SaveCheck() {
             if (data == "true") {
                 alert("保存成功！");
                 $("#b_OrgCheck").modal('hide');
-                $("#hid_first_check_value").val('');
-                $("#hid_final_check_value").val('');
-                $("#txtFirstCheck").empty();
-                $("#txtFinalCheck").empty();
+                ClearCheckUI();
             } else {
                 alert(data);
             }

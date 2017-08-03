@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Bounds.Models.b_Attence_Fix>
+@Styles.Render("~/Content/editable")
+@Scripts.Render("~/bundles/editable")
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container container-padding">
+    <div class="right padding-bottom">
+        <input type="button" value="计算" class="btn btn-danger" onclick="AttenceFix.Count();" />&nbsp;&nbsp;
+        <input type="button" value="清除" class="btn btn-success" onclick="AttenceFix.Clear();" />
+    </div>
+    <table class="table table-striped table-hover" id="table_attence">
+        <tr>
+            <th>
+                <input type="checkbox" id="chk_attence_fix_all" name="checkall" onclick="AttenceFix.CheckAll();" />
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_RealName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_WorkNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_TheMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Plan_Attence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Actual_Attence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Sick_Leave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Other_Leave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Absence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_OverTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_SaleAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Fix_Point)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Attence_Point)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_OverTime_Point)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Sale_Point)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Total_Point)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" id="@item.b_User_ID" name="check_item" onclick="AttenceFix.ItemCheck(this);" />
+                </td>
+                <td>
+                    @item.b_RealName
+                </td>
+                <td>
+                    @item.b_WorkNum
+                </td>
+                <td>
+                    @item.b_TheMonth
+                </td>
+                <td>
+                    <a href="#" id="b_Plan_Attence" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_Plan_Attence</a>
+                </td>
+                <td>
+                    <a href="#" id="b_Actual_Attence" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_Actual_Attence</a>
+                </td>
+                <td>
+                    <a href="#" id="b_Sick_Leave" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_Sick_Leave</a>
+                </td>
+                <td>
+                    <a href="#" id="b_Other_Leave" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_Other_Leave</a>
+                </td>
+                <td>
+                    <a href="#" id="b_Absence" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_Absence</a>
+                </td>
+                <td>
+                    <a href="#" id="b_OverTime" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_OverTime</a>
+                </td>
+                <td>
+                    <a href="#" id="b_SaleAmount" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_SaleAmount</a>
+                </td>
+                <td>
+                    @item.b_Fix_Point
+                </td>
+                <td>
+                    @item.b_Attence_Point
+                </td>
+                <td>
+                    @item.b_OverTime_Point
+                </td>
+                <td>
+                    @item.b_Sale_Point
+                </td>
+                <td>
+                    @item.b_Total_Point
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<script type="text/javascript">
+$(".editable_member").editable();
+</script>

@@ -114,11 +114,11 @@ namespace Bounds.Controllers
                 var node = db.b_Organize.Find(NodeId);
                 var b_First_User = (from u in db.b_User
                                    join cu in db.b_Check_User on u.ID equals cu.b_User_ID
-                                   where cu.b_Check_Type == 1
+                                   where cu.b_Check_Type == 1 && cu.b_Organize_ID == node.ID
                                    select u).FirstOrDefault();
                 var b_Final_User = (from u in db.b_User
                                    join cu in db.b_Check_User on u.ID equals cu.b_User_ID
-                                   where cu.b_Check_Type == 2
+                                   where cu.b_Check_Type == 2 && cu.b_Organize_ID == node.ID
                                    select u).FirstOrDefault();
                 string strCheck = "{\"b_First_User\":\"" + ((b_First_User == null) ? string.Empty : b_First_User.b_RealName) + "\",\"b_Final_User\":\"" + ((b_Final_User == null) ? string.Empty : b_Final_User.b_RealName) + "\"}";
                 return Json(strCheck);
@@ -130,12 +130,12 @@ namespace Bounds.Controllers
             }
         }
         [HttpPost]
-        public ActionResult GetCheckUser(int check_type)
+        public ActionResult GetCheckUser(int check_type, int node_id)
         {
             int ent_id = Session["Enterprise_id"].to_i();
             var user = from u in db.b_User
                        join cu in db.b_Check_User on u.ID equals cu.b_User_ID
-                       where cu.b_Check_Type == check_type && u.b_Enterprise_ID == ent_id
+                       where cu.b_Check_Type == check_type && u.b_Enterprise_ID == ent_id && cu.b_Organize_ID == node_id
                        select new { u.ID, u.b_UserName };
 
             return Json(user.ToList());

@@ -25,7 +25,8 @@ namespace Bounds.Controllers
         {
             GetViewBag();
             int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
-            return View(db.b_Cus_Report.Where(x=>x.b_Enterprise_ID == ent_id).ToList());
+            var report_list = db.b_Cus_Report.Where(x => x.b_Enterprise_ID == ent_id).ToList();
+            return View(report_list);
         }
 
         // GET: b_Cus_Report/Details/5

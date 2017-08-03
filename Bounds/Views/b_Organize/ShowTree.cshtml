@@ -87,15 +87,15 @@
                 <div class="modal-body col-md-12">
                     <div class="vertical-center">
                         <span class="control-label col-md-4 text-right font-16">初审人：</span>
-                        <input type="text" id="txtFirstCheck" class="form-control" onclick="SetCheck.BindUser(1, 'check');" />
+                        <input type="text" id="txtFirstCheck" class="form-control" onclick='SetCheck.BindUser(1, "check", $("#node").val());' />
                     </div>
                     <div class="vertical-center">
                         <span class="control-label col-md-4 text-right font-16">终审人：</span>
-                        <input type="text" id="txtFinalCheck" class="form-control" onclick="SetCheck.BindUser(2, 'check');" />
+                        <input type="text" id="txtFinalCheck" class="form-control" onclick='SetCheck.BindUser(2, "check", $("#node").val());' />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ClearCheckUI();">关闭</button>
                     <button type="button" class="btn btn-primary" id="btnOrgCheck">保存</button>
                 </div>
             </div>

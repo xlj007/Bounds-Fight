@@ -45,12 +45,21 @@ namespace Bounds.Controllers
                 return View(b_user);
             }
         }
+
+        private void SetViewBag(int ent_id)
+        {
+            string strEnterprise = ent_id.ToString();
+            ViewBag.Model = db.b_Organize.Where(x => x.b_Enterprise_Id == ent_id).ToList();
+            ViewBag.Role = db.b_Role.Where(x => x.b_Enterprise == strEnterprise).ToList();
+            ViewBag.Reward_Auth = db.b_Reward.Where(x => x.b_Enterprise_ID == ent_id).ToList();
+        }
         // GET: b_User
         [AuthorAdmin]
         public ActionResult Index()
         {
-            ViewBag.Model = db.b_Organize;
-            return View(db.b_User.ToList());
+            int ent_id = Session["Enterprise_id"].to_i();
+            SetViewBag(ent_id);
+            return View(db.b_User.Where(x=>x.b_Enterprise_ID == ent_id).ToList());
         }
 
         // GET: b_User/Details/5
@@ -73,6 +82,8 @@ namespace Bounds.Controllers
         [AuthorAdmin]
         public PartialViewResult Create()
         {
+            int ent_id = Session["Enterprise_id"].to_i();
+            SetViewBag(ent_id);
             return PartialView();
         }
 

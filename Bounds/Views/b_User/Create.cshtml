@@ -98,16 +98,41 @@
                    <div class="form-group">
                        @Html.LabelFor(model => model.b_Role_ID, htmlAttributes: new { @class = "control-label col-md-4" })
                        <div class="col-md-8">
-                           @Html.EditorFor(model => model.b_Role_ID, new { htmlAttributes = new { @class = "form-control" } })
-                           @Html.ValidationMessageFor(model => model.b_Role_ID, "", new { @class = "text-danger" })
+                           @*@Html.EditorFor(model => model.b_Role_ID, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Role_ID, "", new { @class = "text-danger" })*@
+                           <select id="b_Role_ID" multiple="multiple" class="form-control">
+                               @foreach (var role in ViewBag.Role)
+                               {
+                                   //var seleted = "false";
+                                   //if (!String.IsNullOrEmpty(Model.b_Role_ID))
+                                   //{
+                                   //    foreach (var role_id in Model.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                                   //    {
+                                   //        if (Convert.ToInt16(role_id) == role.ID)
+                                   //        {
+                                   //            seleted = "true";
+                                   //            break;
+                                   //        }
+                                   //    }
+                                   //}
+                                   <option value="@role.ID" @*selected="@seleted"*@>@role.b_Role_Name</option>
+                               }
+                           </select>
                        </div>
                    </div>
 
                    <div class="form-group">
                        @Html.LabelFor(model => model.b_Reward_Auth_ID, htmlAttributes: new { @class = "control-label col-md-4" })
                        <div class="col-md-8">
-                           @Html.EditorFor(model => model.b_Reward_Auth_ID, new { htmlAttributes = new { @class = "form-control" } })
-                           @Html.ValidationMessageFor(model => model.b_Reward_Auth_ID, "", new { @class = "text-danger" })
+                           @*@Html.EditorFor(model => model.b_Reward_Auth_ID, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.b_Reward_Auth_ID, "", new { @class = "text-danger" })*@
+                           <select id="b_Reward_Auth_ID" class="form-control">
+                               <option value="-1">---请选择---</option>
+                               @foreach (var reward_auth in ViewBag.Reward_Auth)
+                               {
+                                   <option value="@reward_auth.ID">@reward_auth.b_Reward_Name</option>
+                               }
+                           </select>
                        </div>
                    </div>
 
@@ -129,6 +154,7 @@
 
 <script type="text/javascript">
     $(function () {
+        $("#b_Role_ID").multiselect();
         $('#b_Depart_ID').on("click", function () {
             $("#CheckTreeModel").modal("show");
             InitCheckTree();

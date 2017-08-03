@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Bounds.Models;
 using Bounds.Utils;
 using System.Text;
+using System.Transactions;
 
 namespace Bounds.Controllers
 {
@@ -148,14 +149,45 @@ namespace Bounds.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    b_Point.Create_Time = DateTime.Now;
-                    b_Point.Update_Time = DateTime.Now;
-                    b_Point.b_Record_Time = DateTime.Now;
-                    b_Point.b_Enterprise = Session["Enterprise_id"].ToString();
-                    b_Point.b_Recorder_ID = ((b_User)Session["User"]).ID;
-                    b_Point.TheMonth = b_Point.b_Event_Date.ToString("yyyyMM");
-                    db.b_Point.Add(b_Point);
-                    db.SaveChanges();
+                    using (TransactionScope ts = new TransactionScope())
+                    {
+                        b_Point.Create_Time = DateTime.Now;
+                        b_Point.Update_Time = DateTime.Now;
+                        b_Point.b_Record_Time = DateTime.Now;
+                        b_Point.b_Enterprise = Session["Enterprise_id"].ToString();
+                        b_Point.b_Recorder_ID = ((b_User)Session["User"]).ID;
+                        b_Point.TheMonth = b_Point.b_Event_Date.ToString("yyyyMM");
+                        db.b_Point.Add(b_Point);
+                        db.SaveChanges();
+                        //积分明细表插入
+                        foreach (var point_event in b_Point.b_Point_Event)
+                        {
+                            foreach (var member in point_event.b_Point_Event_Member)
+                            {
+                                b_Point_Details detail = new b_Point_Details();
+                                detail.b_Enterprise = Session["Enterprise_id"].ToString();
+                                detail.b_Event_ID = point_event.ID;
+                                detail.b_Point_Type = 1;
+                                detail.b_Point_Value = member.b_A_Point;
+                                detail.b_User_ID = member.b_User_ID;
+                                detail.Create_Time = DateTime.Now;
+                                detail.Update_Time = DateTime.Now;
+                                detail.TheMonth = DateTime.Now.ToString("yyyyMM");
+                                db.b_Point_Details.Add(detail);
+                                db.SaveChanges();
+                                detail.b_Point_Type = 2;
+                                detail.b_Point_Value = member.b_B_Point;
+                                db.b_Point_Details.Add(detail);
+                                db.SaveChanges();
+                                detail.b_Point_Type = (int)member.b_Value_Type + 3;
+                                detail.b_Point_Value = member.b_Value_Point;
+                                db.b_Point_Details.Add(detail);
+                                db.SaveChanges();
+                            }
+                        }
+                        //db.SaveChanges();
+                        ts.Complete();
+                    }
                     return Json("OK");
                 }
                 return Json("数据模型不可用");
