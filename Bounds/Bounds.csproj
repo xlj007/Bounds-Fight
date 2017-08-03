@@ -397,6 +397,10 @@
     <Compile Include="Migrations\201708031315237_change attence_fix worknum.Designer.cs">
       <DependentUpon>201708031315237_change attence_fix worknum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708031727507_change sth i forgot.cs" />
+    <Compile Include="Migrations\201708031727507_change sth i forgot.Designer.cs">
+      <DependentUpon>201708031727507_change sth i forgot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -715,6 +719,8 @@
     <Content Include="Views\b_Point\Point_Check.cshtml" />
     <Content Include="Views\b_Point\Value_Check.cshtml" />
     <Content Include="Views\b_Attence_Fix\Index.cshtml" />
+    <Content Include="Views\b_Point\Value_Order_Report.cshtml" />
+    <Content Include="Views\b_Point\Manager_Reward_Report.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -876,6 +882,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708031315237_change attence_fix worknum.resx">
       <DependentUpon>201708031315237_change attence_fix worknum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708031727507_change sth i forgot.resx">
+      <DependentUpon>201708031727507_change sth i forgot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

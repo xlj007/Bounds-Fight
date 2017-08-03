@@ -438,6 +438,7 @@ function GetCheckItemValues() {
     });
     return list_values.substr(0, list_values.length - 1);
 }
+
 var AttenceFix = {
     Count: function () {
         var items = GetCheckItemValues();
@@ -459,6 +460,27 @@ var AttenceFix = {
             $("[name='checkall']:checkbox").prop('checked', true);
             $("[type='checkbox']:checkbox").prop("checked", true);
         }else {
+            $("[name='checkall']:checkbox").prop('checked', false);
+            $("[type='checkbox']:checkbox").prop('checked', false);
+        }
+    },
+    ItemCheck: function (obj) {
+        if ($(obj).is(':checked')) {
+            if ($('input[name="check_item"]').not(":checked").length == 0) {
+                $("[name='checkall']:checkbox").prop('checked', true);
+            }
+        } else {
+            $("[name='checkall']:checkbox").prop('checked', false);
+        }
+    }
+}
+
+var User = {
+    CheckAll: function () {
+        if ($("input[name='checkall']").is(':checked')) {
+            $("[name='checkall']:checkbox").prop('checked', true);
+            $("[type='checkbox']:checkbox").prop("checked", true);
+        } else {
             $("[name='checkall']:checkbox").prop('checked', false);
             $("[type='checkbox']:checkbox").prop('checked', false);
         }

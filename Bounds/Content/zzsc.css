@@ -1,0 +1,17 @@
+﻿@charset"utf-8";
+/* @Reset */
+html { margin: 0 auto; padding: 0; height: 100%; overflow-x:hidden;}
+body { margin: 0 auto; padding: 0; width: 100%; font-size: 12px; height: 98%;}
+* { margin: 0; padding: 0; outline: none; }
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, a, p, blockquote, th, td { margin: 0; padding: 0; vertical-align: baseline; }
+address, caption, cite, code, dfn, em, strong, th, var{ font-style: normal; font-weight: normal; }
+ol, ul ,li{ list-style: none; vertical-align:top;  }
+img { border:0; }
+/* @HTML5 */
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, div, summary, mark { display:block; }
+/* @Global */
+* { font-weight: normal; font-style: normal; }
+/*banner*/
+#head {position: relative; }
+.kvBox {overflow: hidden; margin:0 auto; background: url("../Content/img/kv_bg.jpg") no-repeat; background-size:cover; }
+.kvBox .cloud{ position:  absolute; z-index: 1; left: 0px; top: 0px; width: 100%;height: 100%; background: url(../Content/img/kv_cloud.png) repeat-x 0 0;}

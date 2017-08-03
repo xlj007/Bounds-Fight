@@ -1,77 +1,83 @@
 ﻿@model IEnumerable<Bounds.Models.b_User>
 
-<table class="table" style="padding: 10px 0px 10px 0px">
-    <tr>
-        @*<th>
-            <input type="checkbox" id="chkAll" onclick="CheckAll()" />
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.b_UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_RealName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Sex)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_WorkNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_PhoneNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Depart_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_EntryDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Role_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Reward_Auth_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.b_Ranking)
-        </th>
-    </tr>
+<div class="padding-bottom right">
+    <button type="submit" data-toggle="modal" data-target="#NewUser" class="btn btn-success">新增人员</button>
+    <button type="button" class="btn btn-primary" oncancel="User.Edit();">人员编辑</button>
+    <button type="button" class="btn btn-danger" oncancel="User.Delete();">删除</button>
+</div>
 
-    @foreach (var item in Model)
-    {
+    <table class="table table-striped table-hover" style="padding: 10px 0px 10px 0px">
         <tr>
-            @*<td>
-                <input type="checkbox" value="@item.ID" />
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.b_UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.b_RealName)
-            </td>
+            <th>
+                <input type="checkbox" id="chkAll" name="checkall" onclick="User.CheckAll()" />
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_RealName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_WorkNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_PhoneNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Depart_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Role_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Reward_Auth_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.b_Ranking)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="check_item" value="@item.ID" onclick="User.ItemCheck(this);" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.b_UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.b_RealName)
+                </td>
                 @if (item.b_Sex == "0")
                 {
                     <td>男</td>
                 }
                 else
                 {
-                   <td>女</td>
+                    <td>女</td>
                 }
-            <td>
-                @Html.DisplayFor(modelItem => item.b_WorkNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.b_Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.b_PhoneNum)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.b_Depart_ID)*@
-                @if (!String.IsNullOrEmpty(item.b_Depart_ID))
+                <td>
+                    @Html.DisplayFor(modelItem => item.b_WorkNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.b_Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.b_PhoneNum)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.b_Depart_ID)*@
+                    @if (!String.IsNullOrEmpty(item.b_Depart_ID))
                 {
                     var depart_name = string.Empty;
                     foreach (var depart_id in item.b_Depart_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -86,33 +92,33 @@
                         }
                     }
                     @depart_name
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.b_EntryDate)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.b_Role_ID)*@
-                @if (!String.IsNullOrEmpty(item.b_Role_ID))
-                {
-                    var role_name = string.Empty;
-                    foreach (var role_id in item.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.b_EntryDate)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.b_Role_ID)*@
+                    @if (!String.IsNullOrEmpty(item.b_Role_ID))
                     {
-                        foreach(var role in ViewBag.Role)
+                        var role_name = string.Empty;
+                        foreach (var role_id in item.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                         {
-                            if (Convert.ToInt16(role_id) == role.ID)
+                            foreach (var role in ViewBag.Role)
                             {
-                                role_name += role.b_Role_Name + " ";
-                                break;
+                                if (Convert.ToInt16(role_id) == role.ID)
+                                {
+                                    role_name += role.b_Role_Name + " ";
+                                    break;
+                                }
                             }
                         }
+                        @role_name
                     }
-                    @role_name
-                }
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.b_Reward_Auth_ID)*@
-                @if (!String.IsNullOrEmpty(item.b_Reward_Auth_ID))
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.b_Reward_Auth_ID)*@
+                    @if (!String.IsNullOrEmpty(item.b_Reward_Auth_ID))
                 {
                     var reward = string.Empty;
                     foreach (var auth in ViewBag.Reward_Auth)
@@ -123,18 +129,18 @@
                         }
                     }
                     @reward
+                    }
+                </td>
+                @if (item.b_Ranking == "0")
+                {
+                    <td>否</td>
                 }
-            </td>
-            @if (item.b_Ranking == "0")
-            {
-                <td>否</td>
-            }
-            else
-            {
-                <td>是</td>
-            }
-        </tr>
-    }
+                else
+                {
+                    <td>是</td>
+                }
+            </tr>
+        }
 
-</table>
+    </table>
 

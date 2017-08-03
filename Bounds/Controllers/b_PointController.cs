@@ -172,6 +172,7 @@ namespace Bounds.Controllers
                                 detail.b_User_ID = member.b_User_ID;
                                 detail.Create_Time = DateTime.Now;
                                 detail.Update_Time = DateTime.Now;
+                                detail.b_Recorder_ID = b_Point.b_Recorder_ID;
                                 detail.TheMonth = DateTime.Now.ToString("yyyyMM");
                                 db.b_Point_Details.Add(detail);
                                 db.SaveChanges();
@@ -457,12 +458,12 @@ namespace Bounds.Controllers
         {
             try
             {
-                string strSQLSel = @"select c.TheMonth, d.b_RealName, d.b_WorkNum, Convert(varchar(255),Sum(case when a.b_Value_Type='0'then a.b_Value_Point else 0 end)) as b_C_Value, Convert(varchar(255),Sum(case when a.b_Value_Type='1' then a.b_Value_Point else 0 end)) as b_S_Value,Convert(varchar(255),Sum(case when a.b_Value_Type='2' then a.b_Value_Point else 0 end)) as b_X_Value,Convert(varchar(255),Sum(a.b_Value_Point)) as b_Total_Value
+                string strSQLSel = @"select c.TheMonth, d.b_RealName, d.b_WorkNum, Convert(varchar(255),Sum(case when a.b_Value_Type='0' then a.b_Value_Point else 0 end)) as b_C_Value, Convert(varchar(255),Sum(case when a.b_Value_Type='1' then a.b_Value_Point else 0 end)) as b_S_Value,Convert(varchar(255),Sum(case when a.b_Value_Type='2' then a.b_Value_Point else 0 end)) as b_X_Value,Convert(varchar(255),Sum(a.b_Value_Point)) as b_Total_Value
                                     from b_Point_Event_Member as a 
                                     join b_Point_Event as b on a.b_Point_Event_ID = b.id 
                                     join b_Point as c on b.b_Point_ID = c.ID
                                     join b_User as d on a.b_User_ID = d.ID
-                                    Group by c.TheMonth,d.b_RealName,d.b_WorkNum";
+                                    Where c.b_Enterprise = '" + Session["Enterprise_id"].ToString() + "' Group by c.TheMonth,d.b_RealName,d.b_WorkNum";
 
                 IEnumerable<Value_Check_Model> value_check = db.Database.SqlQuery<Value_Check_Model>(strSQLSel);
                 return View(value_check);
@@ -471,6 +472,52 @@ namespace Bounds.Controllers
             {
                 Log.logger.Error("产值核查载入时出现错误：" + ex.Message);
                 return Json(ex.Message);
+            }
+        }
+
+        //产值排名报表
+        public ActionResult Value_Order_Report()
+        {
+            try
+            {
+                string strEnterprise = Session["Enterprise_id"].ToString();
+                string strSQLSel = @"select Row_Number() over(order by Sum(a.b_Value_Point) DESC) as ID, c.TheMonth, d.b_RealName, d.b_WorkNum, Convert(varchar(255),Sum(case when a.b_Value_Type='0' then a.b_Value_Point else 0 end)) as b_C_Value, Convert(varchar(255),Sum(case when a.b_Value_Type='1' then a.b_Value_Point else 0 end)) as b_S_Value,Convert(varchar(255),Sum(case when a.b_Value_Type='2' then a.b_Value_Point else 0 end)) as b_X_Value,Convert(varchar(255),Sum(a.b_Value_Point)) as b_Total_Value
+                                    from b_Point_Event_Member as a 
+                                    join b_Point_Event as b on a.b_Point_Event_ID = b.id 
+                                    join b_Point as c on b.b_Point_ID = c.ID
+                                    join b_User as d on a.b_User_ID = d.ID
+                                    Where c.b_Enterprise = '" + Session["Enterprise_id"].ToString() + "' Group by c.TheMonth,d.b_RealName,d.b_WorkNum";
+                IEnumerable<Value_Order_Report> value_order_report = db.Database.SqlQuery<Value_Order_Report>(strSQLSel);
+                return View(value_order_report);
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("获取产值排名时出现错误：" + ex.Message);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        //管理人员奖扣分报表
+        public ActionResult Manager_Reward_Report()
+        {
+            try
+            {
+                string strSQLSel = @"select d.b_RealName as b_Point_Object, c.b_Event_Date, c.b_Record_Time, c.b_Subject, e.b_Event_Name, Convert(varchar(255),Sum(case when a.b_A_Point>0 then a.b_A_Point else 0 end) + Sum(case when a.b_B_Point>0 then a.b_B_Point else 0 end)) as b_Total_Point, h.b_RealName as b_Recorder_Name
+                                     from b_Point_Event_Member as a 
+                                     join b_Point_Event as b on a.b_Point_Event_ID = b.id 
+                                     join b_Point as c on b.b_Point_ID = c.ID
+                                     join b_User as d on a.b_User_ID = d.ID
+                                     join b_Event_Library as e on b.b_Event_ID = e.ID
+                                     join b_User as f on c.b_First_Check_ID = f.ID
+                                     join b_User as g on c.b_Final_Check_ID = g.ID
+                                     join b_User as h on c.b_Recorder_ID = h.ID
+                                     Where c.b_Enterprise = '" + Session["Enterprise_id"].ToString() + "'";
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("获取管理人员奖扣分报表时出现错误：" + ex.Message);
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
 

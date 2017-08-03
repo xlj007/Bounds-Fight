@@ -68,6 +68,12 @@ namespace Bounds
                 ));
             bundles.Add(new StyleBundle("~/Content/editable").Include(
                         "~/Content/bootstrap-editable.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                "~/Scripts/zzsc.js"
+                ));
+            bundles.Add(new StyleBundle("~/Content/login").Include(
+                        "~/Content/zzsc.css"));
         }
     }
 }

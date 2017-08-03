@@ -94,6 +94,18 @@ namespace Bounds.Models
         public string b_X_Value { get; set; }
         public string b_Total_Value { get; set; }
     }
+
+    public class Value_Order_Report
+    {
+        public long ID { get; set; }
+        public string TheMonth { get; set; }
+        public string b_RealName { get; set; }
+        public string b_WorkNum { get; set; }
+        public string b_C_Value { get; set; }
+        public string b_S_Value { get; set; }
+        public string b_X_Value { get; set; }
+        public string b_Total_Value { get; set; }
+    }
     public class My_Values_Model
     {
         public DateTime b_Event_Date { get; set; }

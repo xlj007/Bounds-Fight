@@ -3,33 +3,35 @@
     ViewBag.Title = "系统登录";
 }
 @model Bounds.Models.b_User
+@*@Scripts.Render("~/bundles/jquery")
+@Styles.Render("~/Content/login")
+@Scripts.Render("~/bundles/login")*@
+    <div class="text-center padding-top-10">
+    <h2>系统登录</h2>
 
-<div class="text-center"><h2>系统登录</h2></div>
-<div class="row">
-    <div class="text-center">
-        @using (Html.BeginForm("Logon", "b_User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        <div class="text-center">
+            @using (Html.BeginForm("Logon", "b_User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-            <hr />
                 @Html.ValidationSummary(true, "用户名或密码错误，请重试。", new { @class = "text-danger" })
                 <table class="login">
                     <tr>
                         <td class="right_td">@Html.LabelFor(m => m.b_UserName, new { @class = "control-label" })</td>
                         <td class="left_td">
-                            @Html.TextBoxFor(m => m.b_UserName, new { @class = "form-control", @Value = "Admin", @placeholder = "用户名" })
+                            @Html.TextBoxFor(m => m.b_UserName, new { @class = "form-control", @placeholder = "用户名" })
                             @Html.ValidationMessageFor(m => m.b_UserName, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                     <tr>
                         <td class="right_td">@Html.LabelFor(m => m.b_Password, new { @class = "control-label" })</td>
                         <td class="left_td">
-                            @Html.PasswordFor(m => m.b_Password, new { @class = "form-control", @Value = "123" })
+                            @Html.PasswordFor(m => m.b_Password, new { @class = "form-control", @placeholder = "密码" })
                             @Html.ValidationMessageFor(m => m.b_Password, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                     <tr>
                         <td class="right_td">@Html.LabelFor(m => m.b_Enterprise_ID, new { @class = "control-label" })</td>
                         <td class="left_td">
-                            @Html.TextBoxFor(m => m.b_Enterprise_ID, new { @class = "form-control", @Value = "11000", @placeholder = "企业代码" })
+                            @Html.TextBoxFor(m => m.b_Enterprise_ID, new { @class = "form-control", @placeholder = "企业代码" })
                             @Html.ValidationMessageFor(m => m.b_Enterprise_ID, "", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -39,10 +41,6 @@
                         <input type="submit" value="登录" class="btn btn-default" />
                     </div>
                 </div>
-        }
-    </div>
+            }
+        </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

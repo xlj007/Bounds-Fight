@@ -309,3 +309,11 @@ table{
 #table_attence th {
     word-break: keep-all;
 }
+
+.padding-top-10{
+    padding-top: 10%;
+}
+
+.padding-top-20{
+    padding-top: 20%;
+}

@@ -22,5 +22,6 @@ namespace Bounds.Models
         public string b_Enterprise { get; set; }
         public string TheMonth { get; set; }
         public int b_Change_Status { get; set; }
+        public int b_Recorder_ID { get; set; }
     }
 }
