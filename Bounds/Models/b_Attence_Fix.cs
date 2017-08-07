@@ -30,7 +30,7 @@ namespace Bounds.Models
         public double? b_OverTime { get; set; }
         [Display(Name ="营销金额")]
         public double? b_SaleAmount { get; set; }
-        [Display(Name = "固定积分")]
+        [Display(Name = "固定功分")]
         public double? b_Fix_Point { get; set; }
         [Display(Name = "考勤得分")]
         public double? b_Attence_Point { get; set; }

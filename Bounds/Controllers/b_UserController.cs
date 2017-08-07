@@ -78,6 +78,21 @@ namespace Bounds.Controllers
             return View(b_User);
         }
 
+        [AuthorAdmin]
+        public ActionResult GetUserInfo(int user_id)
+        {
+            try
+            {
+                b_User user = db.b_User.Find(user_id);
+
+                return Json(user);
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("获取用户信息时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
+        }
         // GET: b_User/Create
         [AuthorAdmin]
         public PartialViewResult Create()

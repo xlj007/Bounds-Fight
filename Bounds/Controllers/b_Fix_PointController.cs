@@ -32,7 +32,7 @@ namespace Bounds.Controllers
             }
             catch (Exception ex)
             {
-                Log.logger.Error("获取固定积分绑定成员时出现错误：" + ex.Message);
+                Log.logger.Error("获取固定功分绑定成员时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }
@@ -63,7 +63,7 @@ namespace Bounds.Controllers
             }
             catch (Exception ex)
             {
-                Log.logger.Error("保存固定积分绑定成员时出现错误：" + ex.Message);
+                Log.logger.Error("保存固定功分绑定成员时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }

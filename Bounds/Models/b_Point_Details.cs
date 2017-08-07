@@ -9,9 +9,9 @@ namespace Bounds.Models
     public class b_Point_Details
     {
         public int ID { get; set; }
-        [Display(Name = "积分类型")]
+        [Display(Name = "功分类型")]
         public int b_Point_Type { get; set; }
-        [Display(Name = "积分值")]
+        [Display(Name = "功分值")]
         public double b_Point_Value { get; set; }
         [Display(Name = "事件")]
         public int b_Event_ID { get; set; }

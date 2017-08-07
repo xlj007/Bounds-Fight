@@ -11,7 +11,7 @@ namespace Bounds.Models
         public int ID { get; set; }
         //结算方式
         public int b_Balance_Type { get; set; }
-        //积分值
+        //功分值
         public int b_Point_Value { get; set; }
         public string b_End_Date { get; set; }
         public string b_Enterprise { get; set; }

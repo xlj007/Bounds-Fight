@@ -154,7 +154,7 @@ var Global_Config = {
 
         nIndex = 0;
 
-        //获取加班积分数组
+        //获取加班功分数组
         $("#div_Attence").find("input:text").each(function () {
             if (nIndex % 2 == 0) {
                 item = new Global_Config_Item();
@@ -493,5 +493,28 @@ var User = {
         } else {
             $("[name='checkall']:checkbox").prop('checked', false);
         }
+    },
+    Edit: function () {
+        if ($('input[name="check_item"]:checked').length > 1) {
+            alert("只能选定一项进行修改");
+            return;
+        }
+        var user_id = $('input[name="check_item"]:checked').attr("value");
+        
+        $.ajax({
+            url: "/b_User/GetUserInfo/",
+            type: "post",
+            dataType: "json",
+            data: { "user_id": user_id },
+            success: function (data) {
+                alert(data);
+            }
+        });
+    },
+    Delete: function () {
+        if (!confirm("删除后无法恢复，确定删除？")) {
+            return;
+        }
+
     }
 }

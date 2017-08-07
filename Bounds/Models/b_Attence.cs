@@ -22,7 +22,7 @@ namespace Bounds.Models
         public int b_KuangGong { get; set; }
         [Display(Name = "其他假扣分")]
         public int b_Others { get; set; }
-        [Display(Name = "满勤获得所有固定积分")]
+        [Display(Name = "满勤获得所有固定功分")]
         public int b_QuanQin_Get_FixedBounds { get; set; }
         [Display(Name = "1月")]
         public int b_1_Free { get; set; }

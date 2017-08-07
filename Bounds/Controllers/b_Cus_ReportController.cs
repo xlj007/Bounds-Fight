@@ -48,7 +48,7 @@ namespace Bounds.Controllers
         {
             List<CRObject> list_ReportType = new List<CRObject>()
             {
-                new CRObject() { text = "积分排名", value = 0 },
+                new CRObject() { text = "功分排名", value = 0 },
                 new CRObject() { text = "平均分排名", value = 1 }
             };
             int ent_id = Convert.ToInt16(Session["Enterprise_id"]);

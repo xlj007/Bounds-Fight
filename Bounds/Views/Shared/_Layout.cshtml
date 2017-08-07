@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>积分管理系统</title>
+    <title>功分管理系统</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("积分管理系统", "Index", "WorkPlace", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("功分管理系统", "Index", "WorkPlace", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div>
                 <ul class="nav navbar-nav">
@@ -31,7 +31,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            积分配置<b class="caret"></b>
+                            功分配置<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("工龄分配置", "Index", "b_WorkAge")</li>
@@ -53,17 +53,17 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            积分管理<b class="caret"></b>
+                            功分管理<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("积分奖扣", "Index", "b_Point")</li>
-                            <li>@Html.ActionLink("我的积分", "My_Points", "b_Point")</li>
+                            <li>@Html.ActionLink("功分奖扣", "Index", "b_Point")</li>
+                            <li>@Html.ActionLink("我的功分", "My_Points", "b_Point")</li>
                             <li>@Html.ActionLink("我的产值", "My_Values", "b_Point", new { id = 0 }, new { @class="a" })</li>
                             <li>@Html.ActionLink("我的审核", "My_Check", "b_Point")</li>
                             <li>@Html.ActionLink("个人明细查询", "My_Detail", "b_Point")</li>
                             <li>@Html.ActionLink("日常奖扣查询", "Usual_Point", "b_Point")</li>
                             <li>@Html.ActionLink("事件库管理", "Index", "b_Event_Library")</li>
-                            <li>@Html.ActionLink("固定积分配置", "Index", "b_Fix_Point")</li>
+                            <li>@Html.ActionLink("固定功分配置", "Index", "b_Fix_Point")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -89,9 +89,9 @@
                             核查结算 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("积分核查", "Point_Check", "b_Point")</li>
+                            <li>@Html.ActionLink("功分核查", "Point_Check", "b_Point")</li>
                             <li>@Html.ActionLink("产值核查", "Value_Check", "b_Point")</li>
-                            <li>@Html.ActionLink("考勤/固定积分计算", "Index", "b_Attence_Fix")</li>
+                            <li>@Html.ActionLink("考勤/固定功分计算", "Index", "b_Attence_Fix")</li>
                         </ul>
                     </li>
                     <li class="dropdown">

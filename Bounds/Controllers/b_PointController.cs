@@ -159,7 +159,7 @@ namespace Bounds.Controllers
                         b_Point.TheMonth = b_Point.b_Event_Date.ToString("yyyyMM");
                         db.b_Point.Add(b_Point);
                         db.SaveChanges();
-                        //积分明细表插入
+                        //功分明细表插入
                         foreach (var point_event in b_Point.b_Point_Event)
                         {
                             foreach (var member in point_event.b_Point_Event_Member)
@@ -195,7 +195,7 @@ namespace Bounds.Controllers
             }
             catch(Exception ex)
             {
-                Log.logger.Error("保存积分奖扣时出现错误：" + ex.Message);
+                Log.logger.Error("保存功分奖扣时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }
@@ -230,14 +230,14 @@ namespace Bounds.Controllers
         {
             try
             {
-                //获取我的积分0：固定积分，1：奖扣积分，2：其他得分
+                //获取我的功分0：固定功分，1：奖扣功分，2：其他得分
                 int ent_id = Session["Enterprise_id"].to_i();
                 int user_id = (Session["User"] as b_User).ID;
-                //获取固定积分
+                //获取固定功分
                 string strSQLGetFixPoint = "select b.b_Fix_Point_Name, b.b_Fix_Point_Value from b_Fix_Point_To_User as a join b_Fix_Point as b on a.b_Fix_Point_ID = b.ID where a.b_User_id =" + user_id;
                 var my_fix_point = db.Database.SqlQuery<My_Fix_Point_Model>(strSQLGetFixPoint);
                 ViewBag.Fix_Point = my_fix_point;
-                //获取奖扣积分
+                //获取奖扣功分
                 string strSQLGetPointEvent= @"select a.b_Event_Date,e.b_Event_Name,c.b_A_Point,c.b_B_Point, f.b_RealName as b_First_Check_Name,g.b_RealName as b_Final_Check_Name 
                                             from b_Point as a inner join b_Point_Event as b on a.ID = b.b_Point_ID 
                                             inner join b_Event_Library as e on b.b_Event_ID = e.ID 
@@ -252,7 +252,7 @@ namespace Bounds.Controllers
             }
             catch(Exception ex)
             {
-                Log.logger.Error("获取我的积分时出现错误：" + ex.Message);
+                Log.logger.Error("获取我的功分时出现错误：" + ex.Message);
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
@@ -275,7 +275,7 @@ namespace Bounds.Controllers
             }
             catch (Exception ex)
             {
-                Log.logger.Error("获取我的积分时出现错误：" + ex.Message);
+                Log.logger.Error("获取我的功分时出现错误：" + ex.Message);
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
@@ -449,7 +449,7 @@ namespace Bounds.Controllers
             }
             catch (Exception ex)
             {
-                Log.logger.Error("积分核查载入时出现错误：" + ex.Message);
+                Log.logger.Error("功分核查载入时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }
