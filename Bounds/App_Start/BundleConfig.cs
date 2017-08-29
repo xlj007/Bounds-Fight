@@ -74,6 +74,9 @@ namespace Bounds
                 ));
             bundles.Add(new StyleBundle("~/Content/login").Include(
                         "~/Content/zzsc.css"));
+            bundles.Add(new ScriptBundle("~/Content/highcharts").Include(
+                "~/Scripts/highcharts.js"
+                ));
         }
     }
 }

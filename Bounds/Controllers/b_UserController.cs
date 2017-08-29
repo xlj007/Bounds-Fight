@@ -38,7 +38,7 @@ namespace Bounds.Controllers
             {
                 Session["User"] = result.FirstOrDefault();
                 Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
-                return RedirectToAction("Index", "b_User");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
