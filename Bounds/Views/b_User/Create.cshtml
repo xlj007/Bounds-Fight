@@ -8,6 +8,7 @@
     @Html.Partial("../b_Organize/ShowCheckTree")
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" id="ID" />
         <table border="0">
            <tr>
                <td>
@@ -115,7 +116,7 @@
                                    //        }
                                    //    }
                                    //}
-                                   <option value="@role.ID" @*selected="@seleted"*@>@role.b_Role_Name</option>
+                                   <option value="@role.ID">@role.b_Role_Name</option>
                                }
                            </select>
                        </div>

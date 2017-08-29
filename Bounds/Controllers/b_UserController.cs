@@ -10,6 +10,7 @@ using Bounds.Models;
 using System.Web.Security;
 using Bounds.Utils;
 using System.Transactions;
+using System.Data.Entity.Infrastructure;
 
 namespace Bounds.Controllers
 {
@@ -37,7 +38,7 @@ namespace Bounds.Controllers
             {
                 Session["User"] = result.FirstOrDefault();
                 Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "b_User");
             }
             else
             {
@@ -83,13 +84,44 @@ namespace Bounds.Controllers
         {
             try
             {
-                b_User user = db.b_User.Find(user_id);
-
+                b_User user = db.b_User.Where(x=>x.ID == user_id).AsNoTracking().FirstOrDefault();
+                string[] arrDepart = user.b_Depart_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                string strDepart_Name = string.Empty;
+                foreach (string strDepart_id in arrDepart)
+                {
+                    b_Organize org = db.b_Organize.Find(strDepart_id.to_i());
+                    strDepart_Name += org.b_Name + ",";
+                }
+                if (strDepart_Name != string.Empty)
+                {
+                    strDepart_Name = strDepart_Name.Substring(0, strDepart_Name.Length - 1);
+                }
+                user.b_Password = user.b_Depart_ID;
+                user.b_Depart_ID = strDepart_Name;
                 return Json(user);
             }
             catch (Exception ex)
             {
                 Log.logger.Error("获取用户信息时出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
+        }
+        [AuthorAdmin]
+        public ActionResult DeleteUser(string user_ids)
+        {
+            try
+            {
+                int[] arrIds = Array.ConvertAll(user_ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries), s => Convert.ToInt32(s));
+                var users = from u in db.b_User
+                            where arrIds.Contains(u.ID)
+                            select u;
+                db.b_User.RemoveRange(users);
+                db.SaveChanges();
+                return Json("删除成功。");
+            }
+            catch (Exception ex)
+            {
+                Log.logger.Error("删除用户信息时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }
@@ -150,19 +182,54 @@ namespace Bounds.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [AuthorAdmin]
         public ActionResult Edit([Bind(Include = "ID,b_UserName,b_RealName,b_Sex,b_Password,b_WorkNum,b_Email,b_PhoneNum,b_Depart_ID,b_EntryDate,b_Role_ID,b_Reward_Auth_ID,b_Ranking,b_Create_Time,b_Update_Time")] b_User b_User)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(b_User).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    b_User org_user = db.b_User.Find(b_User.ID);
+                    if (String.IsNullOrEmpty(b_User.b_Password))
+                    {
+                        b_User.b_Password = org_user.b_Password;
+                    }
+                    else
+                    {
+                        b_User.b_Password = FormsAuthentication.HashPasswordForStoringInConfigFile(b_User.b_Password, "MD5");
+                    }
+                    b_User.b_Create_Time = org_user.b_Create_Time;
+                    b_User.b_Enterprise_ID = Session["Enterprise_id"].to_i();
+                    b_User.b_Update_Time = DateTime.Now;
+                    RemoveHoldingEntityInContext(org_user);
+                    db.Entry(b_User).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return Json("OK");
             }
-            return View(b_User);
+            catch (Exception ex)
+            {
+                Log.logger.Error("修改用户信息出现错误：" + ex.Message);
+                return Json(ex.Message);
+            }
         }
 
+        private Boolean RemoveHoldingEntityInContext(b_User entity)
+        {
+            var objContext = ((IObjectContextAdapter)db).ObjectContext;
+            var objSet = objContext.CreateObjectSet<b_User>();
+            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
+
+            Object foundEntity;
+            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
+
+            if (exists)
+            {
+                objContext.Detach(foundEntity);
+            }
+
+            return (exists);
+        }
         // GET: b_User/Delete/5
         [AuthorAdmin]
         public ActionResult Delete(int? id)

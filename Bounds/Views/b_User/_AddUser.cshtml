@@ -1,4 +1,5 @@
 ﻿<div class="container-fluid text-center" style="width: 500px">
+    <input type="hidden" id="hid_user_show_type" />
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -15,8 +16,8 @@
                     @Html.Partial("Create", new Bounds.Models.b_User())
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="btnSaveUser" onclick="SaveNewUser();">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="User.Close();">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveUser" onclick="User.SaveUserInfo();">保存</button>
                 </div>
             </div>
         </div>

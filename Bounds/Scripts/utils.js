@@ -1,40 +1,4 @@
-﻿function CheckAll() {
-}
-
-function SaveNewUser() {
-    var User_Model = {
-        b_UserName: $("#b_UserName").val(),
-        b_RealName: $("#b_RealName").val(),
-        b_Sex: $("input[name='b_Sex']:checked").val(),
-        b_Password: $("#b_Password").val(),
-        b_WorkNum: $("#b_WorkNum").val(),
-        b_Email: $("#b_Email").val(),
-        b_PhoneNum: $("#b_PhoneNum").val(),
-        b_Depart_ID: $("#hid_b_Depart_ID").val(),
-        b_EntryDate: $("#b_EntryDate").val(),
-        b_Role_ID: $("#b_Role_ID").val().join(','),
-        b_Reward_Auth_ID: $("#b_Reward_Auth_ID").val(),
-        b_Ranking: $("input[name='b_Ranking']:checked").val()
-    };
-    $.ajax({
-        url: 'b_User/Create',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(User_Model),
-        success: function (data) {
-            if (data == "OK") {
-                alert("添加成功");
-                $("#NewUser").modal('hide');
-                //页面刷新
-                location.href = "/b_User"
-            } else {
-                alert(data);
-            }
-        }
-    });
-}
-
-var Auth = {
+﻿var Auth = {
     Add: function () {
         var b_auth_list = '';
         $('input:checkbox:checked').each(function () {
@@ -180,7 +144,7 @@ var Global_Config = {
             b_Price_Paper_Set: $("#b_Price_Paper_Set").val(),
             b_SignIn_Bounds: $("#b_SignIn_Bounds").val(),
             b_SignIn_Time: $("#b_SignIn_Time").val(),
-            b_FixedBounds_ToAttence: $("#b_FixedBounds_ToAttence").val(),
+            b_FixedBounds_ToAttence: $('input:radio[name="b_FixedBounds_ToAttence"]:checked').val(),
             b_Check_Date: $("#b_Check_Date").val(),
             b_Global_Config_Item: list_item
         }
@@ -494,20 +458,44 @@ var User = {
             $("[name='checkall']:checkbox").prop('checked', false);
         }
     },
+    AddNew: function () {
+        $("#hid_user_show_type").val("add");
+        $("#NewUser").modal('show');
+    },
     Edit: function () {
         if ($('input[name="check_item"]:checked').length > 1) {
             alert("只能选定一项进行修改");
             return;
         }
         var user_id = $('input[name="check_item"]:checked').attr("value");
-        
+        $("#hid_user_show_type").val("edit");
         $.ajax({
             url: "/b_User/GetUserInfo/",
             type: "post",
             dataType: "json",
             data: { "user_id": user_id },
             success: function (data) {
-                alert(data);
+                $("#ID").val(data.ID);
+                $("#b_UserName").val(data.b_UserName);
+                $("#b_RealName").val(data.b_RealName);
+                $("#hid_b_Depart_ID").val(data.b_Password);
+                $('input:radio[name="b_Sex"]').each(function () { if (this.value == data.b_Sex) $(this).prop("checked", "true"); });
+                $("#b_WorkNum").val(data.b_WorkNum);
+                $("#b_Email").val(data.b_Email);
+                $("#b_PhoneNum").val(data.b_PhoneNum);
+                $("#b_Depart_ID").val(data.b_Depart_ID);
+                $("#b_EntryDate").val(data.b_EntryDate);
+                var array = data.b_Role_ID.split(',');
+                $("#b_Role_ID option").each(function () {
+                    if ($.inArray($(this).val().toString(), array) > -1) {
+                        this.selected = true;
+                    }
+                });
+                $("#b_Role_ID").multiselect('refresh');
+                $("#b_Reward_Auth_ID option[value='" + data.b_Reward_Auth_ID + "']").attr("selected", true);
+                $('input:radio[name="b_Ranking"]').each(function () { if (this.value == data.b_Ranking) $(this).prop("checked", "true"); })
+
+                $("#NewUser").modal('show');
             }
         });
     },
@@ -515,6 +503,83 @@ var User = {
         if (!confirm("删除后无法恢复，确定删除？")) {
             return;
         }
+        var user_ids = "";
+        $('input[name="check_item"]:checked').each(function () {
+            user_ids += this.value + ",";
+        });
+        $.ajax({
+            url: "/b_User/DeleteUser/",
+            type: "post",
+            dataType: "json",
+            data: { "user_ids": user_ids },
+            success: function (data) {
+                alert(data);
+                location.href = "/b_User";
+            }
+        });
+    },
+    Close: function () {
+        ClearUserUI();
+    },
+    SaveUserInfo: function () {
+        var User_Model = {
+            ID:$("#ID").val(),
+            b_UserName: $("#b_UserName").val(),
+            b_RealName: $("#b_RealName").val(),
+            b_Sex: $("input[name='b_Sex']:checked").val(),
+            b_Password: $("#b_Password").val(),
+            b_WorkNum: $("#b_WorkNum").val(),
+            b_Email: $("#b_Email").val(),
+            b_PhoneNum: $("#b_PhoneNum").val(),
+            b_Depart_ID: $("#hid_b_Depart_ID").val(),
+            b_EntryDate: $("#b_EntryDate").val(),
+            b_Role_ID: $("#b_Role_ID").val().join(','),
+            b_Reward_Auth_ID: $("#b_Reward_Auth_ID").val(),
+            b_Ranking: $("input[name='b_Ranking']:checked").val()
+        };
 
+        var target_url = '';
+        if ($("#hid_user_show_type").val() == "add") {
+            target_url = 'b_User/Create';
+        } else {
+            target_url = 'b_User/Edit';
+        }
+        $.ajax({
+            url: target_url,
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            data: JSON.stringify(User_Model),
+            success: function (data) {
+                if (data == "OK") {
+                    alert("保存成功");
+                    $("#NewUser").modal('hide');
+                    ClearUserUI();
+                    //页面刷新
+                    location.href = "/b_User"
+                } else {
+                    alert(data);
+                }
+            }
+        });
     }
+}
+
+function ClearUserUI() {
+    $("#hid_user_show_type").val("");
+    $("#b_UserName").val('');
+    $("#b_RealName").val('');
+    $("#b_Password").val('');
+    $('input:radio[name="b_Sex"]').each(function () { $(this).prop("checked", "false"); });
+    $("#b_WorkNum").val('');
+    $("#b_Email").val('');
+    $("#b_PhoneNum").val('');
+    $("#b_Depart_ID").val('');
+    $("#b_EntryDate").val('');
+    $("#b_Role_ID option").each(function () {
+            this.selected = false;
+    });
+    $("#b_Role_ID").multiselect('refresh');
+    $("#b_Reward_Auth_ID option[value='-1']").attr("selected", false);
+    $('input:radio[name="b_Ranking"]').each(function () { $(this).prop("checked", "false"); })
+    $("#hid_b_Depart_ID").val('');
 }

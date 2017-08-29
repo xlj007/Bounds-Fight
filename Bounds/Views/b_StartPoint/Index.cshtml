@@ -5,6 +5,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <h5>启动分配置</h5>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)

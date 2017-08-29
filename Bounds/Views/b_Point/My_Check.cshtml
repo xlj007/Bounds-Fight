@@ -3,7 +3,7 @@
     ViewBag.Title = "My_Check";
 }
 @Html.Partial("Comment")
-
+<h5>我的审核</h5>
 <table class="table">
     <tr>
         <th>奖扣时间</th>
@@ -19,8 +19,10 @@
         <th>状态</th>
         <th></th>
     </tr>
-    @foreach (var item in Model)
+    @if (Model != null)
     {
+        foreach (var item in Model)
+        {
         <tr>
             <td>@item.b_Event_Date</td>
             <td>@item.b_Record_Time</td>
@@ -40,6 +42,7 @@
                 <a href="#" onclick="Point.Back(@item.ID);">撤回</a>*@
             </td>
         </tr>
+        }
     }
 </table>
 
