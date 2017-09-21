@@ -16,7 +16,7 @@
             onCheck: onCheck
         }
     };
-
+    
     //进行异步传输
     $.ajax({
         url: "/b_Organize/ShowTree",

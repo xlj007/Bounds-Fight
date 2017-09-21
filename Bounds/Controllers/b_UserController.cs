@@ -144,17 +144,13 @@ namespace Bounds.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    b_User.b_Create_Time = DateTime.Now;
-                    b_User.b_Update_Time = DateTime.Now;
-                    b_User.b_Password = FormsAuthentication.HashPasswordForStoringInConfigFile(b_User.b_Password, "MD5");
-                    b_User.b_Enterprise_ID = Session["Enterprise_id"].to_i();
-                    db.b_User.Add(b_User);
-                    db.SaveChanges();
-                    return "OK";
-                }
-                return "ModelState不可用";
+                b_User.b_Create_Time = DateTime.Now;
+                b_User.b_Update_Time = DateTime.Now;
+                b_User.b_Password = FormsAuthentication.HashPasswordForStoringInConfigFile(b_User.b_Password, "MD5");
+                b_User.b_Enterprise_ID = Session["Enterprise_id"].to_i();
+                db.b_User.Add(b_User);
+                db.SaveChanges();
+                return "OK";
             }
             catch (Exception ex)
             {

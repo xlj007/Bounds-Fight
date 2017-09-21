@@ -120,7 +120,11 @@ namespace Bounds.Controllers
                                    join cu in db.b_Check_User on u.ID equals cu.b_User_ID
                                    where cu.b_Check_Type == 2 && cu.b_Organize_ID == node.ID
                                    select u).FirstOrDefault();
-                string strCheck = "{\"b_First_User\":\"" + ((b_First_User == null) ? string.Empty : b_First_User.b_RealName) + "\",\"b_Final_User\":\"" + ((b_Final_User == null) ? string.Empty : b_Final_User.b_RealName) + "\"}";
+                string strCheck = "{\"b_First_User\":\"" + ((b_First_User == null) ? string.Empty : b_First_User.b_RealName) +
+                                  "\",\"b_First_User_ID\":\"" + ((b_First_User == null) ? string.Empty : b_First_User.ID.ToString()) +
+                                  "\",\"b_Final_User\":\"" + ((b_Final_User == null) ? string.Empty : b_Final_User.b_RealName) +
+                                  "\",\"b_Final_User_ID\":\"" + ((b_Final_User == null) ? string.Empty : b_Final_User.ID.ToString()) +
+                                  "\"}";
                 return Json(strCheck);
             }
             catch (Exception ex)
@@ -175,7 +179,7 @@ namespace Bounds.Controllers
                 {
                     db.b_Check_User.RemoveRange(db.b_Check_User.Where(x => x.b_Organize_ID == node.ID && x.b_Check_Type == 2));
                     List<b_Check_User> list_FinalCheck = new List<b_Check_User>();
-                    foreach (var user in b_First_User)
+                    foreach (var user in b_Final_User)
                     {
                         b_Check_User final_user = new b_Check_User();
                         final_user.b_User_ID = user.ID;

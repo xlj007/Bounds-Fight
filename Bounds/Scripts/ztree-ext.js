@@ -166,7 +166,9 @@ function GetCheck() {
             if (data.length > 0) {
                 data = eval('(' + data + ')');
                 $("#txtFirstCheck").val(data.b_First_User);
+                $("#hid_first_check_value").val(data.b_First_User_ID);
                 $("#txtFinalCheck").val(data.b_Final_User);
+                $("#hid_final_check_value").val(data.b_Final_User_ID);
             } else {
                 alert(data);
             }

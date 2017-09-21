@@ -41,7 +41,7 @@
     function Check(obj){
         if(obj.checked){
             CheckParent(obj);
-            //CheckChildren(obj, true);
+            CheckChildren(obj, true);
         }else {
             CheckChildren(obj, false);
         }
@@ -64,7 +64,7 @@
                     if(authItemDiv.length > 0){
                         authItemDiv.append("<div id='div_Auth_" + id + "' class='sub_auth_item' value='" + group_id + "' ><div class='left'><input type='checkbox' id='chk_" + id + "' onclick='Check(this);' value='chk_"+group_id+"' "+strCheck+" /> " + name + "</div></div>");
                     }else{
-                        authDiv.append("<div id='div_Auth_" + id + "' class='sub_auth_item_red' value='" + group_id + "' ><input type='checkbox' id='chk_" + id + "' onclick='Check(this);' value='chk_"+group_id+"' "+strCheck+" /> " + name + "</div>");
+                        authDiv.append("<div id='div_Auth_" + id + "' class='sub_auth_item' value='" + group_id + "' ><input type='checkbox' id='chk_" + id + "' onclick='Check(this);' value='chk_"+group_id+"' "+strCheck+" /> " + name + "</div>");
                     }
                 }
             }

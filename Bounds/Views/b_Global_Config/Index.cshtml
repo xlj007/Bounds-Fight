@@ -177,7 +177,7 @@
             @Html.LabelFor(model => model.b_FixedBounds_ToAttence, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="radio" name="b_FixedBounds_ToAttence" value="1" @if (Model == null || Model.b_FixedBounds_ToAttence == 1) {<text>checked</text>} />关联&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="b_FixedBounds_ToAttence" value="0" @if (Model.b_FixedBounds_ToAttence == 0) {<text>checked</text>} />不关联
+                <input type="radio" name="b_FixedBounds_ToAttence" value="0" @if (Model == null || Model.b_FixedBounds_ToAttence == 0) {<text>checked</text>} />不关联
             </div>
         </div>
 
@@ -187,7 +187,7 @@
                 <select id="b_Check_Date" class="form-control">
                     @for (int i = 1; i < 29; i++)
                     {
-                        <option value="@i" @if (Model.b_Check_Date == i) { <text> selected </text> }>@i</option>
+                        <option value="@i" @if (Model == null || Model.b_Check_Date == i) { <text> selected </text> }>@i</option>
                     }
                 </select>
                 @*@Html.EditorFor(model => model.b_Check_Date, new { htmlAttributes = new { @class = "form-control" } })
