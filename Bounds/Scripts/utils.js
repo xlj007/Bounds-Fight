@@ -289,6 +289,11 @@ var Point = {
     },
     Submit: function () {
         var list_event_model = new Array();
+        if ($("div[name='div_event']").length == 0)
+        {
+            alert("请先添加事件再提交");
+            return;
+        }
         $("div[name='div_event']").each(function () {
             var list_user_model = new Array();
             $(this).find("div[name='div_event_user']").each(function () {
