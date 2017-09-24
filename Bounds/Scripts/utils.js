@@ -490,7 +490,11 @@ var User = {
                 $("#b_PhoneNum").val(data.b_PhoneNum);
                 $("#b_Depart_ID").val(data.b_Depart_ID);
                 $("#b_EntryDate").val(data.b_EntryDate);
-                var array = data.b_Role_ID.split(',');
+                var array = "";
+                if (data.b_Role_ID != null)
+                {
+                    array = data.b_Role_ID.split(',')
+                }
                 $("#b_Role_ID option").each(function () {
                     if ($.inArray($(this).val().toString(), array) > -1) {
                         this.selected = true;

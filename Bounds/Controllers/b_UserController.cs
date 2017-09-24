@@ -34,8 +34,19 @@ namespace Bounds.Controllers
             var result = from user in db.b_User
                          where user.b_UserName == b_user.b_UserName && user.b_Password == strPassword && user.b_Enterprise_ID == b_user.b_Enterprise_ID
                          select user;
+
             if (result.Count() > 0)
             {
+                string[] arrRole = null;
+                if (result.FirstOrDefault().b_Role_ID != null)
+                {
+                    arrRole = result.FirstOrDefault().b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    IEnumerable<int> user_auth = from auth in db.b_User_Auth
+                                                 where (arrRole.Contains(auth.b_Role_ID.ToString()))
+                                                 select auth.b_Auth_ID;
+                    Session["Author"] = user_auth.ToArray();
+                }
                 Session["User"] = result.FirstOrDefault();
                 Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
                 return RedirectToAction("Index", "Home");
@@ -85,13 +96,17 @@ namespace Bounds.Controllers
             try
             {
                 b_User user = db.b_User.Where(x=>x.ID == user_id).AsNoTracking().FirstOrDefault();
-                string[] arrDepart = user.b_Depart_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 string strDepart_Name = string.Empty;
-                foreach (string strDepart_id in arrDepart)
+                if (user.b_Depart_ID != null)
                 {
-                    b_Organize org = db.b_Organize.Find(strDepart_id.to_i());
-                    strDepart_Name += org.b_Name + ",";
+                    string[] arrDepart = user.b_Depart_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string strDepart_id in arrDepart)
+                    {
+                        b_Organize org = db.b_Organize.Find(strDepart_id.to_i());
+                        strDepart_Name += org.b_Name + ",";
+                    }
                 }
+
                 if (strDepart_Name != string.Empty)
                 {
                     strDepart_Name = strDepart_Name.Substring(0, strDepart_Name.Length - 1);
@@ -148,8 +163,27 @@ namespace Bounds.Controllers
                 b_User.b_Update_Time = DateTime.Now;
                 b_User.b_Password = FormsAuthentication.HashPasswordForStoringInConfigFile(b_User.b_Password, "MD5");
                 b_User.b_Enterprise_ID = Session["Enterprise_id"].to_i();
+                
                 db.b_User.Add(b_User);
                 db.SaveChanges();
+
+                string[] arrRoles = null;
+                if (b_User.b_Role_ID != null)
+                {
+                    arrRoles = b_User.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                }
+                if (arrRoles != null)
+                {
+                    b_User_Role role = null;
+                    foreach (string strRole in arrRoles)
+                    {
+                        role = new b_User_Role();
+                        role.b_User_Id = b_User.ID;
+                        role.b_Role_Id = strRole.to_i();
+                        db.b_User_Role.Add(role);
+                    }
+                    db.SaveChanges();
+                }
                 return "OK";
             }
             catch (Exception ex)
@@ -197,6 +231,38 @@ namespace Bounds.Controllers
                     b_User.b_Create_Time = org_user.b_Create_Time;
                     b_User.b_Enterprise_ID = Session["Enterprise_id"].to_i();
                     b_User.b_Update_Time = DateTime.Now;
+                    string[] arrRoles = null;
+                    if (org_user.b_Role_ID != null)
+                    {
+                        arrRoles = org_user.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    }
+                    if (arrRoles != null)
+                    {
+                        b_User_Role role = null;
+                        foreach (string strRole in arrRoles)
+                        {
+                            role = db.b_User_Role.Where(roleid => roleid.b_Role_Id == strRole.to_i()).FirstOrDefault();
+                            db.b_User_Role.Remove(role);
+                        }
+                    }
+
+                    string[] arrNewRoles = null;
+                    if (b_User.b_Role_ID != null)
+                    {
+                        arrNewRoles = b_User.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    }
+                    if (arrNewRoles != null)
+                    {
+                        b_User_Role role = null;
+                        foreach (string strRole in arrNewRoles)
+                        {
+                            role = new b_User_Role();
+                            role.b_User_Id = b_User.ID;
+                            role.b_Role_Id = strRole.to_i();
+                            db.b_User_Role.Add(role);
+                        }
+                    }
+
                     RemoveHoldingEntityInContext(org_user);
                     db.Entry(b_User).State = EntityState.Modified;
                     db.SaveChanges();
@@ -342,6 +408,7 @@ namespace Bounds.Controllers
                     var cur_user = from role in db.b_User_Role
                                    where role.b_Role_Id == role_id
                                    select role;
+                    int[] org_user = cur_user.Select(user=>user.b_User_Id).ToArray();
                     db.b_User_Role.RemoveRange(cur_user);
 
                     string[] arrUserIds = user_id.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -351,7 +418,38 @@ namespace Bounds.Controllers
                         b_user_role.b_Role_Id = role_id;
                         b_user_role.b_User_Id = strUserId.to_i();
                         db.b_User_Role.Add(b_user_role);
+
+                        if (org_user!=null && !org_user.Contains(strUserId.to_i()))
+                        {
+                            b_User user = db.b_User.Find(strUserId.to_i());
+                            user.b_Role_ID += "," + role_id;
+                            db.b_User.Add(user);
+                            db.Entry(user).State = EntityState.Modified;
+                        }
                     }
+                    if (org_user != null)
+                    {
+                        foreach (int role in org_user)
+                        {
+                            if (!arrUserIds.Contains(role.ToString()))
+                            {
+                                b_User user = db.b_User.Find(role);
+                                List<string> arrRoleID = user.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                for (int i = 0; i < arrRoleID.Count; i++)
+                                {
+                                    if (arrRoleID[i] == role_id.ToString())
+                                    {
+                                        arrRoleID.RemoveAt(i);
+                                    }
+                                }
+                                string strRoleID = String.Join(",", arrRoleID);
+                                user.b_Role_ID = strRoleID;
+                                db.b_User.Add(user);
+                                db.Entry(user).State = EntityState.Modified;
+                            }
+                        }
+                    }
+
                     db.SaveChanges();
                     ts.Complete();
                 }

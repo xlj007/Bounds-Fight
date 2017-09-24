@@ -19,7 +19,7 @@ namespace Bounds.Controllers
         {
             List<b_Auth_Edit> list = new List<b_Auth_Edit>();
             List<int> role_list = db.b_User_Auth.Where(role => role.b_Role_ID == role_id).Select(role => role.b_Auth_ID).ToList();
-            foreach (var item in db.b_Auth.ToList())
+            foreach (var item in db.b_Auth.Where(show => show.b_Show == true).ToList())
             {
                 if (role_list.Contains(item.ID))
                 {
@@ -35,7 +35,7 @@ namespace Bounds.Controllers
         // GET: b_Auth
         public ActionResult Index()
         {
-            return View(db.b_Auth.ToList());
+            return View(db.b_Auth.Where(show => show.b_Show == true).ToList());
         }
 
         // GET: b_Auth/Details/5

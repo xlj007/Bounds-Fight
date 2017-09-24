@@ -13,6 +13,7 @@ namespace Bounds.Models
         [Display(Name = "权限名称")]
         public string b_Auth_Name { get; set; }
         public int b_Auth_Group_ID { get; set; }
+        public bool b_Show { get; set; }
 
         public b_Auth_Edit ChangeToAutEdit(int nSelected = 0)
         {

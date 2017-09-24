@@ -401,6 +401,10 @@
     <Compile Include="Migrations\201708031727507_change sth i forgot.Designer.cs">
       <DependentUpon>201708031727507_change sth i forgot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709241200472_auth表增加b_Show字段.cs" />
+    <Compile Include="Migrations\201709241200472_auth表增加b_Show字段.Designer.cs">
+      <DependentUpon>201709241200472_auth表增加b_Show字段.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -887,6 +891,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708031727507_change sth i forgot.resx">
       <DependentUpon>201708031727507_change sth i forgot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709241200472_auth表增加b_Show字段.resx">
+      <DependentUpon>201709241200472_auth表增加b_Show字段.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

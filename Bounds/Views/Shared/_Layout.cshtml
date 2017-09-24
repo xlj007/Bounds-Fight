@@ -26,55 +26,121 @@
                     @*<li class="dropdown">
                         @Html.ActionLink("组织机构", "Index", "b_Organize")
                     </li>*@
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(4))
+{
                     <li class="dropdown">
                         @Html.ActionLink("用户管理", "Index", "b_User")
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            功分配置<b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("工龄分配置", "Index", "b_WorkAge")</li>
-                            <li>@Html.ActionLink("启动分配置", "Index", "b_StartPoint")</li>
+}
+                    @if (Session["Author"] != null && (Session["Author"] as int[]).Contains(1))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                功分配置<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if ((Session["Author"] as int[]).Contains(2))
+                                {
+                                    <li>@Html.ActionLink("工龄分配置", "Index", "b_WorkAge")</li>
+                                }
+                                @if ((Session["Author"] as int[]).Contains(3))
+                                {
+                                    <li>@Html.ActionLink("启动分配置", "Index", "b_StartPoint")</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    @if (Session["Author"] != null && (Session["Author"] as int[]).Contains(14))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                系统设置<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                            @if ((Session["Author"] as int[]).Contains(15))
+                            {
+                                <li>@Html.ActionLink("角色权限设置", "Index", "b_Role")</li>
+                            }
+                            @if ((Session["Author"] as int[]).Contains(21))
+                            {
+                                <li>@Html.ActionLink("奖扣权限设置", "Index", "b_Reward")</li>
+                            }
+                            @if ((Session["Author"] as int[]).Contains(27))
+                            {
+                                <li>@Html.ActionLink("全局参数设置", "Index", "b_Global_Config")</li>
+                            }
+                            @if ((Session["Author"] as int[]).Contains(28))
+                            {
+                                <li>@Html.ActionLink("员工考勤配置", "Index", "b_Attence")</li>
+                            }
+                            @if ((Session["Author"] as int[]).Contains(34))
+                            {
+                                <li>@Html.ActionLink("自定义分组", "Index", "b_Cus_Group")</li>
+                            }
+                            @if ((Session["Author"] as int[]).Contains(41))
+                            {
+                                <li>@Html.ActionLink("自定义报表", "Index", "b_Cus_Report")</li>
+                            }
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            系统设置<b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("角色权限设置", "Index", "b_Role")</li>
-                            <li>@Html.ActionLink("奖扣权限设置", "Index", "b_Reward")</li>
-                            <li>@Html.ActionLink("全局参数设置", "Index", "b_Global_Config")</li>
-                            <li>@Html.ActionLink("员工考勤配置", "Index", "b_Attence")</li>
-                            <li>@Html.ActionLink("自定义分组", "Index", "b_Cus_Group")</li>
-                            <li>@Html.ActionLink("自定义报表", "Index", "b_Cus_Report")</li>
-                        </ul>
-                    </li>
+                    }
+                    @if (Session["Author"] != null && (Session["Author"] as int[]).Contains(47))
+                    {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             功分管理<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+@if ((Session["Author"] as int[]).Contains(48))
+{
                             <li>@Html.ActionLink("功分奖扣", "Index", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(56))
+{
                             <li>@Html.ActionLink("我的功分", "My_Points", "b_Point")</li>
-                            <li>@Html.ActionLink("我的产值", "My_Values", "b_Point", new { id = 0 }, new { @class="a" })</li>
+}
+@if ((Session["Author"] as int[]).Contains(55))
+{
+                            <li>@Html.ActionLink("我的产值", "My_Values", "b_Point", new { id = 0 }, new { @class = "a" })</li>
+}
+@if ((Session["Author"] as int[]).Contains(57))
+{
                             <li>@Html.ActionLink("我的审核", "My_Check", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(62))
+{
                             <li>@Html.ActionLink("个人明细查询", "My_Detail", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(67))
+{
                             <li>@Html.ActionLink("日常奖扣查询", "Usual_Point", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(69))
+{
                             <li>@Html.ActionLink("事件库管理", "Index", "b_Event_Library")</li>
+}
+@if ((Session["Author"] as int[]).Contains(81))
+{
                             <li>@Html.ActionLink("固定功分配置", "Index", "b_Fix_Point")</li>
+}
                         </ul>
                     </li>
+}
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(98))
+{
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             奖扣任务 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+@if ((Session["Author"] as int[]).Contains(99))
+{
                             <li>@Html.ActionLink("奖扣任务配置", "Index", "b_Task")</li>
+}
                             @*<li>@Html.ActionLink("奖扣任务查看", "TaskList", "Task")</li>*@
                         </ul>
                     </li>
+}
                     @*<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             奖票管理 <b class="caret"></b>
@@ -84,25 +150,46 @@
                             <li>@Html.ActionLink("我的奖票", "Index", "b_Lottery")</li>
                         </ul>
                     </li>*@
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(108))
+{
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             核查结算 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+@if ((Session["Author"] as int[]).Contains(109))
+{
                             <li>@Html.ActionLink("功分核查", "Point_Check", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(116))
+{
                             <li>@Html.ActionLink("产值核查", "Value_Check", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(119))
+{
                             <li>@Html.ActionLink("考勤/固定功分计算", "Index", "b_Attence_Fix")</li>
+}
                         </ul>
                     </li>
+}
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(122))
+{
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             统计排名 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+@if ((Session["Author"] as int[]).Contains(125))
+{
                             <li>@Html.ActionLink("产值排名报表", "Value_Order_Report", "b_Point")</li>
+}
+@if ((Session["Author"] as int[]).Contains(126))
+{
                             <li>@Html.ActionLink("管理人员奖扣分报表", "Manager_Reward_Report", "b_Point")</li>
+}
                         </ul>
                     </li>
+}
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
