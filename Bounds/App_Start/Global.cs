@@ -40,8 +40,8 @@ namespace Bounds
     public enum b_Task_Type
     {
         奖分任务,
-        扣分任务,
+        罚分任务,
         人次任务,
-        扣分比例任务
+        罚分比例任务
     }
 }

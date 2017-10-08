@@ -14,13 +14,13 @@ namespace Bounds.Models
         public string b_Attence_Name { get; set; }
         [Display(Name = "少休奖分")]
         public int b_ShaoXiu { get; set; }
-        [Display(Name ="病假扣分")]
+        [Display(Name ="病假罚分")]
         public int b_BingJia { get; set; }
         [Display(Name = "全勤奖分")]
         public int b_QuanQin { get; set; }
-        [Display(Name = "旷工扣分")]
+        [Display(Name = "旷工罚分")]
         public int b_KuangGong { get; set; }
-        [Display(Name = "其他假扣分")]
+        [Display(Name = "其他假罚分")]
         public int b_Others { get; set; }
         [Display(Name = "满勤获得所有固定功分")]
         public int b_QuanQin_Get_FixedBounds { get; set; }

@@ -241,8 +241,12 @@ namespace Bounds.Controllers
                         b_User_Role role = null;
                         foreach (string strRole in arrRoles)
                         {
-                            role = db.b_User_Role.Where(roleid => roleid.b_Role_Id == strRole.to_i()).FirstOrDefault();
-                            db.b_User_Role.Remove(role);
+                            int nRole_id = strRole.to_i();
+                            role = db.b_User_Role.Where(roleid => roleid.b_Role_Id == nRole_id).FirstOrDefault();
+                            if (role != null)
+                            {
+                                db.b_User_Role.Remove(role);
+                            }
                         }
                     }
 

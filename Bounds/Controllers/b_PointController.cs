@@ -509,7 +509,7 @@ namespace Bounds.Controllers
             }
         }
 
-        //管理人员奖扣分报表
+        //管理人员奖罚分报表
         public ActionResult Manager_Reward_Report()
         {
             try
@@ -528,7 +528,7 @@ namespace Bounds.Controllers
             }
             catch (Exception ex)
             {
-                Log.logger.Error("获取管理人员奖扣分报表时出现错误：" + ex.Message);
+                Log.logger.Error("获取管理人员奖罚分报表时出现错误：" + ex.Message);
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }

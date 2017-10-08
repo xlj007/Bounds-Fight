@@ -165,7 +165,7 @@ namespace Bounds.Models
                 new b_Auth() { b_Auth_Name="平均分结算", b_Auth_Group_ID = 123 },//124
 
                 new b_Auth() { b_Auth_Name="产值排名报表", b_Auth_Group_ID = 122 },//125
-                new b_Auth() { b_Auth_Name="管理人员奖扣分报表", b_Auth_Group_ID = 122 },//126
+                new b_Auth() { b_Auth_Name="管理人员奖罚分报表", b_Auth_Group_ID = 122 },//126
                 new b_Auth() { b_Auth_Name="结算", b_Auth_Group_ID = 126 }//127
             };
             list_auth.ForEach(auth => context.b_Auth.Add(auth));

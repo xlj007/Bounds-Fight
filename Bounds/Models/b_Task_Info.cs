@@ -18,7 +18,7 @@ namespace Bounds.Models
         public string b_Task_Limit { get; set; }
         [Display(Name = "任务周期")]
         public b_Task_Cycle b_Task_Cycle { get; set; }
-        [Display(Name = "未完成扣分")]
+        [Display(Name = "未完成罚分")]
         public int b_UnComplete_Dec { get; set; }
         public DateTime Create_Time { get; set; }
         public DateTime Update_Time { get; set; }
