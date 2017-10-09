@@ -9,7 +9,7 @@ namespace Bounds.Models
     public class b_Task
     {
         public int ID { get; set; }
-        [Display(Name = "奖扣任务名称")]
+        [Display(Name = "奖罚任务名称")]
         public string b_Task_Name { get; set; }
         public string b_Enterprise { get; set; }
         public DateTime Create_Time { get; set; }

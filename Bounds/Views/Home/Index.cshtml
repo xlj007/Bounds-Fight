@@ -6,9 +6,9 @@
 <hr />
 
 <div class="col-md-12">
-    您有 @ViewBag.CheckCount 项奖扣需要处理  <a href="../b_Point/My_Check">立即处理</a>
+    您有 @ViewBag.CheckCount 项奖罚需要处理  <a href="../b_Point/My_Check">立即处理</a>
 </div>
-<div class="container col-md-6 form-inline">
+<div class="container col-md-12 form-inline">
     <table>
         <tr>
             <td>
@@ -18,7 +18,7 @@
     </table>
 </div>
 
-<div class="container col-md-6 form-inline">
+@*<div class="container col-md-6 form-inline">
     <table>
         <tr>
             <td>
@@ -26,7 +26,7 @@
             </td>
         </tr>
     </table>
-</div>
+</div>*@
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -38,9 +38,9 @@
         var title = {
             text: '我的功分'
         };
-        var title1 = {
-            text: '我的产值'
-        };
+        //var title1 = {
+        //    text: '我的产值'
+        //};
         var tooltip = {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         };
@@ -61,7 +61,7 @@
             type: 'pie',
             name: '我的功分',
             data: [
-               ['日常奖扣', 33.3],
+               ['日常奖罚', 33.3],
                ['固定功分', 33.3],
                {
                    name: '其他得分',
@@ -72,20 +72,20 @@
             ]
         }];
 
-        var series1 = [{
-            type: 'pie',
-            name: '我的产值',
-            data: [
-               ['实产值', 33.3],
-               ['虚产值', 33.3],
-               {
-                   name: '创富产值',
-                   y: 33.3,
-                   sliced: true,
-                   selected: true
-               }
-            ]
-        }];
+        //var series1 = [{
+        //    type: 'pie',
+        //    name: '我的产值',
+        //    data: [
+        //       ['实产值', 33.3],
+        //       ['虚产值', 33.3],
+        //       {
+        //           name: '创富产值',
+        //           y: 33.3,
+        //           sliced: true,
+        //           selected: true
+        //       }
+        //    ]
+        //}];
 
         var json = {};
         json.chart = chart;
@@ -95,8 +95,9 @@
         json.plotOptions = plotOptions;
         $('#My_Point').highcharts(json);
 
-        json.series = series1;
-        json.title = title1;
-        $("#My_Value").highcharts(json);
-    });
+        //json.series = series1;
+        //json.title = title1;
+        //$("#My_Value").highcharts(json);
+    });
+
 </script>

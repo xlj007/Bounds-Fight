@@ -42,7 +42,7 @@ namespace Bounds.Models
                 new b_Auth() { b_Auth_Name="删除角色", b_Auth_Group_ID = 15 },//19
                 new b_Auth() { b_Auth_Name="编辑角色", b_Auth_Group_ID = 15 },//20
 
-                new b_Auth() { b_Auth_Name="奖扣权限设置", b_Auth_Group_ID = 14 },//21
+                new b_Auth() { b_Auth_Name="奖罚权限设置", b_Auth_Group_ID = 14 },//21
                 new b_Auth() { b_Auth_Name="添加", b_Auth_Group_ID = 21 },//22
                 new b_Auth() { b_Auth_Name="修改", b_Auth_Group_ID = 21 },//23
                 new b_Auth() { b_Auth_Name="删除", b_Auth_Group_ID = 21 },//24
@@ -74,7 +74,7 @@ namespace Bounds.Models
                 new b_Auth() { b_Auth_Name="查询人员排名列表", b_Auth_Group_ID = 41 },//46
 
                 new b_Auth() { b_Auth_Name="功分管理", b_Auth_Group_ID = 0 },//47
-                new b_Auth() { b_Auth_Name="功分奖扣", b_Auth_Group_ID = 47 },//48
+                new b_Auth() { b_Auth_Name="功分奖罚", b_Auth_Group_ID = 47 },//48
                 new b_Auth() { b_Auth_Name="编辑", b_Auth_Group_ID = 48 },//49
                 new b_Auth() { b_Auth_Name="新增", b_Auth_Group_ID = 48 },//50
                 new b_Auth() { b_Auth_Name="删除", b_Auth_Group_ID = 48 },//51
@@ -92,11 +92,11 @@ namespace Bounds.Models
 
                 new b_Auth() { b_Auth_Name="个人明细查询", b_Auth_Group_ID = 47 },//62
                 new b_Auth() { b_Auth_Name="我的排名", b_Auth_Group_ID = 62 },//63
-                new b_Auth() { b_Auth_Name="奖扣任务类", b_Auth_Group_ID = 62 },//64
-                new b_Auth() { b_Auth_Name="奖扣申请/下达", b_Auth_Group_ID = 62 },//65
+                new b_Auth() { b_Auth_Name="奖罚任务类", b_Auth_Group_ID = 62 },//64
+                new b_Auth() { b_Auth_Name="奖罚申请/下达", b_Auth_Group_ID = 62 },//65
                 new b_Auth() { b_Auth_Name="固定功分类", b_Auth_Group_ID = 62 },//66
 
-                new b_Auth() { b_Auth_Name="日常奖扣查询", b_Auth_Group_ID = 47 },//67
+                new b_Auth() { b_Auth_Name="日常奖罚查询", b_Auth_Group_ID = 47 },//67
                 new b_Auth() { b_Auth_Name="打印", b_Auth_Group_ID = 67 },//68
 
                 new b_Auth() { b_Auth_Name="事件库管理", b_Auth_Group_ID = 47 },//69
@@ -131,15 +131,15 @@ namespace Bounds.Models
                 new b_Auth() { b_Auth_Name="恢复奖票", b_Auth_Group_ID = 92 },//96
                 new b_Auth() { b_Auth_Name="清理回收站", b_Auth_Group_ID = 92 },//97
 
-                new b_Auth() { b_Auth_Name="奖扣任务", b_Auth_Group_ID = 0 },//98
-                new b_Auth() { b_Auth_Name="奖扣任务配置", b_Auth_Group_ID = 98 },//99
+                new b_Auth() { b_Auth_Name="奖罚任务", b_Auth_Group_ID = 0 },//98
+                new b_Auth() { b_Auth_Name="奖罚任务配置", b_Auth_Group_ID = 98 },//99
                 new b_Auth() { b_Auth_Name="新增", b_Auth_Group_ID = 99 },//100
                 new b_Auth() { b_Auth_Name="编辑", b_Auth_Group_ID = 99 },//101
                 new b_Auth() { b_Auth_Name="删除", b_Auth_Group_ID = 99 },//102
                 new b_Auth() { b_Auth_Name="更新人员", b_Auth_Group_ID = 99 },//103
                 new b_Auth() { b_Auth_Name="删除人员", b_Auth_Group_ID = 99 },//104
 
-                new b_Auth() { b_Auth_Name="奖扣任务查看", b_Auth_Group_ID = 98 },//105
+                new b_Auth() { b_Auth_Name="奖罚任务查看", b_Auth_Group_ID = 98 },//105
                 new b_Auth() { b_Auth_Name="计算得分", b_Auth_Group_ID = 105 },//106
                 new b_Auth() { b_Auth_Name="删除得分", b_Auth_Group_ID = 105 },//107
 
@@ -172,11 +172,11 @@ namespace Bounds.Models
 
             var list_Point_Type = new List<b_Point_Type_Dic>()
             {
-                new b_Point_Type_Dic() { b_Point_Type_ID =1, b_Point_Type_Name="日常奖扣A分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
-                new b_Point_Type_Dic() { b_Point_Type_ID =2, b_Point_Type_Name="日常奖扣B分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
-                new b_Point_Type_Dic() { b_Point_Type_ID =3, b_Point_Type_Name="日常奖扣创富产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
-                new b_Point_Type_Dic() { b_Point_Type_ID =4, b_Point_Type_Name="日常奖扣实产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
-                new b_Point_Type_Dic() { b_Point_Type_ID =5, b_Point_Type_Name="日常奖扣虚产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =1, b_Point_Type_Name="日常奖罚A分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =2, b_Point_Type_Name="日常奖罚B分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =3, b_Point_Type_Name="日常奖罚创富产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =4, b_Point_Type_Name="日常奖罚实产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
+                new b_Point_Type_Dic() { b_Point_Type_ID =5, b_Point_Type_Name="日常奖罚虚产值", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
                 new b_Point_Type_Dic() { b_Point_Type_ID =6, b_Point_Type_Name="考勤转功分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
                 new b_Point_Type_Dic() { b_Point_Type_ID =7, b_Point_Type_Name="营销转功分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },
                 new b_Point_Type_Dic() { b_Point_Type_ID =8, b_Point_Type_Name="A分转B分", Create_Time=DateTime.Now, Update_Time=DateTime.Now },

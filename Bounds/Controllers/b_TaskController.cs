@@ -31,7 +31,7 @@ namespace Bounds.Controllers
             }
             catch(Exception ex)
             {
-                Log.logger.Error("获取奖扣任务关联人员时出现错误：" + ex.Message);
+                Log.logger.Error("获取奖罚任务关联人员时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }
@@ -63,7 +63,7 @@ namespace Bounds.Controllers
             }
             catch (Exception ex)
             {
-                Log.logger.Error("保存奖扣任务关联人员时出现错误：" + ex.Message);
+                Log.logger.Error("保存奖罚任务关联人员时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
         }

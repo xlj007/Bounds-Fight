@@ -84,7 +84,7 @@ var Global_Config = {
                 alert("设置项不能多于5个");
                 return;
             }
-            div_Items = '<div id="div_Recorder_Item_' + nItem + '"><label class="control-label col-md-2"></label><div class="col-md-10 padding-bottom">奖扣人次达 <input class="form-control inline short_txt text-box single-line" id="b_Global_Config_Item_' + nItem + '__b_Item_Name" name="b_Global_Config_Item[' + nItem + '].b_Item_Name" type="text" value="" /> 奖 <input class="form-control inline short_txt text-box single-line" id="b_Global_Config_Item_' + nItem + '__b_Item_Value" name="b_Global_Config_Item[' + nItem + '].b_Item_Value" type="text" value="" /> <span onclick="Global_Config.Remove(\'div_Recorder_Item_' + nItem + '\')" style="cursor:pointer"><img src="/Content/img/dec.png" /></span></div>';
+            div_Items = '<div id="div_Recorder_Item_' + nItem + '"><label class="control-label col-md-2"></label><div class="col-md-10 padding-bottom">奖罚人次达 <input class="form-control inline short_txt text-box single-line" id="b_Global_Config_Item_' + nItem + '__b_Item_Name" name="b_Global_Config_Item[' + nItem + '].b_Item_Name" type="text" value="" /> 奖 <input class="form-control inline short_txt text-box single-line" id="b_Global_Config_Item_' + nItem + '__b_Item_Value" name="b_Global_Config_Item[' + nItem + '].b_Item_Value" type="text" value="" /> <span onclick="Global_Config.Remove(\'div_Recorder_Item_' + nItem + '\')" style="cursor:pointer"><img src="/Content/img/dec.png" /></span></div>';
         } else {
             if ($("div[id^='div_Attence_Item']").length >= 5) {
                 alert("设置项不能多于5个");

@@ -36,7 +36,7 @@ namespace Bounds.Models
         public string b_SignIn_Time { get; set; }
         [Display(Name = "固定功分与考勤是否关联")]
         public int b_FixedBounds_ToAttence { get; set; }
-        [Display(Name = "奖扣任务考核日期每月")]
+        [Display(Name = "奖罚任务考核日期每月")]
         public int b_Check_Date { get; set; }
         public DateTime Create_Time { get; set; }
         public DateTime Update_Time { get; set; }

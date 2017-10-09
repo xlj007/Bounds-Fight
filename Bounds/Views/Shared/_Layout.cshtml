@@ -63,7 +63,7 @@
                             }
                             @if ((Session["Author"] as int[]).Contains(21))
                             {
-                                <li>@Html.ActionLink("奖扣权限设置", "Index", "b_Reward")</li>
+                                <li>@Html.ActionLink("奖罚权限设置", "Index", "b_Reward")</li>
                             }
                             @*@if ((Session["Author"] as int[]).Contains(27))
                             {
@@ -93,16 +93,16 @@
                         <ul class="dropdown-menu">
 @if ((Session["Author"] as int[]).Contains(48))
 {
-                            <li>@Html.ActionLink("功分奖扣", "Index", "b_Point")</li>
+                            <li>@Html.ActionLink("功分奖罚", "Index", "b_Point")</li>
 }
 @if ((Session["Author"] as int[]).Contains(56))
 {
                             <li>@Html.ActionLink("我的功分", "My_Points", "b_Point")</li>
 }
-@if ((Session["Author"] as int[]).Contains(55))
+@*@if ((Session["Author"] as int[]).Contains(55))
 {
                             <li>@Html.ActionLink("我的产值", "My_Values", "b_Point", new { id = 0 }, new { @class = "a" })</li>
-}
+}*@
 @if ((Session["Author"] as int[]).Contains(57))
 {
                             <li>@Html.ActionLink("我的审核", "My_Check", "b_Point")</li>
@@ -113,7 +113,7 @@
 }
 @if ((Session["Author"] as int[]).Contains(67))
 {
-                            <li>@Html.ActionLink("日常奖扣查询", "Usual_Point", "b_Point")</li>
+                            <li>@Html.ActionLink("日常奖罚查询", "Usual_Point", "b_Point")</li>
 }
 @if ((Session["Author"] as int[]).Contains(69))
 {
@@ -130,14 +130,14 @@
 {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            奖扣任务 <b class="caret"></b>
+                            奖罚任务 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
 @if ((Session["Author"] as int[]).Contains(99))
 {
-                            <li>@Html.ActionLink("奖扣任务配置", "Index", "b_Task")</li>
+                            <li>@Html.ActionLink("奖罚任务配置", "Index", "b_Task")</li>
 }
-                            @*<li>@Html.ActionLink("奖扣任务查看", "TaskList", "Task")</li>*@
+                            @*<li>@Html.ActionLink("奖罚任务查看", "TaskList", "Task")</li>*@
                         </ul>
                     </li>
 }
@@ -161,13 +161,13 @@
 {
                             <li>@Html.ActionLink("功分核查", "Point_Check", "b_Point")</li>
 }
-@if ((Session["Author"] as int[]).Contains(116))
+@*@if ((Session["Author"] as int[]).Contains(116))
 {
                             <li>@Html.ActionLink("产值核查", "Value_Check", "b_Point")</li>
-}
+}*@
 @if ((Session["Author"] as int[]).Contains(119))
 {
-                            <li>@Html.ActionLink("考勤/固定功分计算", "Index", "b_Attence_Fix")</li>
+                            <li>@Html.ActionLink("考勤&固定功分计算", "Index", "b_Attence_Fix")</li>
 }
                         </ul>
                     </li>
@@ -200,7 +200,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 版权信息</p>
+            @*<p>&copy; @DateTime.Now.Year - 版权信息</p>*@
         </footer>
     </div>
 

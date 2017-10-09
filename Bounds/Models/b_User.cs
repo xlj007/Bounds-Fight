@@ -39,7 +39,7 @@ namespace Bounds.Models
         public string b_EntryDate { get; set; }
         [Display(Name = "角色")]
         public string b_Role_ID { get; set; }
-        [Display(Name = "奖扣权限")]
+        [Display(Name = "奖罚权限")]
         public string b_Reward_Auth_ID { get; set; }
         [Display(Name = "排名")]
         public string b_Ranking { get; set; }

@@ -57,7 +57,7 @@ namespace Bounds.Models
     public class Point_Check_Model
     {
         public int ID { get; set; }
-        [Display(Name = "奖扣对象")]
+        [Display(Name = "奖罚对象")]
         public string b_Point_Object { get; set; }
 
         [Display(Name = "事件时间")]

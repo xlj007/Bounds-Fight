@@ -12,7 +12,7 @@ namespace Bounds.Models
         [DataType(DataType.Text)]
         [Display(Name = "考勤名称")]
         public string b_Attence_Name { get; set; }
-        [Display(Name = "少休奖分")]
+        [Display(Name = "加班奖分")]
         public int b_ShaoXiu { get; set; }
         [Display(Name ="病假罚分")]
         public int b_BingJia { get; set; }

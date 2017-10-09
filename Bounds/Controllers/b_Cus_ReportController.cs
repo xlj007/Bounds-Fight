@@ -101,6 +101,7 @@ namespace Bounds.Controllers
         {
             if (ModelState.IsValid)
             {
+                b_Cus_Report.b_Cus_Report_Type = 0;
                 b_Cus_Report.b_Enterprise_ID = Convert.ToInt16(Session["Enterprise_id"]);
                 b_Cus_Report.Created_Time = DateTime.Now;
                 b_Cus_Report.Updated_Time = DateTime.Now;
@@ -142,6 +143,7 @@ namespace Bounds.Controllers
             {
                 b_Cus_Report.b_Cus_Group_ID = Request.Form["b_Cus_Group_ID"].Replace(",false", "").Replace(",true", "");
                 b_Cus_Report.Updated_Time = DateTime.Now;
+                b_Cus_Report.b_Cus_Report_Type = 0;
                 db.Entry(b_Cus_Report).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
