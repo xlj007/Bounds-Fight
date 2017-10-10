@@ -16,7 +16,7 @@
             onCheck: onCheck
         }
     };
-    
+
     //进行异步传输
     $.ajax({
         url: "/b_Organize/ShowTree",
@@ -24,7 +24,9 @@
         dataType: "json",
         data: { nPid: 0 }, //发送服务器数据
         success: function (data) {  //成功事件
-            $.fn.zTree.init($("#treecheck"), setting, data);
+            alert(data);
+            var t = $("#treecheck");
+            t = $.fn.zTree.init(t, setting, data);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) { //发送失败事件
             alert(XMLHttpRequest);

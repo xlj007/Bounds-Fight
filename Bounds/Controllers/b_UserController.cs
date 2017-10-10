@@ -49,6 +49,11 @@ namespace Bounds.Controllers
                 }
                 Session["User"] = result.FirstOrDefault();
                 Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
+
+                var Cus_Report = from report in db.b_Cus_Report
+                                 where report.b_Enterprise_ID == b_user.b_Enterprise_ID
+                                 select report;
+                Session["CusReport"] = Cus_Report.ToArray();
                 return RedirectToAction("Index", "Home");
             }
             else

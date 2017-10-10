@@ -187,6 +187,10 @@
 {
                             <li>@Html.ActionLink("管理人员奖罚分报表", "Manager_Reward_Report", "b_Point")</li>
 }
+@foreach (var item in Session["CusReport"] as Bounds.Models.b_Cus_Report[])
+{
+    <li>@Html.ActionLink(item.b_Cus_Report_Name, "Customer_Report", "b_Cus_Report")</li>
+}
                         </ul>
                     </li>
 }
