@@ -27,7 +27,9 @@ namespace Bounds
         技能,
         职务,
         学历,
-        职称
+        职称,
+        特长,
+        荣誉
     }
 
     public enum b_Task_Cycle

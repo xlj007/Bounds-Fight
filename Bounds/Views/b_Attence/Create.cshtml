@@ -49,7 +49,7 @@
                     <div class="form-group padding-bottom">
                         @Html.LabelFor(model => model.b_QuanQin, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.b_QuanQin, new { htmlAttributes = new { @class = "form-control inline" } }) 分/半天
+                            @Html.EditorFor(model => model.b_QuanQin, new { htmlAttributes = new { @class = "form-control inline" } }) 功分
                             @Html.ValidationMessageFor(model => model.b_QuanQin, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -79,8 +79,10 @@
                 <td>
                     <div class="form-group">
                         @Html.LabelFor(model => model.b_QuanQin_Get_FixedBounds, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.b_QuanQin_Get_FixedBounds, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="col-md-10" style="padding-top: 30px">
+                            @*@Html.EditorFor(model => model.b_QuanQin_Get_FixedBounds, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.RadioButtonFor(model => model.b_QuanQin_Get_FixedBounds, 0, new { htmlAttributes = new { @class = "form-control" } }) 否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.RadioButtonFor(model => model.b_QuanQin_Get_FixedBounds, 1, new { htmlAttributes = new { @class = "form-control" } }) 是
                             @Html.ValidationMessageFor(model => model.b_QuanQin_Get_FixedBounds, "", new { @class = "text-danger" })
                         </div>
                     </div>

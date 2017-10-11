@@ -18,10 +18,10 @@
         <th>
             @Html.DisplayNameFor(model => model.b_B_Start)
         </th>
-        <th>
+        <th class="hidden">
             @Html.DisplayNameFor(model => model.b_Value_Start)
         </th>
-        <th>
+        <th class="hidden">
             @Html.DisplayNameFor(model => model.b_PricePaper_Event)
         </th>
         <th></th>
@@ -38,10 +38,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.b_B_Start) - @Html.DisplayFor(modelItem => item.b_B_Stop)
         </td>
-        <td>
+        <td class="hidden">
             @Html.DisplayFor(modelItem => item.b_Value_Start) - @Html.DisplayFor(modelItem => item.b_Value_Stop)
         </td>
-        <td>
+        <td class="hidden">
             @Html.Label(item.b_PricePaper_Event == 0 ? "否" : "是")
         </td>
         <td>

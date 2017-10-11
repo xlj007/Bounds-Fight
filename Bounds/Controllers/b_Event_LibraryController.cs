@@ -69,17 +69,12 @@ namespace Bounds.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,b_Event_Name,b_A_Start,b_A_Stop,b_B_Start,b_B_Stop,b_Value_Start,b_Value_Stop,b_PricePaper_Event,b_Enterprise,Create_Time,Update_Time")] b_Event_Library b_Event_Library)
         {
-            if (ModelState.IsValid)
-            {
-                b_Event_Library.b_Enterprise = Session["Enterprise_id"].ToString();
-                b_Event_Library.Create_Time = DateTime.Now;
-                b_Event_Library.Update_Time = DateTime.Now;
-                db.b_Event_Library.Add(b_Event_Library);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(b_Event_Library);
+            b_Event_Library.b_Enterprise = Session["Enterprise_id"].ToString();
+            b_Event_Library.Create_Time = DateTime.Now;
+            b_Event_Library.Update_Time = DateTime.Now;
+            db.b_Event_Library.Add(b_Event_Library);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: b_Event_Library/Edit/5

@@ -179,10 +179,10 @@
                             统计排名 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-@if ((Session["Author"] as int[]).Contains(125))
+@*@if ((Session["Author"] as int[]).Contains(125))
 {
                             <li>@Html.ActionLink("产值排名报表", "Value_Order_Report", "b_Point")</li>
-}
+}*@
 @if ((Session["Author"] as int[]).Contains(126))
 {
                             <li>@Html.ActionLink("管理人员奖罚分报表", "Manager_Reward_Report", "b_Point")</li>

@@ -24,7 +24,6 @@
         dataType: "json",
         data: { nPid: 0 }, //发送服务器数据
         success: function (data) {  //成功事件
-            alert(data);
             var t = $("#treecheck");
             t = $.fn.zTree.init(t, setting, data);
         },

@@ -50,15 +50,15 @@ namespace Bounds.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,b_Reward_Name,b_Reward_A,b_Reward_B,b_Reward_Value,b_Enterprise_ID,Created_Time,Updated_Time")] b_Reward b_Reward)
         {
-            if (ModelState.IsValid)
-            {
-                b_Reward.Created_Time = DateTime.Now;
-                b_Reward.Updated_Time = DateTime.Now;
-                b_Reward.b_Enterprise_ID = Session["Enterprise_id"].to_i();
-                db.b_Reward.Add(b_Reward);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            b_Reward.Created_Time = DateTime.Now;
+            b_Reward.Updated_Time = DateTime.Now;
+            b_Reward.b_Enterprise_ID = Session["Enterprise_id"].to_i();
+            db.b_Reward.Add(b_Reward);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            //}
 
             return View(b_Reward);
         }

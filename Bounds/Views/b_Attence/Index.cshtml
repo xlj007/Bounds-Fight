@@ -98,9 +98,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.b_Others)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.b_QuanQin_Get_FixedBounds)
-        </td>
+        </td>*@
+@if (item.b_QuanQin_Get_FixedBounds == 0)
+{
+    <td>否</td>
+}
+else
+{
+    <td>是</td>
+}
         @*<td>
         @Html.DisplayFor(modelItem => item.b_1_Free)
     </td>

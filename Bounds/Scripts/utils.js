@@ -408,6 +408,26 @@ function GetCheckItemValues() {
     return list_values.substr(0, list_values.length - 1);
 }
 
+function b_Attence_Fix() {
+    this.b_User_ID;
+    this.b_TheMonth;
+    this.b_Plan_Attence;
+    this.b_Actual_Attence;
+    this.b_Sick_Leave;
+    this.b_Other_Leave;
+    this.b_Absence;
+    this.b_OverTime;
+    this.b_Sale_Amount;
+    this.b_Fix_Point;
+    this.b_Attence_Point;
+    this.b_OverTime_Point;
+    this.b_Sale_Point;
+    this.b_Total_Point;
+    this.b_RealName;
+    this.b_WorkNum;
+    this.Create_Time;
+    this.Update_Time;
+}
 var AttenceFix = {
     Count: function () {
         var items = GetCheckItemValues();
@@ -416,6 +436,15 @@ var AttenceFix = {
             return;
         }
 
+        $.ajax({
+            url: "b_Attence_Fix/Count",
+            type: "post",
+            dataType: "json",
+            //data: {""},
+            success: function(data){
+
+            }
+        });
     },
     Clear: function () {
         var items = GetCheckItemValues();

@@ -70,13 +70,13 @@
                     <input type="checkbox" id="@item.b_User_ID" name="check_item" onclick="AttenceFix.ItemCheck(this);" />
                 </td>
                 <td>
-                    @item.b_RealName
+                    <span id="b_RealName">@item.b_RealName</span>
                 </td>
                 <td>
-                    @item.b_WorkNum
+                    <span id="b_WorkNum">@item.b_WorkNum</span>
                 </td>
                 <td>
-                    @item.b_TheMonth
+                    <span id="b_TheMonth">@item.b_TheMonth</span>
                 </td>
                 <td>
                     <a href="#" id="b_Plan_Attence" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_Plan_Attence</a>
@@ -100,19 +100,19 @@
                     <a href="#" id="b_SaleAmount" class="editable_member" data-type="text" data-pk="@item.ID" data-name="b_A_Point">@item.b_SaleAmount</a>
                 </td>*@
                 <td>
-                    @item.b_Fix_Point
+                    <span id="b_Fix_Point">@item.b_Fix_Point</span>
                 </td>
                 <td>
-                    @item.b_Attence_Point
+                    <span id="b_Attence_Point">@item.b_Attence_Point</span>
                 </td>
                 <td>
-                    @item.b_OverTime_Point
+                    <span id="b_OverTime_Point">@item.b_OverTime_Point</span>
                 </td>
                 @*<td>
                     @item.b_Sale_Point
                 </td>*@
                 <td>
-                    @item.b_Total_Point
+                    <span id="b_Total_Point">@item.b_Total_Point</span>
                 </td>
             </tr>
         }
