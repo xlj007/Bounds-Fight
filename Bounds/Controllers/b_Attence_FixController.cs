@@ -21,5 +21,12 @@ namespace Bounds.Controllers
             var list_attence_fix = db.Database.SqlQuery<b_Attence_Fix>(strSQLSel);
             return View(list_attence_fix);
         }
+
+        public string Count()
+        {
+            string strReturn = string.Empty;
+
+            return strReturn;
+        }
     }
 }

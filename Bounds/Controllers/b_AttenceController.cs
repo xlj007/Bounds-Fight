@@ -53,6 +53,7 @@ namespace Bounds.Controllers
             b_Attence.Update_Time = DateTime.Now;
             b_Attence.Created_Time = DateTime.Now;
             b_Attence.b_Enterprise_ID = Convert.ToInt16(Session["Enterprise_id"]);
+            b_Attence.b_QuanQin_Get_FixedBounds = 1;
             if (ModelState.IsValid)
             {
                 db.b_Attence.Add(b_Attence);

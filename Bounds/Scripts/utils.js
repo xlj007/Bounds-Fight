@@ -435,7 +435,7 @@ var AttenceFix = {
             alert("未选中任何项进行计算。");
             return;
         }
-
+        
         $.ajax({
             url: "b_Attence_Fix/Count",
             type: "post",
