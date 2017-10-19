@@ -18,7 +18,7 @@ namespace Bounds.Controllers
         // GET: b_Attence
         public ActionResult Index()
         {
-            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            int ent_id = Convert.ToInt32(Session["Enterprise_id"]);
             return View(db.b_Attence.Where(x=>x.b_Enterprise_ID == ent_id).ToList());
         }
 
@@ -52,7 +52,7 @@ namespace Bounds.Controllers
         {
             b_Attence.Update_Time = DateTime.Now;
             b_Attence.Created_Time = DateTime.Now;
-            b_Attence.b_Enterprise_ID = Convert.ToInt16(Session["Enterprise_id"]);
+            b_Attence.b_Enterprise_ID = Convert.ToInt32(Session["Enterprise_id"]);
             b_Attence.b_QuanQin_Get_FixedBounds = 1;
             if (ModelState.IsValid)
             {

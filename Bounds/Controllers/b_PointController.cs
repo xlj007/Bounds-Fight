@@ -20,7 +20,7 @@ namespace Bounds.Controllers
 
         private void SetViewBag()
         {
-            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            int ent_id = Convert.ToInt32(Session["Enterprise_id"]);
             var list_first_check = from u in db.b_User
                                    join cu in db.b_Check_User on u.ID equals cu.b_User_ID
                                    join ent in db.b_Organize on cu.b_Organize_ID equals ent.ID

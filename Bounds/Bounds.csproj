@@ -475,6 +475,7 @@
     <Content Include="Content\img\diy\9.png" />
     <Content Include="Content\img\line_conn.gif" />
     <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\zTreeStandard.gif" />
     <Content Include="Content\img\zTreeStandard.png" />
     <Content Include="Content\PagedList.css" />

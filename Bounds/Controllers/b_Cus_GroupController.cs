@@ -20,7 +20,7 @@ namespace Bounds.Controllers
         // GET: b_Cus_Group
         public ActionResult Index()
         {
-            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            int ent_id = Convert.ToInt32(Session["Enterprise_id"]);
             return View(db.b_Cus_Group.Include("b_Cus_Group_Member").Where(x => x.b_Enterprise_ID == ent_id).ToList());
         }
 
@@ -56,7 +56,7 @@ namespace Bounds.Controllers
             {
                 b_Cus_Group.Created_Time = DateTime.Now;
                 b_Cus_Group.Updated_Time = DateTime.Now;
-                b_Cus_Group.b_Enterprise_ID = Convert.ToInt16(Session["Enterprise_id"]);
+                b_Cus_Group.b_Enterprise_ID = Convert.ToInt32(Session["Enterprise_id"]);
                 db.b_Cus_Group.Add(b_Cus_Group);
                 db.SaveChanges();
                 return RedirectToAction("Index");

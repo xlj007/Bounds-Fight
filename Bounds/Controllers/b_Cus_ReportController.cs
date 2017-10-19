@@ -24,7 +24,7 @@ namespace Bounds.Controllers
         public ActionResult Index()
         {
             GetViewBag();
-            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            int ent_id = Convert.ToInt32(Session["Enterprise_id"]);
             var report_list = db.b_Cus_Report.Where(x => x.b_Enterprise_ID == ent_id).ToList();
             return View(report_list);
         }
@@ -51,7 +51,7 @@ namespace Bounds.Controllers
                 new CRObject() { text = "功分排名", value = 0 },
                 new CRObject() { text = "平均分排名", value = 1 }
             };
-            int ent_id = Convert.ToInt16(Session["Enterprise_id"]);
+            int ent_id = Convert.ToInt32(Session["Enterprise_id"]);
             List<CRObject> list_ContainGroup = new List<CRObject>();
             var groups = from g in db.b_Cus_Group
                          where g.b_Enterprise_ID == ent_id
@@ -102,7 +102,7 @@ namespace Bounds.Controllers
             if (ModelState.IsValid)
             {
                 b_Cus_Report.b_Cus_Report_Type = 0;
-                b_Cus_Report.b_Enterprise_ID = Convert.ToInt16(Session["Enterprise_id"]);
+                b_Cus_Report.b_Enterprise_ID = Convert.ToInt32(Session["Enterprise_id"]);
                 b_Cus_Report.Created_Time = DateTime.Now;
                 b_Cus_Report.Updated_Time = DateTime.Now;
                 b_Cus_Report.b_Cus_Group_ID = Request.Form["b_Cus_Group_ID"].Replace(",false", "").Replace(",true", "");
