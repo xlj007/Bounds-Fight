@@ -302,9 +302,12 @@ var Point = {
                 //event_user.b_RealName = $($(this).find("span[name='event_user_name']")[0]).text();
                 var event_member = new b_Point_Event_Memver();
                 event_member.b_A_Point = $($(this).find("input[name='A_Point']")[0]).val();
+                if (event_member.b_A_Point == "") event_member.b_A_Point = 0;
                 event_member.b_B_Point = $($(this).find("input[name='B_Point']")[0]).val();
+                if (event_member.b_B_Point == "") event_member.b_B_Point = 0;
                 event_member.b_Value_Type = $($(this).find("select[name='Value_Type']")[0]).val();
                 event_member.b_Value_Point = $($(this).find("input[name='Value_Point']")[0]).val();
+                if (event_member.b_Value_Point == "") event_member.b_Value_Point = 0;
                 event_member.b_User_ID = this.id.substring(this.id.lastIndexOf('_') + 1);;
 
                 list_user_model.push(event_member);

@@ -38,6 +38,44 @@ namespace Bounds.Models
         public string TheMonth { get; set; }
     }
 
+    public class b_Point_Record
+    {
+        public int ID { get; set; }
+        [Display(Name = "事件时间")]
+        public DateTime b_Event_Date { get; set; }
+        [Display(Name = "记录时间")]
+        public DateTime b_Record_Time { get; set; }
+        [Display(Name = "主题")]
+        public string b_Subject { get; set; }
+        [Display(Name = "备注")]
+        public string b_Note { get; set; }
+        [Display(Name = "初审人")]
+        public string b_First_Check_Name { get; set; }
+        [Display(Name = "初审人")]
+        public string b_First_Check_ID { get; set; }
+        [Display(Name = "初审意见")]
+        public string b_First_Note { get; set; }
+        [Display(Name = "终审人")]
+        public string b_Final_Check_Name { get; set; }
+        [Display(Name = "终审人")]
+        public string b_Final_Check_ID { get; set; }
+        [Display(Name = "终审意见")]
+        public string b_Final_Note { get; set; }
+        [Display(Name = "记录人")]
+        public string b_Recorder_Name { get; set; }
+        [Display(Name = "记录人")]
+        public int b_Recorder_ID { get; set; }
+        [Display(Name = "状态")]
+        public b_Status b_Status { get; set; }
+        public virtual List<b_Point_Event> b_Point_Event { get; set; }
+        public string b_Enterprise { get; set; }
+        public DateTime Create_Time { get; set; }
+        public DateTime Update_Time { get; set; }
+        //[Display(Name = "驳回原因")]
+        //public string b_Return_Note { get; set; }
+        public string TheMonth { get; set; }
+    }
+
     public class Point_Record_Model
     {
         public int ID { get; set; }

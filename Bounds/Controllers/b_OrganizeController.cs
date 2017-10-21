@@ -91,9 +91,16 @@ namespace Bounds.Controllers
                 var node = db.b_Organize.Find(NodeId);
                 if (node != null)
                 {
-                    db.b_Organize.Remove(node);
-                    db.SaveChanges();
-                    return Json("true");
+                    if (node.b_PID == 0)//如果是根节点，不允许删除
+                    {
+                        return Json("此节点为组织机构根节点，不可删除。");
+                    }
+                    else
+                    {
+                        db.b_Organize.Remove(node);
+                        db.SaveChanges();
+                        return Json("true");
+                    }
                 }
                 else
                 {

@@ -29,6 +29,11 @@ namespace Bounds.Controllers
             return View(report_list);
         }
 
+        public ActionResult Customer_Report(int? id)
+        {
+            return View();
+        }
+
         // GET: b_Cus_Report/Details/5
         public ActionResult Details(int? id)
         {

@@ -189,7 +189,7 @@
 }
 @foreach (var item in Session["CusReport"] as Bounds.Models.b_Cus_Report[])
 {
-    <li>@Html.ActionLink(item.b_Cus_Report_Name, "Customer_Report", "b_Cus_Report")</li>
+    <li>@Html.ActionLink(item.b_Cus_Report_Name, "Customer_Report/" + item.ID, "b_Cus_Report")</li>
 }
                         </ul>
                     </li>

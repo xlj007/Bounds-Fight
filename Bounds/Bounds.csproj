@@ -728,6 +728,7 @@
     <Content Include="Views\b_Attence_Fix\Index.cshtml" />
     <Content Include="Views\b_Point\Value_Order_Report.cshtml" />
     <Content Include="Views\b_Point\Manager_Reward_Report.cshtml" />
+    <Content Include="Views\b_Cus_Report\Customer_Report.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

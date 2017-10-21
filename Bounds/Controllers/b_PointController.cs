@@ -40,7 +40,13 @@ namespace Bounds.Controllers
         {
             string strEnterprise = Session["Enterprise_id"].ToString();
             int user_id = (Session["User"] as b_User).ID;
-            return View(db.b_Point.Where(x=>x.b_Recorder_ID == user_id && x.b_Enterprise == strEnterprise).ToList());
+            string strSQLSel = @"select a.*, b.b_RealName as b_First_Check_Name, c.b_RealName as b_Final_Check_Name, d.b_RealName as b_Recorder_Name from b_Point as a 
+                                join b_User as b on a.b_First_Check_ID = b.ID
+                                join b_User as c on a.b_Final_Check_ID = c.ID
+                                join b_User as d on a.b_Recorder_ID = d.ID
+                                where a.b_Recorder_ID = " + user_id + " and a.b_Enterprise='" + strEnterprise + "'";
+            IEnumerable<b_Point_Record> record = db.Database.SqlQuery<b_Point_Record>(strSQLSel);
+            return View(record.ToList());
         }
 
         // GET: b_Point/Details/5

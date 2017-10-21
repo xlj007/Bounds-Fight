@@ -132,12 +132,19 @@ namespace Bounds.Controllers
             try
             {
                 int[] arrIds = Array.ConvertAll(user_ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries), s => Convert.ToInt32(s));
-                var users = from u in db.b_User
-                            where arrIds.Contains(u.ID)
-                            select u;
-                db.b_User.RemoveRange(users);
-                db.SaveChanges();
-                return Json("删除成功。");
+                if (arrIds.Contains(((b_User)Session["User"]).ID))
+                {
+                    return Json("用户不能删除自己，请确认。");
+                }
+                else
+                {
+                    var users = from u in db.b_User
+                                where arrIds.Contains(u.ID)
+                                select u;
+                    db.b_User.RemoveRange(users);
+                    db.SaveChanges();
+                    return Json("删除成功。");
+                }
             }
             catch (Exception ex)
             {
