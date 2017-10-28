@@ -5,9 +5,12 @@
 }
 
 @{ Html.RenderPartial("Query"); }
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(50))
+{
 <p>
     <h5>@Html.ActionLink("添加奖罚", "Create")</h5>
 </p>
+}
 <table class="table">
     <tr>
         <th>

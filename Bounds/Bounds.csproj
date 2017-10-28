@@ -641,11 +641,6 @@
     <Content Include="Views\b_Organize\Details.cshtml" />
     <Content Include="Views\b_Organize\Edit.cshtml" />
     <Content Include="Views\b_Organize\Index.cshtml" />
-    <Content Include="Views\b_Enterprise\Create.cshtml" />
-    <Content Include="Views\b_Enterprise\Delete.cshtml" />
-    <Content Include="Views\b_Enterprise\Details.cshtml" />
-    <Content Include="Views\b_Enterprise\Edit.cshtml" />
-    <Content Include="Views\b_Enterprise\Index.cshtml" />
     <Content Include="Views\b_Organize\ShowTree.cshtml" />
     <Content Include="Views\b_User\_Show.cshtml" />
     <Content Include="Views\b_User\_AddUser.cshtml" />
@@ -729,6 +724,11 @@
     <Content Include="Views\b_Point\Value_Order_Report.cshtml" />
     <Content Include="Views\b_Point\Manager_Reward_Report.cshtml" />
     <Content Include="Views\b_Cus_Report\Customer_Report.cshtml" />
+    <Content Include="Views\b_Enterprise\Create.cshtml" />
+    <Content Include="Views\b_Enterprise\Delete.cshtml" />
+    <Content Include="Views\b_Enterprise\Details.cshtml" />
+    <Content Include="Views\b_Enterprise\Edit.cshtml" />
+    <Content Include="Views\b_Enterprise\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

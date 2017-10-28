@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(35))
+{
 <p>
     <h5>@Html.ActionLink("新建分组", "Create")</h5>
 </p>
+}
 @Html.Partial("../b_User/SelUser")
 <table class="table">
     <tr>
@@ -52,10 +54,16 @@
             @Html.DisplayFor(modelItem => item.Updated_Time)
         </td>*@
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(36))
+{
+            @Html.ActionLink("编辑", "Edit", new { id = item.ID }) <text> | </text>
             @*@Html.ActionLink("成员绑定", "Details", new { id=item.ID }) |*@
-            <a href="#" onclick="Cus_Group.BindMember(@item.ID, 'group');">成员绑定</a> |
-            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+            <a href="#" onclick="Cus_Group.BindMember(@item.ID, 'group');">成员绑定</a>
+}
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(37))
+{
+            <text> | </text>@Html.ActionLink("删除", "DeleteConfirmed", new { id = item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+}
         </td>
     </tr>
 }

@@ -4,9 +4,12 @@
     ViewBag.Title = "Index";
 }
 
+@if ((Session["Author"] as int[]).Contains(72))
+{
 <p>
     <h5>@Html.ActionLink("新建事件", "Create")</h5>
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -45,9 +48,15 @@
             @Html.Label(item.b_PricePaper_Event == 0 ? "否" : "是")
         </td>
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+@if ((Session["Author"] as int[]).Contains(79))
+{
+            @Html.ActionLink("编辑", "Edit", new { id = item.ID })
+}
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
-            @Html.ActionLink("删除", "Delete", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+@if ((Session["Author"] as int[]).Contains(80))
+{
+            <text> | </text>@Html.ActionLink("删除", "Delete", new { id = item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+}
         </td>
     </tr>
 }

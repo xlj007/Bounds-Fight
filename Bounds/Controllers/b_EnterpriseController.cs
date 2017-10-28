@@ -7,10 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bounds.Models;
+using Bounds.Utils;
 
 namespace Bounds.Controllers
 {
-    [AuthorAdmin]
     public class b_EnterpriseController : Controller
     {
         private BoundsContext db = new BoundsContext();
@@ -47,10 +47,28 @@ namespace Bounds.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,b_Enterprise_Code,b_Name")] b_Enterprise b_Enterprise)
+        public ActionResult Create([Bind(Include = "ID,b_Enterprise_Code,b_Name,b_Leader_Name,b_Contact")] b_Enterprise b_Enterprise)
         {
             if (ModelState.IsValid)
             {
+                b_User user = new b_User();
+                user.b_UserName = b_Enterprise.b_Leader_Name;
+                user.b_RealName = b_Enterprise.b_Leader_Name;
+                user.b_Sex = "0";
+                user.b_Password = "E10ADC3949BA59ABBE56E057F20F883E";
+                user.b_Role_ID = "1";
+                user.b_Create_Time = DateTime.Now;
+                user.b_Update_Time = DateTime.Now;
+                user.b_Enterprise_ID = b_Enterprise.b_Enterprise_Code.to_i();
+                db.b_User.Add(user);
+
+                b_Organize orgniaze = new b_Organize();
+                orgniaze.b_PID = 0;
+                orgniaze.b_Name = "组织架构";
+                orgniaze.b_Enterprise_Id = b_Enterprise.b_Enterprise_Code.to_i();
+                orgniaze.open = false;
+                db.b_Organize.Add(orgniaze);
+
                 db.b_Enterprise.Add(b_Enterprise);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -79,7 +97,7 @@ namespace Bounds.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,b_Enterprise_Code,b_Name")] b_Enterprise b_Enterprise)
+        public ActionResult Edit([Bind(Include = "ID,b_Enterprise_Code,b_Name,b_Leader_Name,b_Contact")] b_Enterprise b_Enterprise)
         {
             if (ModelState.IsValid)
             {
@@ -106,12 +124,19 @@ namespace Bounds.Controllers
         }
 
         // POST: b_Enterprise/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             b_Enterprise b_Enterprise = db.b_Enterprise.Find(id);
             db.b_Enterprise.Remove(b_Enterprise);
+
+            b_User user = db.b_User.Where(x=>x.b_Enterprise_ID.ToString()==b_Enterprise.b_Enterprise_Code).FirstOrDefault();
+            db.b_User.Remove(user);
+
+            b_Organize organize = db.b_Organize.Where(x => x.b_Enterprise_Id.ToString() == b_Enterprise.b_Enterprise_Code).FirstOrDefault();
+            db.b_Organize.Remove(organize);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

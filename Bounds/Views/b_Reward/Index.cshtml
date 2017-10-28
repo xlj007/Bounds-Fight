@@ -4,9 +4,12 @@
     ViewBag.Title = "Index";
 }
 
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(22))
+{
 <p>
     <h5>@Html.ActionLink("新建奖罚权限", "Create")</h5>
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -39,9 +42,15 @@
             @Html.DisplayFor(modelItem => item.b_Reward_Value)
         </td>
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(23))
+{
+            @Html.ActionLink("编辑", "Edit", new { id = item.ID })
+}
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
-            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(24))
+{
+            <text> | </text>@Html.ActionLink("删除", "DeleteConfirmed", new { id = item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+}
         </td>
     </tr>
 }

@@ -4,10 +4,19 @@
 <div id="rMenu">
     <input type="hidden" id="node" />
     <ul class="dropdown-menu" role="menu">
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(11))
+{
         <li><a data-toggle="modal" data-target="#b_OrgNew">添加部门</a></li>
         <li><a data-toggle="modal" data-target="#b_OrgEdit">编辑部门</a></li>
+}
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(10))
+{
         <li><a href="#" onclick="DeleteOrg();">删除部门</a></li>
+}
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(12))
+{
         <li><a data-toggle="modal" data-target="#b_OrgCheck" onclick="GetCheck();">设置审核人员</a></li>
+}
     </ul>
 </div>
 

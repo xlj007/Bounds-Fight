@@ -15,5 +15,13 @@ namespace Bounds.Models
         [DataType(DataType.Text)]
         [Display(Name ="企业名称")]
         public string b_Name { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "负责人姓名")]
+        public string b_Leader_Name { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "联系方式")]
+        public string b_Contact { get; set; }
     }
 }

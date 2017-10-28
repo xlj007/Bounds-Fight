@@ -36,9 +36,19 @@
             <td>@item.b_Recorder_Name</td>
             <td>@item.b_Status</td>
             <td>
-                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
-                <a href="#" onclick="Point.Pass(@item.ID);">通过</a> |
-                <a href="#" onclick="Point.Return(@item.ID);">驳回</a> @*|
+@if ((Session["Author"] as int[]).Contains(58))
+{
+                @Html.ActionLink("编辑", "Edit", new { id = item.ID })
+}
+@if ((Session["Author"] as int[]).Contains(60))
+{
+                <text> | </text><a href="#" onclick="Point.Pass(@item.ID);">通过</a>
+}
+@if ((Session["Author"] as int[]).Contains(61))
+{
+                <text> | </text><a href="#" onclick="Point.Return(@item.ID);">驳回</a>
+}
+ @*|
                 <a href="#" onclick="Point.Back(@item.ID);">撤回</a>*@
             </td>
         </tr>

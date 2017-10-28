@@ -48,6 +48,7 @@ namespace Bounds.Controllers
                     Session["Author"] = user_auth.ToArray();
                 }
                 Session["User"] = result.FirstOrDefault();
+                Session["UserName"] = b_user.b_UserName;
                 Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
 
                 var Cus_Report = from report in db.b_Cus_Report

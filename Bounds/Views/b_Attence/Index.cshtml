@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(29))
+{
 <p>
     <h5>@Html.ActionLink("新建考勤配置", "Create")</h5>
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -155,9 +157,15 @@ else
         @Html.DisplayFor(modelItem => item.Update_Time)
     </td>*@
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(30))
+{
+            @Html.ActionLink("编辑", "Edit", new { id = item.ID })
+}
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
-            @Html.ActionLink("删除", "DeleteConfirmed", new { id=item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+@if (Session["Author"] != null && (Session["Author"] as int[]).Contains(31))
+{
+            <text> | </text>@Html.ActionLink("删除", "DeleteConfirmed", new { id = item.ID }, new { onclick = "return confirm('确定删除此项？')" })
+}
         </td>
     </tr>
 }
