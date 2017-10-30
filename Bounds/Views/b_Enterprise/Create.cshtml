@@ -7,16 +7,16 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>b_Enterprise</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.b_Enterprise_Code, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.b_Enterprise_Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.b_Enterprise_Code, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.MaxEnterpriseID } })
                 @Html.ValidationMessageFor(model => model.b_Enterprise_Code, "", new { @class = "text-danger" })
+                <span class="sub_auth_item_red">@ViewBag.ErrMsg</span>
             </div>
         </div>
 

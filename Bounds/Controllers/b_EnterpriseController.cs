@@ -11,6 +11,7 @@ using Bounds.Utils;
 
 namespace Bounds.Controllers
 {
+    [AuthorAdmin]
     public class b_EnterpriseController : Controller
     {
         private BoundsContext db = new BoundsContext();
@@ -39,6 +40,8 @@ namespace Bounds.Controllers
         // GET: b_Enterprise/Create
         public ActionResult Create()
         {
+            string strMaxEnterpriseID = db.b_Enterprise.Select(x => x.b_Enterprise_Code).ToList().Max();
+            ViewBag.MaxEnterpriseID = strMaxEnterpriseID.to_double() + 1;
             return View();
         }
 
@@ -51,6 +54,14 @@ namespace Bounds.Controllers
         {
             if (ModelState.IsValid)
             {
+                var enterprise = from e in db.b_Enterprise
+                                 where e.b_Enterprise_Code == b_Enterprise.b_Enterprise_Code
+                                 select e;
+                if (enterprise != null)
+                {
+                    ViewBag.ErrMsg = "当前企业代码已经存在，请更换企业代码后重新保存。";
+                    return View(b_Enterprise);
+                }
                 b_User user = new b_User();
                 user.b_UserName = b_Enterprise.b_Leader_Name;
                 user.b_RealName = b_Enterprise.b_Leader_Name;
@@ -71,9 +82,12 @@ namespace Bounds.Controllers
 
                 db.b_Enterprise.Add(b_Enterprise);
                 db.SaveChanges();
+
+                ViewBag.ErrMsg = string.Empty;
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ErrMsg = string.Empty;
             return View(b_Enterprise);
         }
 

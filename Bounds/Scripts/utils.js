@@ -438,13 +438,43 @@ var AttenceFix = {
             alert("未选中任何项进行计算。");
             return;
         }
-        
+        var arrAttence = new Array();
+        var i = 0;
+        $("#table_attence tr").each(function () {
+            var objCheck = $(this).find("td:first").find('input[type=checkbox]:checked');
+            if (objCheck.length > 0 && objCheck != undefined) {
+                var attence = new b_Attence_Fix();
+                var user_id = objCheck.attr("id");
+                var b_Plan_Attence = $(this).find('a[id="b_Plan_Attence"]').text();
+                var b_Actual_Attence = $(this).find('a[id="b_Actual_Attence"]').text();
+                var b_Sick_Leave = $(this).find('a[id="b_Sick_Leave"]').text();
+                var b_Other_Leave = $(this).find('a[id="b_Other_Leave"]').text();
+                var b_Absence = $(this).find('a[id="b_Absence"]').text();
+                var b_OverTime = $(this).find('a[id="b_OverTime"]').text();
+                var b_TheMonth = $(this).find('span[id="b_TheMonth"]').text();
+                var b_RealName = $()
+
+                attence.b_User_ID = user_id;
+                attence.b_Plan_Attence = b_Plan_Attence;
+                attence.b_Actual_Attence = b_Actual_Attence;
+                attence.b_Sick_Leave = b_Sick_Leave;
+                attence.b_Other_Leave = b_Other_Leave;
+                attence.b_Absence = b_Absence;
+                attence.b_OverTime = b_OverTime;
+
+                arrAttence[i] = attence;
+                i++;
+            }
+        });
+
+        //alert(JSON.stringify(arrAttence));
+        var jsonStr = JSON.stringify(arrAttence);
         $.ajax({
             url: "b_Attence_Fix/Count",
             type: "post",
-            dataType: "json",
-            //data: {""},
-            success: function(data){
+            contentType: 'json',
+            data: jsonStr,
+            success: function (data) {
 
             }
         });

@@ -14,7 +14,6 @@ using System.Data.Entity.Infrastructure;
 
 namespace Bounds.Controllers
 {
-    
     public class b_UserController : Controller
     {
         private BoundsContext db = new BoundsContext();

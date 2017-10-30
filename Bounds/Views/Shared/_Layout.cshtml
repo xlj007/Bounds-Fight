@@ -194,7 +194,7 @@
                             </ul>
                         </li>
                     }
-                    @if (Session["UserName"].ToString().ToLower() == "superadmin")
+                    @if (Session["UserName"] != null && Session["UserName"].ToString().ToLower() == "superadmin")
                     {
                     <li class="dropdown">
                             @Html.ActionLink("企业管理","Index", "b_Enterprise")
