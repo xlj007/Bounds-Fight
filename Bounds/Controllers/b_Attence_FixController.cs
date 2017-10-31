@@ -91,7 +91,7 @@ namespace Bounds.Controllers
                 }
                 if (fix.b_OverTime > 0)//加班
                 {
-                     over_time_point = Math.Abs(attence_set.b_ShaoXiu * (double)fix.b_OverTime);
+                    over_time_point = Math.Abs(attence_set.b_ShaoXiu * (double)fix.b_OverTime);
                 }
                 //获取固定分
                 string strSQLSel = "select sum(b_Fix_Point_Value) as FixPoint From b_Fix_Point where ID in (select b_Fix_Point_ID From b_Fix_Point_To_User Where b_User_id = " + ((b_User)Session["User"]).ID + ")";
@@ -104,14 +104,39 @@ namespace Bounds.Controllers
 
                 }
 
-                fix.b_Fix_Point = nFixPointValue;
-                fix.b_Attence_Point = attence_point;
-                fix.b_OverTime_Point = over_time_point;
-                fix.b_Total_Point = nFixPointValue + attence_point + over_time_point;
-                fix.Create_Time = DateTime.Now;
-                fix.Update_Time = DateTime.Now;
+                total_point = nFixPointValue + attence_point + over_time_point + nStart_Point;
+                //查询此记录是否已经存在
+                var cur_fix = (from cur in db.b_Attence_Fix
+                               where cur.b_TheMonth == fix.b_TheMonth && cur.b_User_ID == fix.b_User_ID
+                               select cur).FirstOrDefault();
+                if (cur_fix != null)
+                {
+                    //如果记录已经存在
+                    cur_fix.b_Plan_Attence = fix.b_Plan_Attence;
+                    cur_fix.b_Actual_Attence = fix.b_Actual_Attence;
+                    cur_fix.b_Sick_Leave = fix.b_Sick_Leave;
+                    cur_fix.b_Other_Leave = fix.b_Other_Leave;
+                    cur_fix.b_Absence = fix.b_Absence;
+                    cur_fix.b_OverTime = fix.b_OverTime;
 
-                db.b_Attence_Fix.Add(fix);
+                    cur_fix.b_Fix_Point = nFixPointValue;
+                    cur_fix.b_Attence_Point = attence_point;
+                    cur_fix.b_OverTime_Point = over_time_point;
+                    cur_fix.b_Total_Point = total_point;
+                    cur_fix.Update_Time = DateTime.Now;
+                }
+                else
+                {
+                    //如果记录不存在
+                    fix.b_Fix_Point = nFixPointValue;
+                    fix.b_Attence_Point = attence_point;
+                    fix.b_OverTime_Point = over_time_point;
+                    fix.b_Total_Point = total_point;
+                    fix.Create_Time = DateTime.Now;
+                    fix.Update_Time = DateTime.Now;
+
+                    db.b_Attence_Fix.Add(fix);
+                }
                 db.SaveChanges();
             }
 

@@ -452,7 +452,8 @@ var AttenceFix = {
                 var b_Absence = $(this).find('a[id="b_Absence"]').text();
                 var b_OverTime = $(this).find('a[id="b_OverTime"]').text();
                 var b_TheMonth = $(this).find('span[id="b_TheMonth"]').text();
-                var b_RealName = $()
+                var b_RealName = $(this).find('span[id="b_RealName"]').text();
+                var b_WorkNum = $(this).find('span[id="b_WorkNum"]').text();
 
                 attence.b_User_ID = user_id;
                 attence.b_Plan_Attence = b_Plan_Attence;
@@ -461,6 +462,9 @@ var AttenceFix = {
                 attence.b_Other_Leave = b_Other_Leave;
                 attence.b_Absence = b_Absence;
                 attence.b_OverTime = b_OverTime;
+                attence.b_TheMonth = b_TheMonth;
+                attence.b_RealName = b_RealName;
+                attence.b_WorkNum = b_WorkNum;
 
                 arrAttence[i] = attence;
                 i++;
@@ -475,7 +479,11 @@ var AttenceFix = {
             contentType: 'json',
             data: jsonStr,
             success: function (data) {
-
+                if (data != "") {
+                    alert(data);
+                } else {
+                    window.location.reload();
+                }
             }
         });
     },

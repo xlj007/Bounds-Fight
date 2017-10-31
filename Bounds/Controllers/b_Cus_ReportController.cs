@@ -31,6 +31,11 @@ namespace Bounds.Controllers
 
         public ActionResult Customer_Report(int? id)
         {
+            //字段：序号，姓名，功分
+            //取出考勤，固定功分所得总分
+            //计算当月奖罚分总分---只计算通过审核的分数
+            string strMonth = DateTime.Now.ToString("yyyyMM");
+            string strSQLSel = "select * from b_Attence_Fix Where b_TheMonth='" + strMonth + "'";
             return View();
         }
 
