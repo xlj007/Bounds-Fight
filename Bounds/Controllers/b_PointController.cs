@@ -253,7 +253,28 @@ namespace Bounds.Controllers
                                             where a.b_Enterprise = " + ent_id + " and c.b_User_ID = " + user_id;
                 var my_point_event = db.Database.SqlQuery<My_Point_Event_Model>(strSQLGetPointEvent);
                 ViewBag.Point_Event = my_point_event;
-                //获取其他得分
+                //获取其他得分，启动分和工龄分
+                var workage = (from w in db.b_WorkAge
+                              where w.b_Enterprise == ent_id.ToString()
+                              select w).FirstOrDefault();
+                var entry_date = ((b_User)Session["User"]).b_EntryDate;
+                var start_point = (from s in db.b_StartPoint
+                                   where s.b_Enterprise == ent_id.ToString()
+                                   select s).FirstOrDefault();
+                TimeSpan ts = DateTime.Now - Convert.ToDateTime(entry_date);
+                double nGongLing = 0;
+                if (workage.b_Balance_Type == 0)//按月结算
+                {
+                    nGongLing = ts.TotalDays / 30 * workage.b_Point_Value;
+                }
+                else//按天结算
+                {
+                    nGongLing = ts.TotalDays * workage.b_Point_Value;
+                }
+
+                string strSQLGetOthers = @"select '启动分' as b_Other_Name, " + start_point.b_StartPoint_Value + " as b_Other_Point union select '工龄分' as b_Other_Name, " + (Int32)nGongLing + " as b_Other_Point";
+                var my_point_others = db.Database.SqlQuery<My_Point_Others_Model>(strSQLGetOthers);
+                ViewBag.Others = my_point_others;
                 return View();
             }
             catch(Exception ex)

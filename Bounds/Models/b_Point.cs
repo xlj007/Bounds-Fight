@@ -170,6 +170,6 @@ namespace Bounds.Models
     public class My_Point_Others_Model
     {
         public string b_Other_Name { get; set; }
-        public string b_Other_Point { get; set; }
+        public int b_Other_Point { get; set; }
     }
 }
