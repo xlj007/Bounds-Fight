@@ -261,15 +261,19 @@ namespace Bounds.Controllers
                 var start_point = (from s in db.b_StartPoint
                                    where s.b_Enterprise == ent_id.ToString()
                                    select s).FirstOrDefault();
-                TimeSpan ts = DateTime.Now - Convert.ToDateTime(entry_date);
+                
                 double nGongLing = 0;
-                if (workage.b_Balance_Type == 0)//按月结算
+                if (entry_date != null)
                 {
-                    nGongLing = ts.TotalDays / 30 * workage.b_Point_Value;
-                }
-                else//按天结算
-                {
-                    nGongLing = ts.TotalDays * workage.b_Point_Value;
+                    TimeSpan ts = DateTime.Now - Convert.ToDateTime(entry_date);
+                    if (workage.b_Balance_Type == 0)//按月结算
+                    {
+                        nGongLing = ts.Days / 30 * workage.b_Point_Value;
+                    }
+                    else//按天结算
+                    {
+                        nGongLing = ts.Days * workage.b_Point_Value;
+                    }
                 }
 
                 string strSQLGetOthers = @"select '启动分' as b_Other_Name, " + start_point.b_StartPoint_Value + " as b_Other_Point union select '工龄分' as b_Other_Name, " + (Int32)nGongLing + " as b_Other_Point";
