@@ -19,7 +19,8 @@ namespace Bounds.Controllers
         // GET: b_Reward
         public ActionResult Index()
         {
-            return View(db.b_Reward.ToList());
+            int ent_id = Session["Enterprise_id"].to_i();
+            return View(db.b_Reward.Where(x => x.b_Enterprise_ID == ent_id).ToList());
         }
 
         // GET: b_Reward/Details/5
