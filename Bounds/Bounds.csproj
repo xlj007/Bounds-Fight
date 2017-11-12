@@ -730,7 +730,9 @@
     <Content Include="Views\b_Enterprise\Edit.cshtml" />
     <Content Include="Views\b_Enterprise\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

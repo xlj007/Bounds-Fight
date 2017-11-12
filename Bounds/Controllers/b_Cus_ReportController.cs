@@ -123,7 +123,7 @@ namespace Bounds.Controllers
             }
 
             GetViewBag();
-            return View(b_Cus_Report);
+            return View();
         }
 
         // GET: b_Cus_Report/Edit/5

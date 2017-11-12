@@ -38,7 +38,8 @@
             <div class="col-md-10">
                 @foreach (SelectListItem item in ViewBag.ContainGroup)
                 {
-                    @Html.CheckBox("b_Cus_Group_ID", false, new { value = item.Value })
+                    //@Html.CheckBox("b_Cus_Group_ID", false, new { value = item.Value })]
+                    <input type="checkbox" id="b_Cus_Group_ID" value="@item.Value" />
                     @Html.Label(item.Text, new { @class = "form_text_normal padding-right" });
                 }
             </div>

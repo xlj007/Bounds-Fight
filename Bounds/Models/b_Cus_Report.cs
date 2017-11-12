@@ -12,6 +12,7 @@ namespace Bounds.Models
         public int ID { get; set; }
         [DataType(DataType.Text)]
         [Display(Name = "报表名称")]
+        [Required]
         public string b_Cus_Report_Name { get; set; }
         [Display(Name = "报表类型")]
         public int b_Cus_Report_Type { get; set; }

@@ -54,10 +54,10 @@ namespace Bounds.Controllers
         {
             if (ModelState.IsValid)
             {
-                var enterprise = from e in db.b_Enterprise
+                var enterprise = (from e in db.b_Enterprise
                                  where e.b_Enterprise_Code == b_Enterprise.b_Enterprise_Code
-                                 select e;
-                if (enterprise != null)
+                                 select e).ToList();
+                if (enterprise.Count > 0)
                 {
                     ViewBag.ErrMsg = "当前企业代码已经存在，请更换企业代码后重新保存。";
                     return View(b_Enterprise);
