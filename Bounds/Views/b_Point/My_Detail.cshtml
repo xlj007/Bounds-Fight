@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bounds.Models.b_Point_Details>
+﻿@model IEnumerable<Bounds.Models.b_Point_Details_ShowInfo>
 
 @{
     ViewBag.Title = "My_Detail";
@@ -7,13 +7,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.b_Point_Type)
+            @Html.DisplayNameFor(model => model.b_Point_Type_Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.b_Point_Value)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Event_ID)
+            @Html.DisplayNameFor(model => model.b_Event_Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Create_Time)
@@ -23,13 +23,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.b_Point_Type)
+            @Html.DisplayFor(modelItem => item.b_Point_Type_Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.b_Point_Value)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.b_Event_ID)
+            @Html.DisplayFor(modelItem => item.b_Event_Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Create_Time)

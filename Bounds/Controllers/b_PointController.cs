@@ -99,6 +99,15 @@ namespace Bounds.Controllers
                                where point.ID == id
                                select point).FirstOrDefault();
 
+            foreach (var point_event in b_Point.b_Point_Event)
+            {
+                foreach (var member in point_event.b_Point_Event_Member)
+                {
+                    string strUserName = db.b_User.Where(x => x.ID == member.b_User_ID).FirstOrDefault().b_UserName;
+                    
+                }
+            }
+
             if (b_Point == null)
             {
                 return HttpNotFound();
@@ -347,7 +356,7 @@ namespace Bounds.Controllers
                 sb.Append(user_id);
                 sb.Append(")");
             }
-            else if (my_check_value.Contains(2))//如果是终审人
+            if (my_check_value.Contains(2))//如果是终审人
             {
                 if (sb.Length > 0)
                 {
@@ -396,7 +405,7 @@ namespace Bounds.Controllers
                         point.b_Status = b_Status.初审驳回;
                     }
                 }
-                else if(point.b_Final_Check_ID.to_i() == cur_user_id)
+                if(point.b_Final_Check_ID.to_i() == cur_user_id)
                 {
                     point.b_Final_Note = strMsg;
                     if (strType == "pass")
@@ -445,9 +454,12 @@ namespace Bounds.Controllers
             try
             {
                 int id = (Session["User"] as b_User).ID;
-                var my_detail = from d in db.b_Point_Details
-                                where d.b_User_ID == id
-                                select d;
+                string strSQLSel = @"select b.b_Point_Type_Name,a.b_Point_Value,c.b_Event_Note as b_Event_Name,a.Create_Time From
+                                     b_Point_Details as a join b_Point_Type_Dic as b on a.b_Point_Type=b.ID
+                                     join b_Point_Event as c on a.b_Event_ID = c.ID
+                                     where a.b_User_ID = " + id;
+
+                IEnumerable<b_Point_Details_ShowInfo> my_detail = db.Database.SqlQuery<b_Point_Details_ShowInfo>(strSQLSel);
 
                 return View(my_detail);
             }
@@ -463,7 +475,13 @@ namespace Bounds.Controllers
             try
             {
                 string strEnterprise = Session["Enterprise_id"].ToString();
-                return View(db.b_Point.Where(x => x.b_Enterprise == strEnterprise).ToList());
+                string strSQLSel = @"select a.*, b.b_RealName as b_First_Check_Name, c.b_RealName as b_Final_Check_Name, d.b_RealName as b_Recorder_Name from b_Point as a 
+                                join b_User as b on a.b_First_Check_ID = b.ID
+                                join b_User as c on a.b_Final_Check_ID = c.ID
+                                join b_User as d on a.b_Recorder_ID = d.ID
+                                where a.b_Enterprise='" + strEnterprise + "'";
+                IEnumerable<b_Point_Record> record = db.Database.SqlQuery<b_Point_Record>(strSQLSel);
+                return View(record.ToList());
             }
             catch(Exception ex)
             {

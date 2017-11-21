@@ -35,7 +35,7 @@ namespace Bounds.Controllers
             //取出考勤，固定功分所得总分
             //计算当月奖罚分总分---只计算通过审核的分数
             string strMonth = DateTime.Now.ToString("yyyyMM");
-            string strSQLSel = "select * from b_Attence_Fix Where b_TheMonth='" + strMonth + "'";
+            string strSQLSel = @"select * from b_Attence_Fix Where b_TheMonth='" + strMonth + "' and b_User_ID in (select b_User_ID From b_Cus_Group_Member Where b_Cus_Group_ID in (select b_Cus_Group_ID From b_Cus_Report Where ID = " + id + "))";
             return View();
         }
 
@@ -115,7 +115,7 @@ namespace Bounds.Controllers
                 b_Cus_Report.b_Enterprise_ID = Convert.ToInt32(Session["Enterprise_id"]);
                 b_Cus_Report.Created_Time = DateTime.Now;
                 b_Cus_Report.Updated_Time = DateTime.Now;
-                b_Cus_Report.b_Cus_Group_ID = Request.Form["b_Cus_Group_ID"].Replace(",false", "").Replace(",true", "");
+                //b_Cus_Report.b_Cus_Group_ID = Request.Form["b_Cus_Group_ID"].Replace(",false", "").Replace(",true", "");
 
                 db.b_Cus_Report.Add(b_Cus_Report);
                 db.SaveChanges();
