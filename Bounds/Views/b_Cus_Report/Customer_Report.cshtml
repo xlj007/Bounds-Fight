@@ -1,13 +1,27 @@
-﻿
+﻿@model IEnumerable<Bounds.Models.b_Cus_Report_Show>
 @{
     ViewBag.Title = "Customer_Report";
 }
 
 <table class="table">
     <tr>
-        <th>序号</th>
-        <th>姓名</th>
-        <th>功分</th>
+        <th>@Html.DisplayNameFor(model => model.ID)</th>
+        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+        <th>@Html.DisplayNameFor(model => model.PointValue)</th>
     </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PointValue)
+            </td>
+        </tr>
+    }
 </table>
 

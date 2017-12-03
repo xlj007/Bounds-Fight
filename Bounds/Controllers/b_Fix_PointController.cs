@@ -71,7 +71,22 @@ namespace Bounds.Controllers
         public ActionResult Index()
         {
             string strEnterprise = Session["Enterprise_id"].ToString();
-            return View(db.b_Fix_Point.Where(x => x.b_Enterprise == strEnterprise).ToList());
+            var fix_show = from fix in db.b_Fix_Point
+                           join user in db.b_User on fix.b_Create_User_ID equals user.ID
+                           where fix.b_Enterprise == strEnterprise
+                           select new b_Fix_Point_Show
+                           {
+                               ID = fix.ID,
+                               b_Create_User = user.b_RealName,
+                               b_Create_User_ID = fix.b_Create_User_ID,
+                               b_Enterprise = fix.b_Enterprise,
+                               b_Fix_Point_Name = fix.b_Fix_Point_Name,
+                               b_Fix_Point_Type = fix.b_Fix_Point_Type,
+                               b_Fix_Point_Value = fix.b_Fix_Point_Value,
+                               b_Note = fix.b_Note,
+                               Create_Time = fix.Create_Time
+                           };
+            return View(fix_show.ToList());
         }
 
         // GET: b_Fix_Point/Details/5
@@ -135,7 +150,7 @@ namespace Bounds.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,b_Fix_Point_Type,b_Fix_Point_Name,b_Fix_Point_Value,b_Create_User_ID,b_Note,Create_Time")] b_Fix_Point b_Fix_Point)
+        public ActionResult Edit([Bind(Include = "ID,b_Fix_Point_Type,b_Fix_Point_Name,b_Fix_Point_Value,b_Create_User_ID,b_Note,Create_Time,b_Enterprise")] b_Fix_Point b_Fix_Point)
         {
             if (ModelState.IsValid)
             {

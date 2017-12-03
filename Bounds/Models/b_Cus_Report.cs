@@ -26,4 +26,14 @@ namespace Bounds.Models
         public DateTime Created_Time { get; set; }
         public DateTime Updated_Time { get; set; }
     }
+
+    public class b_Cus_Report_Show
+    {
+        [Display(Name = "序号")]
+        public Int64 ID { get; set; }
+        [Display(Name = "姓名")]
+        public string UserName { get; set; }
+        [Display(Name = "功分")]
+        public string PointValue { get; set; }
+    }
 }

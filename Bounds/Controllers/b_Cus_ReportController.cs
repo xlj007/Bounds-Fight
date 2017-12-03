@@ -34,9 +34,18 @@ namespace Bounds.Controllers
             //字段：序号，姓名，功分
             //取出考勤，固定功分所得总分
             //计算当月奖罚分总分---只计算通过审核的分数
+            string strSQLSelIDs = "select b_User_ID From b_Cus_Group_Member Where b_Cus_Group_ID in (select * from f_split((select b_Cus_Group_ID From b_Cus_Report Where ID = " + id + "),',')";
+            //Select '''+REPLACE(@s,',','''    Union all Select ''')+'''
             string strMonth = DateTime.Now.ToString("yyyyMM");
-            string strSQLSel = @"select * from b_Attence_Fix Where b_TheMonth='" + strMonth + "' and b_User_ID in (select b_User_ID From b_Cus_Group_Member Where b_Cus_Group_ID in (select b_Cus_Group_ID From b_Cus_Report Where ID = " + id + "))";
-            return View();
+            string strFixMonth = DateTime.Now.ToString("yyyy-MM");
+            string strSQLSel_Fix = @"select b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where b_TheMonth='" + strFixMonth + "' and b_User_ID in ("+ strSQLSelIDs + ")";
+            string strSQLSel_Prize = @"select sum(b_Point_Value) as b_Total_Point, max(usr.b_RealName) as b_RealName, b_User_ID from b_Point_Details as detail left join b_User as usr on detail.b_User_ID = usr.ID  Where detail.TheMonth = '" + strMonth + "' and detail.b_User_ID in ("+ strSQLSelIDs + ")) Group by detail.b_User_ID";
+
+            string strSQLSel = @"select ROW_NUMBER() over(order by b_Total_Point DESC) as ID, Convert(varchar(10), d.b_Total_Point) as PointValue, d.b_RealName as UserName From (select sum(b_Total_Point) as b_Total_Point, max(b_RealName) as b_RealName From (" + strSQLSel_Fix + ") union all (" + strSQLSel_Prize + ")) as c Group by b_User_ID) as d";
+
+            Log.logger.Info(strSQLSel);
+            IEnumerable<b_Cus_Report_Show> record = db.Database.SqlQuery<b_Cus_Report_Show>(strSQLSel);
+            return View(record.ToList());
         }
 
         // GET: b_Cus_Report/Details/5
