@@ -369,13 +369,13 @@ namespace Bounds.Controllers
             //组SQL
             if (sb.Length > 0)
             {
-                string strSQLGetRecords = @"select a.ID,a.b_Event_Date, a.b_Record_Time, a.b_Subject, Convert(varchar(10),Sum(f.b_A_Point)) as b_A_Point, Convert(varchar(10),Sum(f.b_B_Point)) as b_B_Point, Convert(varchar(10),Sum(f.b_Value_Point)) as b_Value_Point, Count(f.b_User_ID) as b_PeopleCount_Value,b.b_RealName as b_First_Check_Name, c.b_RealName as b_Final_Check_Name, d.b_RealName as b_Recorder_Name 
+                string strSQLGetRecords = @"select a.ID,a.b_Event_Date, a.b_Record_Time, a.b_Subject, Convert(varchar(10),Sum(f.b_A_Point)) as b_A_Point, Convert(varchar(10),Sum(f.b_B_Point)) as b_B_Point, Convert(varchar(10),Sum(f.b_Value_Point)) as b_Value_Point, Count(f.b_User_ID) as b_PeopleCount_Value,b.b_RealName as b_First_Check_Name, c.b_RealName as b_Final_Check_Name, d.b_RealName as b_Recorder_Name, a.b_Status
                         from b_Point as a join b_User as b on a.b_First_Check_ID = b.ID
                         join b_User as c on a.b_Final_Check_ID = c.ID
                         join b_User as d on a.b_Recorder_ID = d.ID
                         join b_Point_Event as e on e.b_Point_ID = a.ID
                         join b_Point_Event_Member as f on f.b_Point_Event_ID = e.ID
-                        Where " + sb.ToString() + " Group by a.ID, a.b_Event_Date, a.b_Record_Time, a.b_Subject,b.b_RealName,c.b_RealName, d.b_RealName";
+                        Where " + sb.ToString() + " Group by a.ID, a.b_Event_Date, a.b_Record_Time, a.b_Subject,b.b_RealName,c.b_RealName, d.b_RealName,a.b_Status";
                 IEnumerable<Point_Record_Model> record = db.Database.SqlQuery<Point_Record_Model>(strSQLGetRecords);
                 return record;
             }

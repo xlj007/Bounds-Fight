@@ -267,6 +267,10 @@ namespace Bounds.Controllers
                     {
                         arrNewRoles = b_User.b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     }
+                    else
+                    {
+                        b_User.b_Role_ID = org_user.b_Role_ID;
+                    }
                     if (arrNewRoles != null)
                     {
                         b_User_Role role = null;

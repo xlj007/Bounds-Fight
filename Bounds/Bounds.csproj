@@ -405,6 +405,10 @@
     <Compile Include="Migrations\201709241200472_auth表增加b_Show字段.Designer.cs">
       <DependentUpon>201709241200472_auth表增加b_Show字段.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712041640460_change_reward_field_type.cs" />
+    <Compile Include="Migrations\201712041640460_change_reward_field_type.Designer.cs">
+      <DependentUpon>201712041640460_change_reward_field_type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -898,6 +902,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709241200472_auth表增加b_Show字段.resx">
       <DependentUpon>201709241200472_auth表增加b_Show字段.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041640460_change_reward_field_type.resx">
+      <DependentUpon>201712041640460_change_reward_field_type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
