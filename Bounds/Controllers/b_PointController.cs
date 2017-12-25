@@ -164,6 +164,34 @@ namespace Bounds.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    int nRewardID = ((b_User)Session["User"]).b_Reward_Auth_ID.to_i();
+                    b_Reward reward = (from rd in db.b_Reward
+                                       where rd.ID == nRewardID
+                                       select rd).FirstOrDefault();
+                    int n_min_a = 0;
+                    int n_max_a = 0;
+                    int n_min_b = 0;
+                    int n_max_b = 0;
+                    if (reward.b_Reward_A.IndexOf('-', 1) > 0)
+                    {
+                        n_min_a = reward.b_Reward_A.Substring(0, reward.b_Reward_A.IndexOf('-', 1)).to_i();
+                        n_max_a = reward.b_Reward_A.Substring(reward.b_Reward_A.IndexOf('-', 1) + 1).to_i();
+                    }
+                    else
+                    {
+                        n_min_a = -Math.Abs(reward.b_Reward_A.to_i());
+                        n_max_a = Math.Abs(reward.b_Reward_A.to_i());
+                    }
+                    if (reward.b_Reward_B.IndexOf('-', 1) > 0)
+                    {
+                        n_min_b = reward.b_Reward_B.Substring(0, reward.b_Reward_B.IndexOf('-', 1)).to_i();
+                        n_max_b = reward.b_Reward_B.Substring(reward.b_Reward_B.IndexOf('-', 1) + 1).to_i();
+                    }
+                    else
+                    {
+                        n_min_b = -Math.Abs(reward.b_Reward_B.to_i());
+                        n_max_b = Math.Abs(reward.b_Reward_B.to_i());
+                    }
                     using (TransactionScope ts = new TransactionScope())
                     {
                         b_Point.Create_Time = DateTime.Now;
@@ -179,6 +207,14 @@ namespace Bounds.Controllers
                         {
                             foreach (var member in point_event.b_Point_Event_Member)
                             {
+                                if (member.b_A_Point < n_min_a || member.b_A_Point > n_max_a)
+                                {
+                                    return Json("您的A分奖罚权限为"+n_min_a +" - "+ n_max_a + "，请重新填写。");
+                                }
+                                if (member.b_B_Point < n_min_b || member.b_B_Point > n_max_b)
+                                {
+                                    return Json("您的B分奖罚权限为" + n_min_a + " - " + n_max_a + "，请重新填写。");
+                                }
                                 b_Point_Details detail = new b_Point_Details();
                                 detail.b_Enterprise = Session["Enterprise_id"].ToString();
                                 detail.b_Event_ID = point_event.ID;

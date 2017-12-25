@@ -34,12 +34,24 @@ namespace Bounds.Controllers
             //字段：序号，姓名，功分
             //取出考勤，固定功分所得总分
             //计算当月奖罚分总分---只计算通过审核的分数
+
+            b_Cus_Report report = (from cus_report in db.b_Cus_Report
+                                   where cus_report.ID == id
+                                   select cus_report).FirstOrDefault();
+
             string strSQLSelIDs = "select b_User_ID From b_Cus_Group_Member Where b_Cus_Group_ID in (select * from f_split((select b_Cus_Group_ID From b_Cus_Report Where ID = " + id + "),',')";
-            //Select '''+REPLACE(@s,',','''    Union all Select ''')+'''
             string strMonth = DateTime.Now.ToString("yyyyMM");
             string strFixMonth = DateTime.Now.ToString("yyyy-MM");
-            string strSQLSel_Fix = @"select b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where b_TheMonth='" + strFixMonth + "' and b_User_ID in ("+ strSQLSelIDs + ")";
-            string strSQLSel_Prize = @"select sum(b_Point_Value) as b_Total_Point, max(usr.b_RealName) as b_RealName, b_User_ID from b_Point_Details as detail left join b_User as usr on detail.b_User_ID = usr.ID  Where detail.TheMonth = '" + strMonth + "' and detail.b_User_ID in ("+ strSQLSelIDs + ")) Group by detail.b_User_ID";
+            string strSQLSel_Fix = string.Empty;
+            if (report != null && report.b_Add_Bounds == 1)
+            {
+                strSQLSel_Fix = @"select b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where b_TheMonth='" + strFixMonth + "' and b_User_ID in (" + strSQLSelIDs + ")";
+            }
+            else
+            {
+                strSQLSel_Fix= @"select 0 as b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where b_TheMonth='" + strFixMonth + "' and b_User_ID in (" + strSQLSelIDs + ")";
+            }
+            string strSQLSel_Prize = @"select sum(b_Point_Value) as b_Total_Point, max(usr.b_RealName) as b_RealName, b_User_ID from b_Point_Details as detail left join b_User as usr on detail.b_User_ID = usr.ID left join b_Point_Event as event on detail.b_Event_ID = event.ID left join b_Point as point on event.b_Point_ID = point.ID  Where detail.TheMonth = '" + strMonth + "' and detail.b_User_ID in ("+ strSQLSelIDs + ") and point.b_Status = 4) Group by detail.b_User_ID";
 
             string strSQLSel = @"select ROW_NUMBER() over(order by b_Total_Point DESC) as ID, Convert(varchar(10), d.b_Total_Point) as PointValue, d.b_RealName as UserName From (select sum(b_Total_Point) as b_Total_Point, max(b_RealName) as b_RealName From (" + strSQLSel_Fix + ") union all (" + strSQLSel_Prize + ")) as c Group by b_User_ID) as d";
 

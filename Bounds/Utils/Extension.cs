@@ -12,7 +12,7 @@ namespace Bounds.Utils
         {
             int num;
             if (obj == null) return 0;
-            bool boCan = int.TryParse(obj.ToString(), out num);
+            bool boCan = int.TryParse(obj.ToString().Trim(), out num);
             if (!boCan)
                 num = 0;
             return num;
@@ -21,7 +21,7 @@ namespace Bounds.Utils
         {
             double num;
             if (obj == null) return 0;
-            bool boCan = double.TryParse(obj.ToString(), out num);
+            bool boCan = double.TryParse(obj.ToString().Trim(), out num);
             if (!boCan)
                 num = 0;
             return num;
