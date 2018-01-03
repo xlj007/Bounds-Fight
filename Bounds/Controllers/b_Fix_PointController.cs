@@ -184,11 +184,17 @@ namespace Bounds.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             b_Fix_Point b_Fix_Point = db.b_Fix_Point.Find(id);
+            
             if (b_Fix_Point == null)
             {
                 return HttpNotFound();
             }
+            var fix_point_user = from usr in db.b_Fix_Point_To_User
+                                 where usr.b_Fix_Point_ID == b_Fix_Point.ID
+                                 select usr;
+            db.b_Fix_Point_To_User.RemoveRange(fix_point_user);
             db.b_Fix_Point.Remove(b_Fix_Point);
+            
             db.SaveChanges();
             return RedirectToAction("Index");
         }
