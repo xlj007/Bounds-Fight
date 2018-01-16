@@ -72,11 +72,18 @@ namespace Bounds.Controllers
         }
         // GET: b_User
         [AuthorAdmin]
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             int ent_id = Session["Enterprise_id"].to_i();
             SetViewBag(ent_id);
-            return View(db.b_User.Where(x=>x.b_Enterprise_ID == ent_id).ToList());
+            if (id == null)
+            {
+                return View(db.b_User.Where(x => x.b_Enterprise_ID == ent_id).ToList());
+            }
+            else
+            {
+                return View(db.b_User.Where(x => x.b_Enterprise_ID == ent_id && x.ID == id).ToList());
+            }
         }
 
         // GET: b_User/Details/5

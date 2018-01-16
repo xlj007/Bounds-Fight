@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Bounds.Models.b_User>
 
 <div class="padding-bottom right">
+    @if (Request.Url.Segments.Count() < 4)
+    {
     <button type="button" class="btn btn-success" onclick="User.AddNew();">新增人员</button>
+    }
     <button type="button" class="btn btn-primary" onclick="User.Edit();">人员编辑</button>
     <button type="button" class="btn btn-danger" onclick="User.Delete();">删除</button>
 </div>

@@ -6,7 +6,13 @@
 }
 
 <h5>考勤&固定功分计算</h5>
-<div class="container container-padding">
+<div class="container">
+    <div class="left padding-bottom">
+        @using (Html.BeginForm("Index", "b_Attence_Fix", FormMethod.Get))
+        {
+            <p>时间: @Html.TextBox("SearchTime", "", new { @class = "form-control inline short_txt", @placeholder = "2000-01" }) <input type="submit" value="确定" class="btn btn-success" /></p>
+        }
+    </div>
     <div class="right padding-bottom">
         <input type="button" value="计算" class="btn btn-danger" onclick="AttenceFix.Count();" />&nbsp;&nbsp;
         <input type="button" value="清除" class="btn btn-success" onclick="AttenceFix.Clear();" />

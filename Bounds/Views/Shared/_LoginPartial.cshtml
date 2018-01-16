@@ -5,7 +5,7 @@
     {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("你好，" + (String.IsNullOrEmpty(((b_User)Session["User"]).b_RealName) ? ((b_User)Session["User"]).b_UserName: ((b_User)Session["User"]).b_RealName) + "!", "Index", "b_User", routeValues: null, htmlAttributes: new { title = "用户管理" })
+            @Html.ActionLink("你好，" + (String.IsNullOrEmpty(((b_User)Session["User"]).b_RealName) ? ((b_User)Session["User"]).b_UserName: ((b_User)Session["User"]).b_RealName) + "!", "Index", "b_User", routeValues: new { id = ((b_User)Session["User"]).ID }, htmlAttributes: new { title = "用户管理" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
     </ul>

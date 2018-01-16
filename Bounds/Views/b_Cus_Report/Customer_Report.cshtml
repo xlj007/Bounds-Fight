@@ -3,6 +3,13 @@
     ViewBag.Title = "Customer_Report";
 }
 
+<div class="left container-padding">
+    @using (Html.BeginForm("Customer_Report", "b_Cus_Report", FormMethod.Get))
+    {
+        <p>时间段: @Html.TextBox("StartTime", "", new { @class = "form-control inline short_txt", @placeholder = "2000-01" })--@Html.TextBox("EndTime", "", new { @class = "form-control inline short_txt", @placeholder = "2000-02" }) <input type="submit" value="确定" class="btn btn-success" /></p>
+    }
+</div>
+
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.ID)</th>
