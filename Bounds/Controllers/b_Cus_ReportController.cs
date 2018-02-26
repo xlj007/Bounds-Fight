@@ -66,13 +66,13 @@ namespace Bounds.Controllers
             string strSQLSel_Fix = string.Empty;
             if (report != null && report.b_Add_Bounds == 1)
             {
-                strSQLSel_Fix = @"select b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where 1=1 " + strFixCondition + " and b_User_ID in (" + strSQLSelIDs + ")";
+                strSQLSel_Fix = @"select b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where 1=1 " + strFixCondition + " and b_User_ID in (select ID from b_User) and b_User_ID in (" + strSQLSelIDs + ")";
             }
             else
             {
-                strSQLSel_Fix = @"select 0 as b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where 1=1 " + strFixCondition + " and b_User_ID in (" + strSQLSelIDs + ")";
+                strSQLSel_Fix = @"select 0 as b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where 1=1 " + strFixCondition + " and b_User_ID in (select ID from b_User) and b_User_ID in (" + strSQLSelIDs + ")";
             }
-            string strSQLSel_Prize = @"select sum(b_Point_Value) as b_Total_Point, max(usr.b_RealName) as b_RealName, b_User_ID from b_Point_Details as detail left join b_User as usr on detail.b_User_ID = usr.ID left join b_Point_Event as event on detail.b_Event_ID = event.ID left join b_Point as point on event.b_Point_ID = point.ID  Where 1=1 " + strPrizeCondition + " and detail.b_User_ID in (" + strSQLSelIDs + ") and point.b_Status = 4) Group by detail.b_User_ID";
+            string strSQLSel_Prize = @"select sum(b_Point_Value) as b_Total_Point, max(usr.b_RealName) as b_RealName, b_User_ID from b_Point_Details as detail left join b_User as usr on detail.b_User_ID = usr.ID left join b_Point_Event as event on detail.b_Event_ID = event.ID left join b_Point as point on event.b_Point_ID = point.ID  Where 1=1 " + strPrizeCondition + " and detail.b_User_ID in (select ID from b_User) and detail.b_User_ID in (" + strSQLSelIDs + ") and point.b_Status = 4) Group by detail.b_User_ID";
 
             string strSQLSel = @"select ROW_NUMBER() over(order by b_Total_Point DESC) as ID, Convert(varchar(10), d.b_Total_Point) as PointValue, d.b_RealName as UserName From (select sum(b_Total_Point) as b_Total_Point, max(b_RealName) as b_RealName From (" + strSQLSel_Fix + ") union all (" + strSQLSel_Prize + ")) as c Group by b_User_ID) as d";
 
