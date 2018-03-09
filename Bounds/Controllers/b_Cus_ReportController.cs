@@ -66,7 +66,7 @@ namespace Bounds.Controllers
             string strSQLSel_Fix = string.Empty;
             if (report != null && report.b_Add_Bounds == 1)
             {
-                strSQLSel_Fix = @"select b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where 1=1 " + strFixCondition + " and b_User_ID in (select ID from b_User) and b_User_ID in (" + strSQLSelIDs + ")";
+                strSQLSel_Fix = @"select (b_Total_Point + b_Work_Age_Point) as b_Total_Point,b_RealName,b_User_ID from b_Attence_Fix Where 1=1 " + strFixCondition + " and b_User_ID in (select ID from b_User) and b_User_ID in (" + strSQLSelIDs + ")";
             }
             else
             {

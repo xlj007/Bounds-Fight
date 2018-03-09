@@ -16,6 +16,7 @@ namespace Bounds
         protected void Application_Start()
         {
             Database.SetInitializer(new BoundsDBInitializer());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BoundsContext>());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

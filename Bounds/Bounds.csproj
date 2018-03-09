@@ -409,6 +409,10 @@
     <Compile Include="Migrations\201712041640460_change_reward_field_type.Designer.cs">
       <DependentUpon>201712041640460_change_reward_field_type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803091549246_add_work_age_point_to_attencefix.cs" />
+    <Compile Include="Migrations\201803091549246_add_work_age_point_to_attencefix.Designer.cs">
+      <DependentUpon>201803091549246_add_work_age_point_to_attencefix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorAdminAttribute.cs" />
     <Compile Include="Controllers\b_UserController.cs" />
@@ -905,6 +909,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712041640460_change_reward_field_type.resx">
       <DependentUpon>201712041640460_change_reward_field_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803091549246_add_work_age_point_to_attencefix.resx">
+      <DependentUpon>201803091549246_add_work_age_point_to_attencefix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

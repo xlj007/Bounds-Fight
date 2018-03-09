@@ -29,7 +29,7 @@ namespace Bounds.Controllers
                 strMonth = SearchTime;
                 strCondition += " and b_TheMonth = '" + SearchTime + "'";
             }
-            string strSQLSel = "select IsNull(a.ID, 0) as ID, IsNull(b.ID, 0) as b_User_ID, IsNull(b.b_RealName, '') as b_RealName, IsNull(b.b_WorkNum, '') as b_WorkNum, '" + strMonth + "' as b_TheMonth, IsNull(a.b_Plan_Attence, 0) as b_Plan_Attence, IsNull(a.b_Actual_Attence, 0) b_Actual_Attence, IsNull(a.b_Sick_Leave, 0) b_Sick_Leave, IsNull(a.b_Other_Leave,0) as b_Other_Leave, IsNull(a.b_Absence,0) as b_Absence, IsNull(a.b_OverTime, 0) as b_OverTime, IsNull(a.b_SaleAmount, 0) as b_SaleAmount, IsNull(a.b_Fix_Point,0) as b_Fix_Point, IsNull(a.b_Attence_Point,0) as b_Attence_Point, IsNull(a.b_OverTime_Point,0) as b_OverTime_Point, IsNull(a.b_Sale_Point,0) as b_Sale_Point, IsNull(a.b_Total_Point,0) as b_Total_Point,IsNull(a.Create_Time,'" + DateTime.Now.ToString() + "') as Create_Time, IsNull(a.Update_Time, '" + DateTime.Now.ToString() + "') as Update_Time from (Select * from b_Attence_Fix Where 1=1 " + strCondition + ") as a right join b_User as b on a.b_User_ID = b.ID where b.b_Enterprise_id = " + ent_id;
+            string strSQLSel = "select IsNull(a.ID, 0) as ID, IsNull(b.ID, 0) as b_User_ID, IsNull(b.b_RealName, '') as b_RealName, IsNull(b.b_WorkNum, '') as b_WorkNum, '" + strMonth + "' as b_TheMonth, IsNull(a.b_Plan_Attence, 0) as b_Plan_Attence, IsNull(a.b_Actual_Attence, 0) b_Actual_Attence, IsNull(a.b_Sick_Leave, 0) b_Sick_Leave, IsNull(a.b_Other_Leave,0) as b_Other_Leave, IsNull(a.b_Absence,0) as b_Absence, IsNull(a.b_OverTime, 0) as b_OverTime, IsNull(a.b_SaleAmount, 0) as b_SaleAmount, IsNull(a.b_Fix_Point,0) as b_Fix_Point, IsNull(a.b_Attence_Point,0) as b_Attence_Point, IsNull(a.b_OverTime_Point,0) as b_OverTime_Point, IsNull(a.b_Sale_Point,0) as b_Sale_Point, IsNull(a.b_Total_Point,0) as b_Total_Point,IsNull(a.Create_Time,'" + DateTime.Now.ToString() + "') as Create_Time, IsNull(a.Update_Time, '" + DateTime.Now.ToString() + "') as Update_Time, IsNull(a.b_Work_Age_Point,0) as b_Work_Age_Point from (Select * from b_Attence_Fix Where 1=1 " + strCondition + ") as a right join b_User as b on a.b_User_ID = b.ID where b.b_Enterprise_id = " + ent_id;
             var list_attence_fix = db.Database.SqlQuery<b_Attence_Fix>(strSQLSel);
             return View(list_attence_fix);
         }
@@ -59,7 +59,7 @@ namespace Bounds.Controllers
                                   where age.b_Enterprise == strEnterprise_id
                                   select age).FirstOrDefault();
             bool boValidDTEnd = false;
-            DateTime dtEnd;
+            DateTime dtEnd = DateTime.Now;
             if (work_age_point != null)
             {
                 if (DateTime.TryParse(work_age_point.b_End_Date, out dtEnd))
@@ -82,7 +82,7 @@ namespace Bounds.Controllers
                 double attence_point = 0;//考勤得分
                 double over_time_point = 0;//加班得分
                 b_Attence_Fix fix = list[i];
-                if (fix.b_Plan_Attence == fix.b_Actual_Attence)
+                if (fix.b_Plan_Attence <= fix.b_Actual_Attence && fix.b_Actual_Attence.to_double() > 0)
                 {
                     //如果全勤，奖分
                     attence_point += Math.Abs(attence_set.b_QuanQin);
@@ -104,14 +104,31 @@ namespace Bounds.Controllers
                     over_time_point = Math.Abs(attence_set.b_ShaoXiu * (double)fix.b_OverTime);
                 }
                 //获取固定分
-                string strSQLSel = "select sum(b_Fix_Point_Value) as FixPoint From b_Fix_Point where ID in (select b_Fix_Point_ID From b_Fix_Point_To_User Where b_User_id = " + ((b_User)Session["User"]).ID + ")";
+                string strSQLSel = "select sum(b_Fix_Point_Value) as FixPoint From b_Fix_Point where ID in (select b_Fix_Point_ID From b_Fix_Point_To_User Where b_User_id = " + fix.b_User_ID + ")";
                 var strFixPointValue = db.Database.SqlQuery<int?>(strSQLSel);
                 int nFixPointValue = 0;
                 if (strFixPointValue != null) nFixPointValue = strFixPointValue.FirstOrDefault().to_i();
-                //获取工龄分
-                if (boValidDTEnd && work_age_point.b_Balance_Type == 0)
-                {
 
+                int nWorkAgePoint = 0;
+                //获取工龄分
+                if (boValidDTEnd)
+                {
+                    var start_time = (from work_info in db.b_User
+                                      where work_info.b_Enterprise_ID == nEnterprise_id
+                                      select work_info).FirstOrDefault();
+                    DateTime dtStart;
+                    if (start_time != null && DateTime.TryParse(start_time.b_EntryDate, out dtStart))
+                    {
+                        TimeSpan ts = dtEnd - dtStart;
+                        if (work_age_point.b_Balance_Type == 0)//如果是按月
+                        {
+                            nWorkAgePoint = work_age_point.b_Point_Value * Math.Abs(dtEnd.Month - dtStart.Month + 12 * (dtEnd.Year - dtStart.Year));
+                        }
+                        else if (work_age_point.b_Balance_Type == 1)//如果是按天
+                        {
+                            nWorkAgePoint = work_age_point.b_Point_Value * ts.TotalDays.to_i();
+                        }
+                    }
                 }
 
                 total_point = nFixPointValue + attence_point + over_time_point + nStart_Point;
@@ -133,6 +150,7 @@ namespace Bounds.Controllers
                     cur_fix.b_Attence_Point = attence_point;
                     cur_fix.b_OverTime_Point = over_time_point;
                     cur_fix.b_Total_Point = total_point;
+                    cur_fix.b_Work_Age_Point = nWorkAgePoint;
                     cur_fix.Update_Time = DateTime.Now;
                 }
                 else
@@ -142,6 +160,7 @@ namespace Bounds.Controllers
                     fix.b_Attence_Point = attence_point;
                     fix.b_OverTime_Point = over_time_point;
                     fix.b_Total_Point = total_point;
+                    fix.b_Work_Age_Point = nWorkAgePoint;
                     fix.Create_Time = DateTime.Now;
                     fix.Update_Time = DateTime.Now;
 

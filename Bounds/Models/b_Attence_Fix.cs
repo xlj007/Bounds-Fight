@@ -42,5 +42,6 @@ namespace Bounds.Models
         public double? b_Total_Point { get; set; }
         public DateTime Create_Time { get; set; }
         public DateTime Update_Time { get; set; }
+        public double? b_Work_Age_Point { get; set; }
     }
 }
