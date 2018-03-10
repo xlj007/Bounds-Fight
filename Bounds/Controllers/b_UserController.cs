@@ -25,40 +25,49 @@ namespace Bounds.Controllers
         [HttpPost]
         public ActionResult Logon(b_User b_user)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(b_user);
-            }
-            string strPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(b_user.b_Password, "MD5");
-            var result = from user in db.b_User
-                         where user.b_UserName == b_user.b_UserName && user.b_Password == strPassword && user.b_Enterprise_ID == b_user.b_Enterprise_ID
-                         select user;
-
-            if (result.Count() > 0)
-            {
-                string[] arrRole = null;
-                if (result.FirstOrDefault().b_Role_ID != null)
+                if (!ModelState.IsValid)
                 {
-                    arrRole = result.FirstOrDefault().b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                    IEnumerable<int> user_auth = from auth in db.b_User_Auth
-                                                 where (arrRole.Contains(auth.b_Role_ID.ToString()))
-                                                 select auth.b_Auth_ID;
-                    Session["Author"] = user_auth.ToArray();
+                    return View(b_user);
                 }
-                Session["User"] = result.FirstOrDefault();
-                Session["UserName"] = b_user.b_UserName;
-                Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
+                string strPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(b_user.b_Password, "MD5");
+                var result = from user in db.b_User
+                             where user.b_UserName == b_user.b_UserName && user.b_Password == strPassword && user.b_Enterprise_ID == b_user.b_Enterprise_ID
+                             select user;
 
-                var Cus_Report = from report in db.b_Cus_Report
-                                 where report.b_Enterprise_ID == b_user.b_Enterprise_ID
-                                 select report;
-                Session["CusReport"] = Cus_Report.ToArray();
-                return RedirectToAction("Index", "Home");
+                if (result.Count() > 0)
+                {
+                    string[] arrRole = null;
+                    if (result.FirstOrDefault().b_Role_ID != null)
+                    {
+                        arrRole = result.FirstOrDefault().b_Role_ID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        IEnumerable<int> user_auth = from auth in db.b_User_Auth
+                                                     where (arrRole.Contains(auth.b_Role_ID.ToString()))
+                                                     select auth.b_Auth_ID;
+                        Session["Author"] = user_auth.ToArray();
+                    }
+                    Session["User"] = result.FirstOrDefault();
+                    Session["UserName"] = b_user.b_UserName;
+                    Session["Enterprise_id"] = result.FirstOrDefault().b_Enterprise_ID;
+
+                    var Cus_Report = from report in db.b_Cus_Report
+                                     where report.b_Enterprise_ID == b_user.b_Enterprise_ID
+                                     select report;
+                    Session["CusReport"] = Cus_Report.ToArray();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("key", "用户名或密码错误，请重新登录！");
+                    return View(b_user);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ModelState.AddModelError("key", "用户名或密码错误，请重新登录！");
+                Log.logger.Error("登录时遇到错误：" + ex.StackTrace + Environment.NewLine + "报错信息：" + ex.InnerException == null? ex.Message : ex.InnerException.InnerException.Message);
+                ModelState.AddModelError("key", "登录出现未知错误，请联系管理员解决。");
                 return View(b_user);
             }
         }
