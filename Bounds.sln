@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bounds", "Bounds\Bounds.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bounds.Tests", "Bounds.Tests\Bounds.Tests.csproj", "{0B654597-EDDE-4108-B82A-904A12F265B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "db_backup_service", "db_backup_service\db_backup_service.csproj", "{90B12124-01CC-4A3A-B39F-0AD439DCFB63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0B654597-EDDE-4108-B82A-904A12F265B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B654597-EDDE-4108-B82A-904A12F265B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B654597-EDDE-4108-B82A-904A12F265B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B12124-01CC-4A3A-B39F-0AD439DCFB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B12124-01CC-4A3A-B39F-0AD439DCFB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B12124-01CC-4A3A-B39F-0AD439DCFB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B12124-01CC-4A3A-B39F-0AD439DCFB63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
