@@ -158,6 +158,11 @@ namespace Bounds.Controllers
                                 where arrIds.Contains(u.ID)
                                 select u;
                     db.b_User.RemoveRange(users);
+
+                    var user_role = from ur in db.b_User_Role
+                                    where arrIds.Contains(ur.ID)
+                                    select ur;
+                    db.b_User_Role.RemoveRange(user_role);
                     db.SaveChanges();
                     return Json("删除成功。");
                 }
@@ -352,6 +357,8 @@ namespace Bounds.Controllers
         {
             b_User b_User = db.b_User.Find(id);
             db.b_User.Remove(b_User);
+            var user_role = db.b_User_Role.Where(ur => ur.b_User_Id == id);
+            db.b_User_Role.RemoveRange(user_role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -445,6 +452,9 @@ namespace Bounds.Controllers
                                    where role.b_Role_Id == role_id
                                    select role;
                     int[] org_user = cur_user.Select(user=>user.b_User_Id).ToArray();
+                    org_user = (from user in db.b_User
+                                where org_user.Contains(user.ID)
+                                select user.ID).ToArray();
                     db.b_User_Role.RemoveRange(cur_user);
 
                     string[] arrUserIds = user_id.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

@@ -97,9 +97,19 @@ namespace Bounds.Controllers
                     }
                     else
                     {
-                        db.b_Organize.Remove(node);
-                        db.SaveChanges();
-                        return Json("true");
+                        var cur_items = from o in db.b_Organize
+                                        where o.b_PID == NodeId
+                                        select o;
+                        if (cur_items.Count() > 0)
+                        {
+                            return Json("此节点下有数据，不能删除。如需删除，请先删掉节点下的数据");
+                        }
+                        else
+                        {
+                            db.b_Organize.Remove(node);
+                            db.SaveChanges();
+                            return Json("true");
+                        }
                     }
                 }
                 else

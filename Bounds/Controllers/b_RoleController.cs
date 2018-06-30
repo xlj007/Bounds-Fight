@@ -32,7 +32,10 @@ namespace Bounds.Controllers
                 show.b_Role_Name = item.b_Role_Name;
                 show.b_Role_Description = item.b_Role_Description;
                 show.b_Enterprise = item.b_Enterprise;
-                show.b_Member_Count = (from ur in db.b_User_Role where ur.b_Role_Id == item.ID select ur).Count();
+                var user_role = (from ur in db.b_User_Role where ur.b_Role_Id == item.ID select ur.b_User_Id).ToList();
+                show.b_Member_Count = (from user in db.b_User
+                                       where user_role.Contains(user.ID)
+                                       select user).Count();
                 list.Add(show);
             }
             return View(list);
