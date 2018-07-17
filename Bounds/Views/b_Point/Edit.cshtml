@@ -1,4 +1,4 @@
-﻿@model Bounds.Models.b_Point
+﻿@model Bounds.Controllers.b_Point_Show
 @Styles.Render("~/Content/editable")
 @Scripts.Render("~/bundles/editable")
 @{
@@ -47,7 +47,7 @@
             <table class="table">
                 <tr>
                     <td>主题：</td>
-                    <td>@point_event.b_Event_ID</td>
+                    <td>@point_event.b_Event_Name</td>
                 </tr>
                 <tr>
                     <td>描述：</td>
@@ -61,7 +61,7 @@
                             {
                                 <tr class="left_td">
                                     <td width="100px">姓名：</td>
-                                    <td>@member.b_User_ID</td>
+                                    <td>@member.b_User_Name</td>
                                     <td width="100px">A分：</td>
                                     <td><a href="#" class="editable_member" data-type="text" data-pk="@member.ID" data-name="b_A_Point" data-url="/b_Point/Modify">@member.b_A_Point</a></td>
                                     <td width="100px">B分：</td>

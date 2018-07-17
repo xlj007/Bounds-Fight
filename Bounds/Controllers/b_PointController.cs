@@ -10,6 +10,7 @@ using Bounds.Models;
 using Bounds.Utils;
 using System.Text;
 using System.Transactions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bounds.Controllers
 {
@@ -98,14 +99,47 @@ namespace Bounds.Controllers
             b_Point b_Point = (from point in db.b_Point.Include("b_Point_Event").Include("b_Point_Event.b_Point_Event_Member")
                                where point.ID == id
                                select point).FirstOrDefault();
+            b_Point_Show b_point_show = new b_Point_Show();
+            b_point_show.b_Enterprise = b_Point.b_Enterprise;
+            b_point_show.b_Event_Date = b_Point.b_Event_Date;
+            b_point_show.b_Final_Check_ID = b_Point.b_Final_Check_ID;
+            b_point_show.b_Final_Note = b_Point.b_Final_Note;
+            b_point_show.b_First_Check_ID = b_Point.b_First_Check_ID;
+            b_point_show.b_First_Note = b_Point.b_First_Note;
+            b_point_show.b_Note = b_Point.b_Note;
+            b_point_show.b_Recorder_ID = b_Point.b_Recorder_ID;
+            b_point_show.b_Record_Time = b_Point.b_Record_Time;
+            b_point_show.b_Status = b_Point.b_Status;
+            b_point_show.b_Subject = b_Point.b_Subject;
+            b_point_show.Create_Time = b_Point.Create_Time;
+            b_point_show.ID = b_Point.ID;
+            b_point_show.TheMonth = b_Point.TheMonth;
+            b_point_show.Update_Time = b_Point.Update_Time;
+            b_point_show.b_Point_Event = new List<b_Point_Event_Show>();
 
             foreach (var point_event in b_Point.b_Point_Event)
             {
+                string strEventName = db.b_Event_Library.Where(x => x.ID == point_event.b_Event_ID).FirstOrDefault().b_Event_Name;
+                b_Point_Event_Show point_event_show = new b_Point_Event_Show();
+                point_event_show.b_Event_ID = point_event.b_Event_ID;
+                point_event_show.b_Event_Name = strEventName;
+                point_event_show.b_Event_Note = point_event.b_Event_Note;
+                point_event_show.ID = point_event.ID;
+                point_event_show.b_Point_Event_Member = new List<b_Point_Event_Member_Show>();
                 foreach (var member in point_event.b_Point_Event_Member)
                 {
                     string strUserName = db.b_User.Where(x => x.ID == member.b_User_ID).FirstOrDefault().b_UserName;
-                    
+                    b_Point_Event_Member_Show member_show = new b_Point_Event_Member_Show();
+                    member_show.b_A_Point = member.b_A_Point;
+                    member_show.b_B_Point = member.b_B_Point;
+                    member_show.b_User_ID = member.b_User_ID;
+                    member_show.b_User_Name = strUserName;
+                    member_show.b_Value_Point = member.b_Value_Point;
+                    member_show.b_Value_Type = member.b_Value_Type;
+                    member_show.ID = member.ID;
+                    point_event_show.b_Point_Event_Member.Add(member_show);
                 }
+                b_point_show.b_Point_Event.Add(point_event_show);
             }
 
             if (b_Point == null)
@@ -113,7 +147,7 @@ namespace Bounds.Controllers
                 return HttpNotFound();
             }
 
-            return View(b_Point);
+            return View(b_point_show);
         }
 
         public string Modify(string pk, string name, string value)
@@ -640,5 +674,62 @@ namespace Bounds.Controllers
             }
             base.Dispose(disposing);
         }
+    }
+
+    public class b_Point_Show
+    {
+        public int ID { get; set; }
+        [Display(Name = "事件时间")]
+        public DateTime b_Event_Date { get; set; }
+        [Display(Name = "记录时间")]
+        public DateTime b_Record_Time { get; set; }
+        [Display(Name = "主题")]
+        public string b_Subject { get; set; }
+        [Display(Name = "备注")]
+        public string b_Note { get; set; }
+        [Display(Name = "初审人")]
+        public string b_First_Check_ID { get; set; }
+        [Display(Name = "初审意见")]
+        public string b_First_Note { get; set; }
+        [Display(Name = "终审人")]
+        public string b_Final_Check_ID { get; set; }
+        [Display(Name = "终审意见")]
+        public string b_Final_Note { get; set; }
+        [Display(Name = "记录人")]
+        public int b_Recorder_ID { get; set; }
+        [Display(Name = "状态")]
+        public b_Status b_Status { get; set; }
+        public virtual List<b_Point_Event_Show> b_Point_Event { get; set; }
+        public string b_Enterprise { get; set; }
+        public DateTime Create_Time { get; set; }
+        public DateTime Update_Time { get; set; }
+        public string TheMonth { get; set; }
+    }
+
+    public class b_Point_Event_Show
+    {
+        public int ID { get; set; }
+        [Display(Name = "事件")]
+        public int b_Event_ID { get; set; }
+        public string b_Event_Name { get; set; }
+        [Display(Name = "事件描述")]
+        public string b_Event_Note { get; set; }
+        [Display(Name = "参与人")]
+        public List<b_Point_Event_Member_Show> b_Point_Event_Member { get; set; }
+    }
+    public class b_Point_Event_Member_Show
+    {
+        public int ID { get; set; }
+        [Display(Name = "A分")]
+        public int b_A_Point { get; set; }
+        [Display(Name = "B分")]
+        public int b_B_Point { get; set; }
+        [Display(Name = "产值类型")]
+        public b_Value_Type b_Value_Type { get; set; }
+        [Display(Name = "产值")]
+        public int b_Value_Point { get; set; }
+        [Display(Name = "参与人员")]
+        public int b_User_ID { get; set; }
+        public string b_User_Name { get; set; }
     }
 }
