@@ -114,7 +114,7 @@ namespace Bounds.Controllers
                 if (boValidDTEnd)
                 {
                     var start_time = (from work_info in db.b_User
-                                      where work_info.b_Enterprise_ID == nEnterprise_id
+                                      where work_info.b_Enterprise_ID == nEnterprise_id && work_info.ID == fix.b_User_ID
                                       select work_info).FirstOrDefault();
                     DateTime dtStart;
                     if (start_time != null && DateTime.TryParse(start_time.b_EntryDate, out dtStart))
