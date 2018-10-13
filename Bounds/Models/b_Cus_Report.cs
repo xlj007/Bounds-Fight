@@ -33,7 +33,13 @@ namespace Bounds.Models
         public Int64 ID { get; set; }
         [Display(Name = "姓名")]
         public string UserName { get; set; }
-        [Display(Name = "功分")]
+        [Display(Name = "总功分")]
         public string PointValue { get; set; }
+        [Display(Name = "固定功分")]
+        public string FixedValue { get; set; }
+        [Display(Name = "奖罚功分")]
+        public string PrizeValue { get; set; }
+        [Display(Name = "工龄分")]
+        public string WorkAgeValue { get; set; }
     }
 }

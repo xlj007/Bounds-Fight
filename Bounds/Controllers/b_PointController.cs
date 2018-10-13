@@ -337,7 +337,7 @@ namespace Bounds.Controllers
                 var my_fix_point = db.Database.SqlQuery<My_Fix_Point_Model>(strSQLGetFixPoint);
                 ViewBag.Fix_Point = my_fix_point;
                 //获取奖扣功分
-                string strSQLGetPointEvent= @"select a.b_Event_Date,e.b_Event_Name,c.b_A_Point,c.b_B_Point, f.b_RealName as b_First_Check_Name,g.b_RealName as b_Final_Check_Name 
+                string strSQLGetPointEvent= @"select a.b_Event_Date,a.b_Subject,e.b_Event_Name,c.b_A_Point,c.b_B_Point, f.b_RealName as b_First_Check_Name,g.b_RealName as b_Final_Check_Name 
                                             from b_Point as a inner join b_Point_Event as b on a.ID = b.b_Point_ID 
                                             inner join b_Event_Library as e on b.b_Event_ID = e.ID 
                                             inner join b_Point_Event_Member as c on b.ID = c.b_Point_Event_ID 
@@ -354,18 +354,35 @@ namespace Bounds.Controllers
                 var start_point = (from s in db.b_StartPoint
                                    where s.b_Enterprise == ent_id.ToString()
                                    select s).FirstOrDefault();
-                
-                double nGongLing = 0;
-                if (entry_date != null)
+                bool boValidDTEnd = false;
+                DateTime dtEnd = DateTime.Now;
+                if (workage != null)
                 {
-                    TimeSpan ts = DateTime.Now - Convert.ToDateTime(entry_date);
-                    if (workage.b_Balance_Type == 0)//按月结算
+                    if (DateTime.TryParse(workage.b_End_Date, out dtEnd))
                     {
-                        nGongLing = ts.Days / 30 * workage.b_Point_Value;
+                        boValidDTEnd = true;
                     }
-                    else//按天结算
+                    else
                     {
-                        nGongLing = ts.Days * workage.b_Point_Value;
+                        boValidDTEnd = false;
+                    }
+                }
+                double nGongLing = 0;
+                //获取工龄分
+                if (boValidDTEnd)
+                {
+                    DateTime dtStart;
+                    if (DateTime.TryParse(entry_date, out dtStart))
+                    {
+                        TimeSpan ts = dtEnd - dtStart;
+                        if (workage.b_Balance_Type == 0)//如果是按月
+                        {
+                            nGongLing = workage.b_Point_Value * Math.Abs(dtEnd.Month - dtStart.Month + 12 * (dtEnd.Year - dtStart.Year));
+                        }
+                        else if (workage.b_Balance_Type == 1)//如果是按天
+                        {
+                            nGongLing = workage.b_Point_Value * ts.TotalDays.to_i();
+                        }
                     }
                 }
 

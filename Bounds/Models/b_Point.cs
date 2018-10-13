@@ -162,6 +162,7 @@ namespace Bounds.Models
     {
         public DateTime b_Event_Date { get; set; }
         public string b_Event_Name { get; set; }
+        public string b_Subject { get; set; }
         public int b_A_Point { get; set; }
         public int b_B_Point { get; set; }
         public string b_First_Check_Name { get; set; }
