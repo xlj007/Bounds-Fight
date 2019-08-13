@@ -1,0 +1,81 @@
+﻿@model PagedList.IPagedList<Bounds.Models.b_User>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>用户管理</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <p>
+        用户名：<input type="text" name="user_name" class="form-control inline" value=@ViewBag.UserName>  
+        真实姓名：<input type="text" name="real_name" class="form-control inline" value=@ViewBag.RealName>  
+        企业代码：<input type="text" name="enterprise_id" class="form-control inline" value=@ViewBag.EnterpriseID>
+        <input type="submit" value="查找" class="btn btn-success" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            用户名
+        </th>
+        <th>
+            真实姓名
+        </th>
+        <th>
+            企业代码
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_RealName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_Enterprise_ID)
+        </td>
+        <td>
+            @Html.ActionLink("密码重置", "PasswordReset", new { id = item.ID }, new { onclick = "return confirm('确定将此用户密码重置？')" }) |
+            @Html.ActionLink("权限重置", "AuthReset", new { id = item.ID }, new { onclick = "return confirm('确定将此用户权限重置？')" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("ManageUser", new { page, user_name=ViewBag.UserName, real_name=ViewBag.RealName, enterprise_id=ViewBag.EnterpriseID }))
+
+<script type="text/javascript">
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+	
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+    $(function () {
+        var password_reset = getUrlParam("PasswordReset");
+        var auth_reset = getUrlParam("AuthReset");
+        if (password_reset == "OK") {
+            alert("密码重置成功！");
+        } else if (password_reset == "ERROR") {
+            alert("密码重置失败！");
+        }
+
+        if (auth_reset == "OK") {
+            alert("权限重置成功！");
+        } else if (auth_reset == "ERROR") {
+            alert("权限重置失败！");
+        }
+    });
+</script>

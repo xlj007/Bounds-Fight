@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Bounds.Models;
 using Bounds.Utils;
+using PagedList;
 
 namespace Bounds.Controllers
 {
@@ -17,9 +18,15 @@ namespace Bounds.Controllers
         private BoundsContext db = new BoundsContext();
 
         // GET: b_Enterprise
-        public ActionResult Index()
+        public ActionResult Index(string searchCode, int page = 1)
         {
-            return View(db.b_Enterprise.ToList());
+            var enterprise = from ep in db.b_Enterprise
+                             select ep;
+            if (!String.IsNullOrEmpty(searchCode))
+            {
+                enterprise = enterprise.Where(x => x.b_Enterprise_Code.Contains(searchCode));
+            }
+            return View(enterprise.OrderBy(x => x.b_Enterprise_Code).ToPagedList(page, 20));
         }
 
         // GET: b_Enterprise/Details/5
@@ -145,11 +152,11 @@ namespace Bounds.Controllers
             b_Enterprise b_Enterprise = db.b_Enterprise.Find(id);
             db.b_Enterprise.Remove(b_Enterprise);
 
-            b_User user = db.b_User.Where(x=>x.b_Enterprise_ID.ToString()==b_Enterprise.b_Enterprise_Code).FirstOrDefault();
-            db.b_User.Remove(user);
+            var user = db.b_User.Where(x=>x.b_Enterprise_ID.ToString()==b_Enterprise.b_Enterprise_Code);
+            db.b_User.RemoveRange(user);
 
-            b_Organize organize = db.b_Organize.Where(x => x.b_Enterprise_Id.ToString() == b_Enterprise.b_Enterprise_Code).FirstOrDefault();
-            db.b_Organize.Remove(organize);
+            var organize = db.b_Organize.Where(x => x.b_Enterprise_Id.ToString() == b_Enterprise.b_Enterprise_Code);
+            db.b_Organize.RemoveRange(organize);
 
             db.SaveChanges();
             return RedirectToAction("Index");

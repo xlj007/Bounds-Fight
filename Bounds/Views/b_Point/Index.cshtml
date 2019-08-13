@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Bounds.Models.b_Point_Record>
+﻿@model PagedList.IPagedList<Bounds.Models.b_Point_Record>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -14,28 +15,28 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.b_Event_Date)
+            事件时间
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Record_Time)
+            记录时间
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Subject)
+            主题
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Note)
+            备注
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_First_Check_Name)
+            初审人
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Final_Check_Name)
+            终审人
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Status)
+            状态
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Recorder_Name)
+            记录人
         </th>
         <th></th>
     </tr>
@@ -75,3 +76,6 @@
 }
 
 </table>
+
+<br />
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, txt_subject=ViewBag.Subject, txt_first_check=ViewBag.FirstCheck, txt_final_check=ViewBag.FinalCheck, selStatus=ViewBag.selStatus, txt_Prize_Start=ViewBag.PrizeStart, txt_Prize_Stop=ViewBag.PrizeStop, txt_Record_Start=ViewBag.RecordStart, txt_Record_Stop=ViewBag.RecordStop }))

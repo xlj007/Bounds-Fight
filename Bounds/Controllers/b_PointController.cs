@@ -11,6 +11,7 @@ using Bounds.Utils;
 using System.Text;
 using System.Transactions;
 using System.ComponentModel.DataAnnotations;
+using PagedList;
 
 namespace Bounds.Controllers
 {
@@ -37,8 +38,16 @@ namespace Bounds.Controllers
             ViewBag.Final_Check = list_final_check.ToList();
         }
         // GET: b_Point
-        public ActionResult Index()
+        public ActionResult Index(string txt_subject, string txt_first_check, string txt_final_check, string selStatus, string txt_Prize_Start, string txt_Prize_Stop, string txt_Record_Start, string txt_Record_Stop, int page = 1)
         {
+            ViewBag.Subject = txt_subject;
+            ViewBag.FirstCheck = txt_first_check;
+            ViewBag.FinalCheck = txt_final_check;
+            ViewBag.SelStatus = selStatus;
+            ViewBag.PrizeStart = txt_Prize_Start;
+            ViewBag.PrizeStop = txt_Prize_Stop;
+            ViewBag.RecordStart = txt_Record_Start;
+            ViewBag.RecordStop = txt_Record_Stop;
             string strEnterprise = Session["Enterprise_id"].ToString();
             int user_id = (Session["User"] as b_User).ID;
             string strSQLSel = @"select a.*, b.b_RealName as b_First_Check_Name, c.b_RealName as b_Final_Check_Name, d.b_RealName as b_Recorder_Name from b_Point as a 
@@ -46,8 +55,56 @@ namespace Bounds.Controllers
                                 join b_User as c on a.b_Final_Check_ID = c.ID
                                 join b_User as d on a.b_Recorder_ID = d.ID
                                 where a.b_Recorder_ID = " + user_id + " and a.b_Enterprise='" + strEnterprise + "'";
+            if (!String.IsNullOrEmpty(txt_subject))
+            {
+                strSQLSel += " and a.b_Subject='" + txt_subject + "'";
+            }
+            if (!String.IsNullOrEmpty(txt_first_check))
+            {
+                strSQLSel += " and b.b_RealName='" + txt_first_check + "'";
+            }
+            if (!String.IsNullOrEmpty(txt_final_check))
+            {
+                strSQLSel += " and c.b_RealName='" + txt_final_check + "'";
+            }
+            if (!String.IsNullOrEmpty(selStatus) && selStatus!="-1")
+            {
+                strSQLSel += " and a.b_Status = '" + selStatus + "'";
+            }
+            if (!String.IsNullOrEmpty(txt_Prize_Start))
+            {
+                DateTime dtPrizeStart;
+                if (DateTime.TryParse(txt_Prize_Start, out dtPrizeStart))
+                {
+                    strSQLSel += " and a.b_Event_Date >= '" + dtPrizeStart.ToString("yyyy-MM-dd 00:00:00") + "'";
+                }
+            }
+            if (!String.IsNullOrEmpty(txt_Prize_Stop))
+            {
+                DateTime dtPrizeStop;
+                if (DateTime.TryParse(txt_Prize_Stop, out dtPrizeStop))
+                {
+                    strSQLSel += " and a.b_Event_Date < '" + dtPrizeStop.ToString("yyyy-MM-dd 00:00:00") + "'";
+                }
+            }
+            if (!String.IsNullOrEmpty(txt_Record_Start))
+            {
+                DateTime dtRecordStart;
+                if (DateTime.TryParse(txt_Record_Start, out dtRecordStart))
+                {
+                    strSQLSel += " and a.b_Record_Time >= '" + dtRecordStart.ToString("yyyy-MM-dd 00:00:00") + "'";
+                }
+            }
+            if (!String.IsNullOrEmpty(txt_Record_Stop))
+            {
+                DateTime dtRecordStop;
+                if (DateTime.TryParse(txt_Record_Stop, out dtRecordStop))
+                {
+                    strSQLSel += " and a.b_Record_Time < '" + dtRecordStop.ToString("yyyy-MM-dd 00:00:00") + "'";
+                }
+            }
             IEnumerable<b_Point_Record> record = db.Database.SqlQuery<b_Point_Record>(strSQLSel);
-            return View(record.ToList());
+            return View(record.OrderBy(x=>x.b_Event_Date).ToPagedList(page, 20));
         }
 
         // GET: b_Point/Details/5

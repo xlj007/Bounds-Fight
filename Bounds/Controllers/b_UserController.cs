@@ -11,6 +11,7 @@ using System.Web.Security;
 using Bounds.Utils;
 using System.Transactions;
 using System.Data.Entity.Infrastructure;
+using PagedList;
 
 namespace Bounds.Controllers
 {
@@ -506,6 +507,73 @@ namespace Bounds.Controllers
                 Log.logger.Error("保存角色绑定成员时出现错误：" + ex.Message);
                 return Json(ex.Message);
             }
+        }
+
+        [AuthorAdmin]
+        public ActionResult ManageUser(string user_name, string real_name, string enterprise_id, int page = 1)
+        {
+            try
+            {
+                ViewBag.UserName = user_name;
+                ViewBag.RealName = real_name;
+                ViewBag.EnterpriseID = enterprise_id;
+                var user = from u in db.b_User
+                           select u;
+                if (!String.IsNullOrEmpty(user_name))
+                {
+                    user = user.Where(x => x.b_UserName == user_name);
+                }
+                if (!String.IsNullOrEmpty(real_name))
+                {
+                    user = user.Where(x => x.b_RealName == real_name);
+                }
+                if (!String.IsNullOrEmpty(enterprise_id))
+                {
+                    int nID = enterprise_id.to_i();
+                    user = user.Where(x => x.b_Enterprise_ID == nID);
+                }
+                return View(user.OrderBy(x => x.ID).ToPagedList(page, 20));
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        [AuthorAdmin]
+        public ActionResult PasswordReset(int? id)
+        {
+            var user = db.b_User.Find(id);
+            string url_para = string.Empty;
+            if (user != null)
+            {
+                user.b_Password = "E10ADC3949BA59ABBE56E057F20F883E";
+                db.SaveChanges();
+                url_para += "OK";
+            }
+            else
+            {
+                url_para += "ERROR";
+            }
+            return RedirectToAction("ManageUser", "b_User", new { PasswordReset = url_para });
+        }
+
+        [AuthorAdmin]
+        public ActionResult AuthReset(int? id)
+        {
+            string url_para = string.Empty;
+            var user = db.b_User.Find(id);
+            if (user != null)
+            {
+                user.b_Role_ID = "1";
+                db.SaveChanges();
+                url_para += "OK";
+            }
+            else
+            {
+                url_para += "ERROR";
+            }
+            return RedirectToAction("ManageUser", "b_User", new { AuthReset = url_para });
         }
     }
 }

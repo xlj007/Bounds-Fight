@@ -4,31 +4,35 @@
 {
     <div class="mini-layout fluid form-inline">
         <div class="control-group padding-bottom">
-            <span class="form-text-normal padding-left add-on">主题：</span><input class="form-control" type="text" id="txt_subject" placeholder="主题" />
-            <span class="form-text-normal padding-left">初审人：</span><input class="form-control" type="text" id="txt_first_check" placeholder="初审人" />
-            <span class="form-text-normal padding-left">终审人：</span><input class="form-control" type="text" id="txt_final_check" placeholder="终审人" />
+            <span class="form-text-normal padding-left add-on">主题：</span><input class="form-control" type="text" id="txt_subject" name="txt_subject" placeholder="主题" value=@ViewBag.Subject>
+            <span class="form-text-normal padding-left">初审人：</span><input class="form-control" type="text" id="txt_first_check" name="txt_first_check" placeholder="初审人" value=@ViewBag.FirstCheck>
+            <span class="form-text-normal padding-left">终审人：</span><input class="form-control" type="text" id="txt_final_check" name="txt_final_check" placeholder="终审人" value=@ViewBag.FinalCheck>
             <span class="form-text-normal padding-left">审核状态：</span>
-            <select class="form-control" id="selStatus">
+            <select class="form-control" id="selStatus" name="selStatus">
                 <option value="-1">全部</option>
                 <option value="0">待初审</option>
-                <option value="0">初审驳回</option>
-                <option value="0">待终审</option>
-                <option value="0">终审驳回</option>
-                <option value="0">审核通过</option>
-                <option value="0">撤回</option>
+                <option value="1">初审驳回</option>
+                <option value="2">待终审</option>
+                <option value="3">终审驳回</option>
+                <option value="4">审核通过</option>
+                <option value="5">撤回</option>
             </select>
         </div>
         <div class="control-group">
-            <span class="form-text-normal padding-left">奖罚时间：</span><input class="form-control" type="text" id="txt_Prize_Start" />
-            <span class="form-text-normal">- </span><input class="form-control" type="text" id="txt_Prize_Stop" />
-            <span class="form-text-normal padding-left">记录时间：</span><input class="form-control" type="text" id="txt_Record_Start" />
-            <span class="form-text-normal">- </span><input class="form-control" type="text" id="txt_Record_Stop" />
+            <span class="form-text-normal padding-left">奖罚时间：</span><input class="form-control" type="text" id="txt_Prize_Start" name="txt_Prize_Start" value=@ViewBag.PrizeStart>
+            <span class="form-text-normal">- </span><input class="form-control" type="text" id="txt_Prize_Stop" name="txt_Prize_Stop" value=@ViewBag.PrizeStop>
+            <span class="form-text-normal padding-left">记录时间：</span><input class="form-control" type="text" id="txt_Record_Start" name="txt_Record_Start" value=@ViewBag.RecordStart>
+            <span class="form-text-normal">- </span><input class="form-control" type="text" id="txt_Record_Stop" name="txt_Record_Stop" value=@ViewBag.RecordStop>
             <input type="submit" value="查询" class="btn btn-success" />
         </div>
     </div>
 }
 
 <script type="text/javascript">
+    $(function () {
+        $("#selStatus").val(@ViewBag.selStatus);
+    });
+
     $(function () {
         $('#txt_Prize_Start').datetimepicker({
             format: "yyyy-mm-dd",

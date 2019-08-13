@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Bounds.Models.b_Enterprise>
+﻿@model PagedList.IPagedList<Bounds.Models.b_Enterprise>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -7,24 +8,32 @@
 <p>
     @Html.ActionLink("新建企业", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        企业代码：@Html.TextBox("searchCode") <input type="submit" value="查询" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.b_Enterprise_Code)
+            企业代码
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Name)
+            企业名称
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Leader_Name)
+            负责人姓名
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Contact)
+            联系方式
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.b_Enterprise_Code)
@@ -39,10 +48,14 @@
             @Html.DisplayFor(modelItem => item.b_Contact)
         </td>
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
             @Html.ActionLink("删除", "DeleteConfirmed", new { id = item.ID }, new { onclick = "return confirm('确定删除此项？')" })
         </td>
     </tr>
 }
 
 </table>
+
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
