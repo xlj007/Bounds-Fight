@@ -734,8 +734,6 @@
     <Content Include="Views\b_Enterprise\Edit.cshtml" />
     <Content Include="Views\b_Enterprise\Index.cshtml" />
     <Content Include="Views\b_User\ManageUser.cshtml" />
-    <Content Include="Views\b_User\PasswordReset.cshtml" />
-    <Content Include="Views\b_User\AuthReset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
