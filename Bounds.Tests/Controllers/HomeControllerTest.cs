@@ -49,8 +49,6 @@ namespace Bounds.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-
-            
         }
     }
 }
