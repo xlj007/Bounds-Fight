@@ -329,7 +329,7 @@ namespace Bounds.Controllers
                                 detail.Create_Time = DateTime.Now;
                                 detail.Update_Time = DateTime.Now;
                                 detail.b_Recorder_ID = b_Point.b_Recorder_ID;
-                                detail.TheMonth = DateTime.Now.ToString("yyyyMM");
+                                detail.TheMonth = b_Point.b_Event_Date.ToString("yyyyMM");
                                 db.b_Point_Details.Add(detail);
                                 db.SaveChanges();
                                 detail.b_Point_Type = 2;
