@@ -176,7 +176,12 @@ namespace Bounds.Controllers
 
             foreach (var point_event in b_Point.b_Point_Event)
             {
-                string strEventName = db.b_Event_Library.Where(x => x.ID == point_event.b_Event_ID).FirstOrDefault().b_Event_Name;
+                var evt = db.b_Event_Library.Where(x => x.ID == point_event.b_Event_ID).FirstOrDefault();
+                string strEventName = "未知事件";
+                if (evt != null)
+                {
+                    strEventName = db.b_Event_Library.Where(x => x.ID == point_event.b_Event_ID).FirstOrDefault().b_Event_Name;
+                }
                 b_Point_Event_Show point_event_show = new b_Point_Event_Show();
                 point_event_show.b_Event_ID = point_event.b_Event_ID;
                 point_event_show.b_Event_Name = strEventName;

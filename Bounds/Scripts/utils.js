@@ -289,11 +289,11 @@ var Point = {
     },
     Submit: function () {
         var list_event_model = new Array();
-        if ($("div[name='div_event']").length == 0)
-        {
+        if ($("div[name='div_event']").length == 0) {
             alert("请先添加事件再提交");
             return;
         }
+        var check_ok = true;
         $("div[name='div_event']").each(function () {
             var list_user_model = new Array();
             $(this).find("div[name='div_event_user']").each(function () {
@@ -321,31 +321,38 @@ var Point = {
             event.b_Event_Note = $($(this).find("input[name='event_note']")[0]).val();
             event.b_Point_Event_Member = list_user_model;
 
+            if (event.b_Event_ID == "0" || event.b_Event_ID == null) {
+                alert("请先选择事件再提交");
+                check_ok = false;
+                return;
+            }
             list_event_model.push(event);
         });
 
-        var point = new b_Point();
-        point.b_Subject = $("#b_Subject").val();
-        point.b_Note = $("#b_Note").val();
-        point.b_Event_Date = $("#b_Event_Date").val();
-        point.b_First_Check_ID = $("#b_First_Check_ID").val();
-        point.b_Final_Check_ID = $("#b_Final_Check_ID").val();
-        point.b_Point_Event = list_event_model;
+        if (check_ok == true) {
+            var point = new b_Point();
+            point.b_Subject = $("#b_Subject").val();
+            point.b_Note = $("#b_Note").val();
+            point.b_Event_Date = $("#b_Event_Date").val();
+            point.b_First_Check_ID = $("#b_First_Check_ID").val();
+            point.b_Final_Check_ID = $("#b_Final_Check_ID").val();
+            point.b_Point_Event = list_event_model;
 
-        $.ajax({
-            url: "/b_Point/Save/",
-            type: "post",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify(point),
-            success: function (data) {
-                if (data == "OK") {
-                    alert("保存成功。");
-                    location.href = "/b_Point";
-                } else {
-                    alert(data);
+            $.ajax({
+                url: "/b_Point/Save/",
+                type: "post",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(point),
+                success: function (data) {
+                    if (data == "OK") {
+                        alert("保存成功。");
+                        location.href = "/b_Point";
+                    } else {
+                        alert(data);
+                    }
                 }
-            }
-        });
+            });
+        }
     },
     Pass: function (point_id) {
         $("#hid_comment_type").val('pass');
