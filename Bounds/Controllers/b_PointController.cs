@@ -612,19 +612,22 @@ namespace Bounds.Controllers
             }
         }
 
-        public ActionResult My_Detail()
+        public ActionResult My_Detail(int page = 1)
         {
             try
             {
                 int id = (Session["User"] as b_User).ID;
-                string strSQLSel = @"select b.b_Point_Type_Name,a.b_Point_Value,c.b_Event_Note as b_Event_Name,a.Create_Time From
+                string strSQLSel = @"select b.b_Point_Type_Name,a.b_Point_Value,c.b_Event_Note,e.b_Event_Name,a.Create_Time, d.b_Event_Date as Event_Time From
                                      b_Point_Details as a join b_Point_Type_Dic as b on a.b_Point_Type=b.ID
                                      join b_Point_Event as c on a.b_Event_ID = c.ID
+                                     join b_Point as d on c.b_Point_ID = d.ID
+                                     join b_Event_Library as e on c.b_Event_ID = e.ID
                                      where a.b_User_ID = " + id;
 
                 IEnumerable<b_Point_Details_ShowInfo> my_detail = db.Database.SqlQuery<b_Point_Details_ShowInfo>(strSQLSel);
 
-                return View(my_detail);
+                //return View(my_detail);
+                return View(my_detail.OrderByDescending(x => x.Event_Time).ToPagedList(page, 20));
             }
             catch(Exception ex)
             {

@@ -34,12 +34,14 @@ namespace Bounds.Models
         public int b_Point_Type { get; set; }
         [Display(Name = "功分值")]
         public double b_Point_Value { get; set; }
+        [Display(Name = "事件描述")]
+        public string b_Event_Note { get; set; }
         [Display(Name = "事件")]
         public string b_Event_Name { get; set; }
-        [Display(Name = "事件")]
-        public int b_Event_ID { get; set; }
         [Display(Name = "生成时间")]
         public DateTime Create_Time { get; set; }
+        [Display(Name ="事件时间")]
+        public DateTime Event_Time { get; set; }
         public DateTime Update_Time { get; set; }
         public int b_User_ID { get; set; }
         public string b_Enterprise { get; set; }

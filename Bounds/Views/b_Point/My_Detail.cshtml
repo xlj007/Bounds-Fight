@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Bounds.Models.b_Point_Details_ShowInfo>
+﻿@model PagedList.IPagedList<Bounds.Models.b_Point_Details_ShowInfo>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "My_Detail";
@@ -7,34 +8,49 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.b_Point_Type_Name)
+            功分类型
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Point_Value)
+            功分值
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.b_Event_Name)
+            事件
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Create_Time)
+            事件描述
+        </th>
+        <th>
+            事件时间
+        </th>
+        <th>
+            生成时间
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Point_Type_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Point_Value)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.b_Event_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Create_Time)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Point_Type_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Point_Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Event_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.b_Event_Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Create_Time)
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+@Html.PagedListPager(Model, page => Url.Action("My_Detail", new { page }))
