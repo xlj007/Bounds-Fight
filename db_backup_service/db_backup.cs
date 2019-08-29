@@ -4,6 +4,8 @@ using System.Configuration;
 using System.IO;
 using System;
 using System.Timers;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace db_backup_service
 {
@@ -14,6 +16,7 @@ namespace db_backup_service
         private string strBackupPath = string.Empty;
         private Timer timer;
         private int nTimeInterval = 10000;
+        private int nRemainFilesCount = 10;
         public db_backup()
         {
             InitializeComponent();
@@ -43,6 +46,26 @@ namespace db_backup_service
             }
         }
 
+        private void RemainLastTenBackupFiles()
+        {
+            try
+            {
+                if (Directory.Exists(strBackupPath))
+                {
+                    DirectoryInfo dir_info = new DirectoryInfo(strBackupPath);
+                    FileInfo[] file_info = dir_info.GetFiles("*.bak")?.OrderBy(x => x.LastWriteTime).ToArray();
+
+                    for (int i = 0; i < file_info.Length - nRemainFilesCount; i++)
+                    {
+                        file_info[i].Delete();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private bool BackUp_DB()
         {
@@ -69,6 +92,8 @@ namespace db_backup_service
                         boResult = true;
                     }
                 }
+
+                RemainLastTenBackupFiles();
             }
             catch (Exception ex)
             {
